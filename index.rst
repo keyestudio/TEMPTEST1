@@ -1,10 +1,10 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: keyestudio docs
+   :caption: keyestudio \TEMPTEST
 
    README.md
-   docs/keyestudio/index
+   docs/Tutorial V03
 
 
 
