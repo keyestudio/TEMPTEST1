@@ -4,7 +4,9 @@
    :caption: keyestudio \TEMPTEST
 
    README.md
-   docs/Tutorial V03
+   docs/Tutorial
+   docs/MakecodeTutorial
+   docs/MicroPythonTutorial
 
 
 
