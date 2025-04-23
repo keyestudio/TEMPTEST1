@@ -5,6 +5,8 @@
 
    README.md
    docs/index
+   docs/Arduino/arduino
+   docs/Scratch/scratch
 
 
 
