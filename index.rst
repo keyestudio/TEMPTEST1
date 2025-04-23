@@ -4,7 +4,7 @@
    :caption: keyestudio \TEMPTEST
 
    README.md
-   docs/Tutorial V03
+   docs/index
 
 
 
