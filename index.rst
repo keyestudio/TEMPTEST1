@@ -1,7 +1,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: keyestudio \TEMPTEST
+   :caption: keyestudio TEMPTEST
 
    README
    docs/index
