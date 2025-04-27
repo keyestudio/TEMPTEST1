@@ -1,4 +1,4 @@
-# Scratch Tutorials
+# KidsBlock Tutorials
 
 ## 1. Code and Library Download
 
@@ -6,7 +6,7 @@ Download links for the tutorial's code files:
 
 [Click to download](./Codes.zip)
 
-![image-20250423101642450](./media/image-20250423101642450.png)
+![image-20250423101642450](./scratch_img/image-20250423101642450.png)
 
 ## 2. Software Installation
 
@@ -299,7 +299,7 @@ The whole assembling generally can be divided into two parts: assembling parts a
 
 ------
 
-### Step 1
+### Step 1 Install the ESP32 Board and the Relay Module
 
 #### 1.1 Required components
 
@@ -333,9 +333,7 @@ The whole assembling generally can be divided into two parts: assembling parts a
 
 
 
-### Step 2
-
-------
+### Step 2Install the Fixing Frame for Battery Case and install the Feeding Cabin,connect the ESP32 board and the Relay Module
 
 #### 2.1 Required components
 
@@ -345,7 +343,7 @@ The whole assembling generally can be divided into two parts: assembling parts a
 
 #### 2.2
 
-Assemble the wooden board X and O on bottom plate H
+Assemble the wooden board X and O on bottom plate
 
 ![img](./scratch_img/image008.png)
 
@@ -381,13 +379,17 @@ Assemble the wooden board X and O on bottom plate H
 
 ------
 
-#### 2.8 Wiring
+#### 2.8 Connect the ESP32 board and the Relay Module
 
-|    Module    |   Wire    | Pin  |
-| :----------: | :-------: | :--: |
-| Relay Module | 3PIN 20cm | IO25 |
+|    Module    |                   Wire                    | Pin  |
+| :----------: | :---------------------------------------: | :--: |
+| Relay Module | <span style="color:red;">3PIN 20cm</span> | IO25 |
 
-**Pay attention to the color of the Dupont wire: For the relay module, connect yellow to S, red to V, black to G.**
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io25       |
 
 ![img](./scratch_img/image015.png)
 
@@ -401,7 +403,7 @@ Assemble the wooden board X and O on bottom plate H
 
 
 
-### Step 3
+### Step 3 Install the Substructure of the house
 
 ------
 
@@ -473,7 +475,7 @@ Assemble the wooden board X and O on bottom plate H
 
 
 
-### Step 4
+### Step 4 Install the Door of the Feeding Cabin
 
 ------
 
@@ -481,13 +483,17 @@ Assemble the wooden board X and O on bottom plate H
 
 ![img](./scratch_img/image027.png)
 
+![](./scratch_img/image-20250416162128859.png)
+
+The acrylic sheet is packed separately, and it is recommended that you tear off its protective film to reduce the friction when it moves as a door.
+
 ------
 
 #### 4.2 Set Servo to 180°
 
 <span style="color:red;font-size:30px;">Please note that this step is very important. Before installation, be sure to set the servo to 180 °.</span>
 
-**Before mount the servo, firstly please set the angle to 180° by programming: Scratch(Graphical programming).**
+**Before mount the servo, firstly please set the angle to 180° by programming: KidsBlock(Graphical programming).**
 
 Please refer to the software installation steps for details.
 
@@ -502,9 +508,9 @@ Please refer to the software installation steps for details.
 ------
 
 
-- Open **Scratch**. Select ESP32 board and the correct serial port, and burn the following code to the board.
+- Open **KidsBlock**. Select ESP32 board and the correct serial port, and burn the following code to the board.
 
-![image-20250425134842857](./media/image-20250425134842857.png)
+![image-20250425134842857](./scratch_img/image-20250425134842857.png)
 
 ![img](./scratch_img/image028-2.png)
 
@@ -520,23 +526,25 @@ Please refer to the software installation steps for details.
 
 #### 4.4
 
+**Note: The screws need to be tightened to keep the servo stable, otherwise the door may get stuck**
+
 ![img](./scratch_img/image030.png)
 
 ------
 
 #### 4.5
 
-![image-20250416162337896](./media/image-20250416162337896.png)
+![image-20250416162337896](./scratch_img/image-20250416162337896.png)
 
 <span style="color:red;">Don’t screw over the gear.</span>
 
-![6e1caadec8b1ec99b0093200763607b6](./media/6e1caadec8b1ec99b0093200763607b6.jpg)
+![6e1caadec8b1ec99b0093200763607b6](./scratch_img/6e1caadec8b1ec99b0093200763607b6.jpg)
 
 ------
 
 #### 4.6
 
-![image-20250416162754513](./media/image-20250416162754513.png)
+![image-20250416162754513](./scratch_img/image-20250416162754513.png)
 
 ------
 
@@ -547,6 +555,8 @@ Please refer to the software installation steps for details.
 ------
 
 #### 4.8
+
+Do not turn the gear after it is installed on the servo. If you have already turned the gear you will need to readjust the servo angle to 180°.
 
 ![img](./scratch_img/image034.png)
 
@@ -578,9 +588,38 @@ Please refer to the software installation steps for details.
 
 ------
 
+#### 4.13 Test the door
+
+1. Connect Servo to pin IO26 of the ESP32 board. Connect yellow to S, red to V, black to G.
+
+![img](./scratch_img/image028-1.png)
+
+2. Connect 6 AA batteries to the DC 7-12V port of ESP32 board. (Batteries not included in the kit)
+
+![image-20250417084747308](./scratch_img/image-20250417084747308.png)
 
 
-### Step 5
+
+3. Upload the Test code
+
+A. Connect the ESP32 board to the computer with the usb cable. Open the INO file inside the **6.1Servo.sb3** folder with KidsBlock .
+
+![image-20250427084645025](./scratch_img/image-20250427084645025.png)
+
+B.Upload code
+
+![image-20250417085407205](./scratch_img/image-20250417085407205.png)
+
+<span style="color:red;">NOTE: After uploading the code, ifthe door cannot be opened and closed and the servo is hot, please turn offthe powerimmediately.</span>
+
+**check:**
+
+1. Whether the plastic door has good contact and force points with the gear structure of the servo. 
+2. Whether the tip of the fixing screw on the gear structure of the servo is stuck with the plastic shell of the servo. If so, please loosen the fixing screw a little to prevent its tip from contacting the servo.
+
+![image-20250417085630662](./scratch_img/image-20250417085630662.png)
+
+### Step 5 Install the LCD display and the DHT11 Sensor
 
 ------
 
@@ -633,15 +672,17 @@ Please refer to the software installation steps for details.
 
 #### 5.7
 
+|  Module  |              Wire               |
+| :------: | :-----------------------------: |
+| LCD 1602 | 4PIN **(Black-Red-Blue-Green)** |
+
 **For the LCD display, connect green to SCL, blue to SDA, red to VCC, black to GND.**
 
 ![img](./scratch_img/image044.png)
 
 ------
 
-
-
-### Step 6
+### Step 6 Install the Ultrasonic Module
 
 ------
 
@@ -675,7 +716,7 @@ Please refer to the software installation steps for details.
 
 ------
 
-### Step 7
+### Step 7 Install the PIR Motion Sensor and Button Module
 
 ------
 
@@ -712,9 +753,7 @@ Please refer to the software installation steps for details.
 
 ------
 
-
-
-### Step 8
+### Step 8 Install the Walls of the House
 
 ------
 
@@ -780,7 +819,7 @@ Please refer to the software installation steps for details.
 
 ------
 
-### Step 9
+### Step 9 Install the Roof of the house
 
 ------
 
@@ -802,17 +841,13 @@ Please refer to the software installation steps for details.
 
 ------
 
-#### 9.4 Wiring
+#### 9.4 Keep the wires organized
 
 ![img](./scratch_img/image065.png)
 
 ------
 
-
-
-### Step 10
-
-------
+### Step 10 Install the House and Ground
 
 #### 10.1 Required components
 
@@ -844,7 +879,7 @@ Please refer to the software installation steps for details.
 
 ------
 
-#### 10.6
+#### 10.6 Arrange the wires
 
 ![img](./scratch_img/image071.png)
 
@@ -858,7 +893,7 @@ Please refer to the software installation steps for details.
 
 
 
-### Step 11 Wiring
+### Step 11 Wiring the House
 
 ------
 
@@ -887,6 +922,8 @@ Please refer to the software installation steps for details.
 
 #### 11.2 Fan
 
+Pass the Dupont wire connected to the fan through the hole **marked 30** on the wooden board.
+
 | Components |                    Wire                     |   ESP32 Board Pins   |
 | :--------: | :-----------------------------------------: | :------------------: |
 |    Fan     | 4PIN **Divided** **(Black-Red-Blue-Green)** | io18(IN-), io19(IN+) |
@@ -904,17 +941,19 @@ Please refer to the software installation steps for details.
 
 #### 11.3 PIR Motion Sensor
 
+Pass the Dupont wire connected to the PIR motion sensor through the hole marked 24 on the wooden board.
+
 |     Component     |   Wire    | ESP32 Board Pin |
 | :---------------: | :-------: | :-------------: |
 | PIR Motion Sensor | 3PIN 15cm |      io23       |
 
 **Connect red to V, black to G, yellow to S.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io23       |
 
 ![img](./scratch_img/image074.png)
 
@@ -922,17 +961,19 @@ Please refer to the software installation steps for details.
 
 #### 11.4 Button Module
 
+Pass the Dupont wire connected to the button module through the hole marked 25 on the wooden board.
+
 | Component |   Wire    | ESP32 Board Pin |
 | :-------: | :-------: | :-------------: |
 |  Button   | 3PIN 15cm |       io5       |
 
 **Connect red to V, black to G, yellow to S.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |       io5       |
 
 ![img](./scratch_img/image075.png)
 
@@ -940,18 +981,18 @@ Please refer to the software installation steps for details.
 
 #### 11.5 Ultrasonic Module  
 
-|     Component     |                    Wire                     |    ESP32 Board Pins    |
-| :---------------: | :-----------------------------------------: | :--------------------: |
-| Ultrasonic Module | 4PIN **Divided** **(Black-Green-Blue-Red)** | io13(ECHO), io12(TRIG) |
+|     Component     |                  Wire                   |    ESP32 Board Pins    |
+| :---------------: | :-------------------------------------: | :--------------------: |
+| Ultrasonic Module | 4PIN **Divided** (Black-Green-Blue-Red) | io13(ECHO), io12(TRIG) |
 
 **Connect red to V, black to G, blue to io12, green to io13.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|    ECHO    |   GREEN    |
-|    TRIG    |    BLUE    |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |    V (io12)     |
+|     G      |   BLACK    |    G (io12)     |
+|    ECHO    |   GREEN    |      io13       |
+|    TRIG    |    BLUE    |      io12       |
 
 ![img](./scratch_img/image076.png)
 
@@ -965,12 +1006,12 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, blue to SDA, green to SCL.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|    SCL     |   GREEN    |
-|    SDA     |    BLUE    |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|    SCL     |   GREEN    |       SCL       |
+|    SDA     |    BLUE    |       SDA       |
 
 ![img](./scratch_img/image077.png)
 
@@ -978,17 +1019,19 @@ Please refer to the software installation steps for details.
 
 #### 11.7 Temperature and Humidity Sensor  
 
+Pass the Dupont wire connected to the button module through the hole marked 20 on the wooden board.
+
 |            Component            |   Wire    | ESP32 Board Pins |
 | :-----------------------------: | :-------: | :--------------: |
 | Temperature and Humidity Sensor | 3PIN 20cm |       io17       |
 
 **Connect red to V, black to G, yellow to io17.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io17       |
 
 ![img](./scratch_img/image078.png)
 
@@ -1002,11 +1045,11 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, yellow to io35.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io35       |
 
 ![img](./scratch_img/image079.png)
 
@@ -1020,11 +1063,11 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, yellow to io34.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io34       |
 
 ![img](./scratch_img/image080.png)
 
@@ -1060,11 +1103,13 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, yellow to io16.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io16       |
+
+![image-20250417093147856](./scratch_img/image-20250417093147856.png)
 
 ![img](./scratch_img/image082.png)
 
@@ -1080,11 +1125,11 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, yellow to io27.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io27       |
 
 ![img](./scratch_img/image083.png)
 
@@ -1094,17 +1139,17 @@ Please refer to the software installation steps for details.
 
 **Pass the wire of water level sensor through the Hole 13, and then connect it to ESP32 board.**
 
-|     Component      |   Wire    | ESP32 Board Pin |
-| :----------------: | :-------: | :-------------: |
-| Water Lever Sensor | 3PIN 25cm |      io33       |
+|     Component      |                   Wire                    | ESP32 Board Pin |
+| :----------------: | :---------------------------------------: | :-------------: |
+| Water Lever Sensor | <span style="color:red;">3PIN 25cm</span> |      io33       |
 
 **Connect red to V, black to G, yellow to io33.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io33       |
 
 ![img](./scratch_img/image084.png)
 
@@ -1120,11 +1165,11 @@ Please refer to the software installation steps for details.
 
 **Connect red to V, black to G, yellow to io32.**
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io32       |
 
 ![img](./scratch_img/image085.png)
 
@@ -1136,17 +1181,19 @@ Please refer to the software installation steps for details.
 | :----------: | :--: | :-------------: |
 | Relay Module | 3PIN |      io25       |
 
+| Module Pin | Wire Color | ESP32 Board Pin |
+| :--------: | :--------: | :-------------: |
+|     V      |    RED     |        V        |
+|     G      |   BLACK    |        G        |
+|     S      |   YELLOW   |      io25       |
+
 **Pass the wire of Water Pump through the Hole 11 in the way as shown below:**
 
 ![img](./scratch_img/image086.png)
 
-**Connect red to V, black to G, yellow to io25.**
+The red wire of the water pump is connected to the middle terminal of the relay module, and the black wire is connected to the GND of the ESP32 board.
 
-| Module Pin | Wire Color |
-| :--------: | :--------: |
-|     V      |    RED     |
-|     G      |   BLACK    |
-|     S      |   YELLOW   |
+In addition, you need to use a Dupont wire to connect the left terminal of the relay module to the 3.3V of the ESP32.
 
 ![img](./scratch_img/image087.png)
 
@@ -1160,13 +1207,13 @@ Please refer to the software installation steps for details.
 
 Insert the male terminal of the Dupont wire into the female terminal of the relay module and tighten it with a screwdriver.
 
-![image-20250417093737686](./media/image-20250417093737686.png)
+![image-20250417093737686](./scratch_img/image-20250417093737686.png)
 
 <span style="color:red;">After the above steps, note that all the wiring has been finished. And wires of the LED, water level sensor, soil humidity sensor, buzzer and relay water pump have respectively passed through the holes of 7, 11, 13, 17 and 40 carved on the basswood board, preparing for the subsequent installation.</span>
 
-![354e13bf130d878628f1361fdd37b997](./media/354e13bf130d878628f1361fdd37b997.png)
+![354e13bf130d878628f1361fdd37b997](./scratch_img/354e13bf130d878628f1361fdd37b997.png)
 
-### Step 12
+### Step 12 Install the house and foundation
 
 ------
 
@@ -1200,9 +1247,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 13
+### Step 13 Install the Plastic Sinks
 
 ------
 
@@ -1224,9 +1269,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 14
+### Step 14 Install the soil module and water level module
 
 ------
 
@@ -1272,9 +1315,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 15
+### Step 15 Install fence
 
 ------
 
@@ -1302,9 +1343,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 16
+### Step 16 Install the Buzzer and the Led Module
 
 ------
 
@@ -1332,9 +1371,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 17
+### Step 17 Decorate the House
 
 ------
 
@@ -1356,9 +1393,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 18
+### Step 18 Install Solar Panel
 
 ------
 
@@ -1390,11 +1425,15 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 #### 18.5
 
+Install the LED light of the solar panel into this hole.
+
 ![img](./scratch_img/image132.png)
 
 ------
 
 #### 18.6
+
+Use a sticker to secure its wires to the wall
 
 ![img](./scratch_img/image131-1.png)
 
@@ -1424,9 +1463,7 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 
 ------
 
-
-
-### Step 19
+### Step 19 Install Battery Case
 
 ------
 
@@ -1437,6 +1474,10 @@ Insert the male terminal of the Dupont wire into the female terminal of the rela
 ------
 
 #### 19.2
+
+Install 6 AA batteries（Not included in the kit）
+
+![image-20250417095312061](./scratch_img/image-20250417095312061.png)
 
 ![image-20230718091649546](./scratch_img/image-20230718091649546.png)
 
@@ -1757,7 +1798,7 @@ When the button is released, the value is 1; if you press the button, it becomes
 
 ![img](./scratch_img/st39.png)
 
-In Scratch, we can read the state of the digital input pin by programming to detect whether the button is pressed. Thus, loads of interactive applications can be realized via a button module, such as LED on/off and display brightness adjustment. 
+In KidsBlock, we can read the state of the digital input pin by programming to detect whether the button is pressed. Thus, loads of interactive applications can be realized via a button module, such as LED on/off and display brightness adjustment. 
 
 
 
@@ -1865,9 +1906,9 @@ Based on the code for Auto-locking Button, we add "**LED pin output**" blocks.
 
 
 
-In this chapter, we have demonstrated how to program and control via Scratch, and we have learned the basics as well as some software and hardware concepts in experiments such as auto-locking button and lighting control system.
+In this chapter, we have demonstrated how to program and control via KidsBlock, and we have learned the basics as well as some software and hardware concepts in experiments such as auto-locking button and lighting control system.
 
-These are essential for a good Scratch developer. Next, we will guide you to keep exploring more applications and skills, whether you are a beginner or a veteran. Hope you enjoy the fun and challenges during learning Scratch. Let's move on!
+These are essential for a good KidsBlock developer. Next, we will guide you to keep exploring more applications and skills, whether you are a beginner or a veteran. Hope you enjoy the fun and challenges during learning KidsBlock. Let's move on!
 
 
 
@@ -4421,30 +4462,3 @@ A: Yes. When expanding to other modules, please check pin description to make su
 ### Q: An error occurs when importing <Wire.h> library.
 
 A: When installing ESP32 development board on arduino IDE, <Wire.h> library will be imported automatically, so you don't need to add it repeatedly.
-
-------
-
-------
-
-## 6. Resources
-
-Keyestudio official website: 
-
-[https://www.keyestudio.com/](https://www.keyestudio.com/)
-
-Keyestudio wiki main page:
-
-[https://wiki.keyestudio.com/Main_Page](https://wiki.keyestudio.com/Main_Page)
-
-ESP32 development board: 
-
-[https://wiki.keyestudio.com/KS5016_Keyestudio_ESP32_PLUS_Development_Board](https://wiki.keyestudio.com/KS5016_Keyestudio_ESP32_PLUS_Development_Board)
-
-Arduino official website: 
-
-[https://www.arduino.cc/](https://www.arduino.cc/)
-
-ESP32 espressif official website: 
-
-[https://www.espressif.com/](https://www.espressif.com/)
-
