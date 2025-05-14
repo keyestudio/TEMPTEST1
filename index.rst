@@ -3,12 +3,11 @@
    :maxdepth: 3
    :caption: keyestudio TEMPTEST
 
-   README
-   docs/index
-   docs/Arduino/arduino
-   docs/Scratch/scratch
-
-
+   docs/home.md
+   docs/Assemble/assemble
+   docs/Arduino/arduino.md
+   docs/kidsblock/kidsblock.md
+ 
 
 
 

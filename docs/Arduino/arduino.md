@@ -1,4002 +1,3795 @@
 # Arduino Tutorial
 
-## 1. Code and Library Download
+## 1. Get Started With Arduino 
 
-Download links for the tutorial's library files and code files:
+### 1.1 KEYESTUDIO V4.0 Development Board
 
-[Click to download](./resource.zip)
+We need to know keyestudio V4.0 development board, as a core of this smart car.
 
-![image-20250417163433215](./media/image-20250417163433215.png)
+![](media/image-20231012081546188.png)
 
-For more details, please visit our official website: [https://www.keyestudio.com/](https://www.keyestudio.com/)
+KEYESTUDIO V4.0 development board is an Arduino uno -compatible board, which is based on ATmega328P MCU, and with a cp2102 Chip as a UART-to-USB converter.
 
-## 2.Configure the Arduino
+![](media/image-20231012081631448.png)
 
-### 2.1 What is Arduino?
+It has 14 digital input/output pins (of which 6 can be used as PWM outputs), 6 analog inputs, a 16 MHz quartz crystal, a USB connection, a power jack, 2 ICSP headers and a reset button.
 
-Arduino is an open-source electronics platform based on easy-to-use hardware and software.  Arduino boards are able to read inputs- light on a sensor, a finger on a button, or a Twitter message\- and turn it into an output - activating a motor, turning on an LED, publishing something online. You can tell your board what to do by writing the program code in the IDE and sending the instructions to the microcontroller on the board. To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
+![](media/image-20231012081652388.png)
 
-### 2.2 Install the Arduino IDE for Windows
+It contains everything needed to support the microcontroller; simply connect it to a computer with a USB cable or power it via an external DC power jack (DC 7-12V) or via female headers Vin/ GND(DC 7-12V) to get started.
 
-Arduino official:[Software | Arduino](https://www.arduino.cc/en/software/)
+| Microcontroller             | ATmega328P-PU                                            |
+|-----------------------------|----------------------------------------------------------|
+| Operating Voltage           | 5V                                                       |
+| Input Voltage (recommended) | DC7-12V                                                  |
+| Digital I/O Pins            | 14 (D0-D13) (of which 6 provide PWM output)              |
+| PWM Digital I/O Pins        | 6 (D3, D5, D6, D9, D10, D11)                             |
+| Analog Input Pins           | 6 (A0-A5)                                                |
+| DC Current per I/O Pin      | 20 mA                                                    |
+| DC Current for 3.3V Pin     | 50 mA                                                    |
+| Flash Memory                | 32 KB (ATmega328P-PU) of which 0.5 KB used by bootloader |
+| SRAM                        | 2 KB (ATmega328P-PU)                                     |
+| EEPROM                      | 1 KB (ATmega328P-PU)                                     |
+| Clock Speed                 | 16 MHz                                                   |
+| LED_BUILTIN                 | D13                                                      |
 
+### 1.2 Keyestudio 8833 Motor Driver Expansion Board 
 
+The 8833 board adopts the 8833 motor driver chip driven by two-channel H bridges , and the maximum driving current of a single channel is up to 1.5A, and the terminal of PH2.0 is used. 
 
-.Here we click on the ![image-20250416143412683](./media/image-20250416143412683.png) option forthe easiest installation.
+The IR receiver module is also integrated on the board. Furthermore, there are many PH2.0 expansion interfaces on the board such as ultrasonic interface, analog interface, three-channel tracking interface as well as pin interfaces with Bluetooth and motor driver. 
 
-![](./media/a2.png)
 
-1. Here,  we will take Windows system as an example to introduce how to download and install it. Two versions are provided for Windows: for installing and for downloading(a zipped file, no need to install).
 
-![a3](./media/a3.png)
+| Name                                | Parameter                                                    |
+| ----------------------------------- | ------------------------------------------------------------ |
+| Voltage                             | USB 5V，DC 6-9V                                              |
+| Current                             | The maximum output is 3A, the actual output is about 1A (it’s 2A when the motor is loaded) |
+| Maximum power                       | · 27W（The actual value is about 9W）                        |
+| Working temperature                 | -10~50 Degree                                                |
+| Dimension                           | 69*56*18mm                                                   |
+| Weight                              | 25.5g                                                        |
+| Environmental protection attributes | ROHS                                                         |
 
-Click **JUST DOWNLOAD** to download the software. 
+![image-20250513140909089](./media/image-20250513140909089.png)
 
-2. Save the .exe file downloaded from the software page to your hard drive and simply run the file .
+![image-20250513140932577](./media/image-20250513140932577.png)
 
-![a5](./media/a5.png)
+### 1.3 Installing Arduino IDE
 
-3. Read the License Agreement and agree it.
+![](media/ide.png)
 
-![a6](./media/a6.png)
+<span style="color:red;font-size:25px">Click the link to start learning how to download software, install drivers, upload code, and install library files.</span>
 
-4. Choose the installation options.
+[https://getting-started-with-arduino.readthedocs.io](https://getting-started-with-arduino.readthedocs.io/en/latest/Arduino%20IDE%20Tutorial.html)
 
-![a7](./media/a7.png)
 
-5. Choose the install location.
 
-![a8](./media/a8.png)
+## 2. Download code and library files
 
-6. Click finish and run Arduino IDE
+Click on the link to download the code and library files required for the course：[Click to download](./Arduino.zip)
 
-![a9](./media/a9-1744785033221-7.png)
+![image-20250513140511474](./media/image-20250513140511474.png)
 
-### 2.3 Install Driver for KEYESTUDIO ESP32 PLUS Board
+## 3. Projects
 
-KEYESTUDIO ESP32 PLUS Board a universal WIFI plus Bluetooth development board based on ESP32, integrated with ESP32-WOROOM-32 module and compatible with Arduino.
+### Project 1: LED Blink
 
-It has a hall sensor, high-speed SDIO/SPI, UART, I2S as well as I2C. Furthermore, equipped with freeRTOS operating system, which is quite suitable forthe Internet of things and smart home.
+**1.Description**
 
-**Specifications**
+![image-20250508161034535](./media/image-20250508161034535.png)
 
-Voltage: 3.3V-5V
+For starters and enthusiasts, LED Blink is a fundamental program. LED, the abbreviation of light emitting diodes, consists of Ga, As, P, N chemical compounds and so on.
 
-CurrentOutput: 1.2A(maximum)
+The LED can flash in diverse color by altering the delay time in the test code. When in control, power on GND and VCC, the LED will be on if S end is in high level, otherwise it will go off.
 
-Maximum power Output: 10W
+**2.Specification**
 
-Working temperature: -10℃~50℃
+- Control interface: digital port
 
-Dimension: 69*54*14.5mm
+- Working voltage: DC 3.3-5V
 
-Weight: 25.5g
+- Pin spacing: 2.54mm
 
-Environmental protection attributes: ROHS
+- LED display color: red
 
-![j255](./media/j255.png)
+![image-20250508161015086](./media/image-20250508161015086.png)
 
-**Install driver**
+**3.Components**
 
-Connect the ESP32 board to the computer and wait for Windowsto begin its driverinstallation process. Often CH340 driver will be automatically installed by yoursystem when using Arduino. You can check the Device Manager orthe port ofthe Arduino IDE to see ifthe driverissuccessfully installed.
+|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+| :--------------------------------------: | :--------------------------------------: | :----------------------: |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
+|             3P Dupont Wire*1             |               USB Cable*1                |                          |
+|         ![img](./media/wps6.jpg)         |         ![img](./media/wps5.jpg)         |                          |
 
-![a10](./media/a10.png)
+**4.Wiring Diagram**
 
-If the CH340 driver is not installed automatically, we need to install it manually. 
+![image-20250508161123490](./media/image-20250508161123490.png)
 
-Click to download [Windows CH340 driver](./Windows.zip).
+As can be seen from the above figure, the Keyestudio 8833 motor Shield is stacked on the Keyestudio 4.0 development board.
 
-![a51](./media/a51.png)
+The pin G, V and S of the LED module are connected to G, 5V and D9 of the expansion board respectively.
 
-1. Open the **Device Manager** by right clicking “**My PC**” and selecting **Properties**. Look under **Other devices**. You should see an open port named **USB Serial**
+**5.Test Code**
 
-![a11](./media/a11.png)
+```c 
+//****************************************************************************
+/*
+keyestudio 4wd BT Car
+lesson 1.1
+Blink
+http://www.keyestudio.com
+*/
+void setup()
+{ 
+  pinMode(9, OUTPUT);// initialize digital pin 9 as an output.
+}
+    
+void loop() // the loop function runs over and over again forever
+{  
+  digitalWrite(9, HIGH); // turn the LED on (HIGH is the voltage level)
+   delay(1000); // wait for a second
+   digitalWrite(9, LOW); // turn the LED off by making the voltage LOW
+   delay(1000); // wait for a second
+}
+//****************************************************************************
+```
 
-2. Right click on the "**USB Serial**" and choose the "**Update Driver**" option.
+**6.Test Result**
 
-![a13](./media/a13.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and use a USB cable to connect the computer to power the board. After powering on, you will see the LED connected to the D9 will be on and off. 
 
-3. Choose the "**Browse my computerfor Driversoftware**" option.
+**7.Code Explanation**
 
-![a14](./media/a14.png)
+pinMode(9，OUTPUT) - This function can denote that the pin is INPUT or OUTPUT
 
-4. Select the driver file named "**usb_ch341_3.1.2009.06**", located in the Driver Folder of the
+digitalWrite(9，HIGH) - When pin is OUTPUT, we can set it to HIGH(output 5V) or LOW(output 0V)
 
-tutorial package.
+**8.Extension Practice**
 
-![a15](./media/a15.png)
-
-5. Driversuccessfully installed.
-
-![a16](./media/a16.png)
-
-6. Device Manager will automatically refresh. Look under Ports (COM & LPT). You should see an open port named “**USB-SERIAL CH340(COM3)**”
-
-![a10](./media/a10.png)
-
-7. Click **Tools>Port** at Arduino IDE, you can find the same COM port asthe CH340 driver in the device manager.
-
-![a38](./media/a38.png)
-
-### 2.4 Introduce of Arduino IDE 2.0
-
-![image-20250416145828363](./media/image-20250416145828363.png)
-
-**Verify / Upload** - compile and upload your code to your Arduino Board. 
-
-**Select Board & Port** - detected Arduino boards automatically show up here, along with the port number. 
-
-**Sketchbook** - here you will find all of your sketches locally stored on your computer. Additionally, you can sync with the Arduino Cloud, and also obtain yoursketchesfrom the online environment. 
-
-**Boards Manager** - browse through Arduino & third party packages that can be installed. For example, using a MKR WiFi 1010 board requiresthe Arduino SAMD Boards package installed. 
-
-**Library Manager** - browse through thousands of Arduino libraries, made by Arduino & its community. 
-
-**Debugger**- test and debug programsin realtime. 
-
-**Search** -search for keywordsin your code. 
-
-**Open Serial Monitor**- opensthe Serial Monitortool, as a new tab in the console.
-
-If you want to learn more about Arduino IDE, please refer to this document：Getting Started with Arduino IDE 2
-
-### 2.5 Add Libraries to Arduino IDE
-
-**Why Use Libraries?**
-
-Libraries are incredibly useful when creating a project of any type. They make our development
-
-experience much smoother, and there almost an infinite amount out there. They are used to
-
-interface with many different sensors, RTCs, Wi-Fi modules, RGB matrices and of course with other
-
-components on your board. 
-
-**Including a Library in the sketch**
-
-To use a library, you first need to include the library at the top of the sketch.If you find a line of code in the format of `#include "library name" `at the beginning of the code when using our code, it means that you need to add this library file to arduino IDE first before you can successfully upload this code.
-
-![image-20250416150700630](./media/image-20250416150700630.png)
-
-To make the smart farm kit work, we will need to **add these library files to the Arduino IDE.** You can find them in the tutorial package.
-
-![image-20250416150847190](./media/image-20250416150847190.png)
-
-**Importing a .zip Library**
-
-In the menu bar, go to **Sketch  > Include Library > Add .ZIP Library...** You will be prompted to select the library you want to add.
-
-![4564654654](./media/4564654654.png)
-
-Navigate to the .zip file’s location and open it.
-
-![image-20250416151456661](./media/image-20250416151456661.png)
-
-You may need to restart the Arduino IDE for the library to be available. After successfully installing the library file, you will see them in the list.
-
-![image-20250416151805635](./media/image-20250416151805635.png)
-
-### 2.6 Configure the development environment for ESP32
-
-Before using Arduino IDE to program the smart farm, you need to configure the Arduino IDE, select the correct board type (**ESP32 Dev Module**) for the ESP32 Plus board, and select the **COM port** that is assigned in the device manager.
-
-There is no option for ESP32 in Arduino's default board list,so we need to **install it manually**.
-
-![a30](./media/a30.png)
-
-Click **File > Preferences**. Copy the link of ESP32 board(https://espressif.github.io/arduino-esp32/package_esp32_index.json) into the **Additional boards manager URLs**, and click **OK**.
-
-![a31](./media/a31.png)
-
-Click the icon of"**Board Manager**"in the upperleft corner.
-
-![a32](./media/a32.png)
-
-Search for **ESP32** in the search box and install the latest version. You can check its process in the lower right corner. **During installation, keep the network stable. If the installation fails, repeat the above steps.**
-
-<span style="color:red; font-size:20px;">Note: We adopt ESP32 version 3.1.3 in this tutorial. Please keep it consistent to avoid code incompatibilities.</span>
-
-![a33](./media/a33.png)
-
-installation is complete:
-
-![a34](./media/a34-1744788169084-23.png)
-
-Click **Tools> Board > esp32** **,**and choose the **EPS32 Dev Module**
-
-![a37](./media/a37.png)
-
-Choose COM port. You may check your port number at Device Manager. If there are many COM ports, unplug the cable of board to see which port disappears. Then that one is the port ready to use. If there is no COM port, please check whether driver is installed.
-
-![](./media/a10-1744788429738-26.png)
-
-Herein, our COM port is COM3. Click “Tools” → “Port” → “COM3”.
-
-![](./media/a38-1744788429738-27.png)
-
-## 3. Set the Angle of the Servo
-
-In the next lesson, we will assemble thissmart farm kit. Before assembling the servo to the kit, we need to **setits angle to 180**°so that it will work as expected.
-
-![image-20250416152950497](./media/image-20250416152950497.png)
-
-1.Connect the servo to the **pin io26** of the Esp32 plus board Note: The brown, red and orange wire of the servo are respectively attached to Gnd(G), 5v(V) and **Pin io26.**
-
-![image028-1](./media/image028-1.png)
-
-2.Connect the Esp32 plus board to the computer
-
-![image-20250416153731709](./media/image-20250416153731709.png)
-
-3.Make sure you have installed the **ESP32Servo.h** library for the Arduino IDE. If not, please referto the previoussection to install it.
-
-![3bd9304d-73d9-4fc3-9e59-50c55f947960](./media/3bd9304d-73d9-4fc3-9e59-50c55f947960.png)
-
-4.Open the **window_servo** code provided in ourtutorial package with Arduino IDE.
-
-![image-20250416154133013](./media/image-20250416154133013.png)
-
-5.Click on **Tools**,select"**EPS32 Dev Module**"for the board type, and select **COM-XX** for Port asshown in the Device Manager.
-
-![51454125](./media/51454125.png)
-
-6.Click ![image-20250416154532804](./media/image-20250416154532804.png)on upload >>>done uploading, the servo will be set to 180°.
-
-![image-20250416155301751](./media/image-20250416155301751.png)
-
-## 4. Assemble the Smart Farm Kit
-
-### Step 1 Install the ESP32 Board and the Relay Module
-
-##### 1.1 Required components
-
-![img](./media/image001.png)
-
-------
-
-##### 1.2
-
-![img](./media/image002.png)
-
-------
-
-##### 1.3
-
-![img](./media/image003.png)
-
-------
-
-##### 1.4
-
-![img](./media/image004.png)
-
-------
-
-##### 1.5
-
-![img](./media/image006.png)
-
-------
-
-### Step 2Install the Fixing Frame for Battery Case and install the Feeding Cabin,connect the ESP32 board and the Relay Module
-
-##### 2.1 Required components
-
-![img](./media/image007.png)
-
-------
-
-##### 2.2
-
-Assemble the wooden board X and O on bottom plate
-
-![img](./media/image008.png)
-
-------
-
-##### 2.3
-
-![img](./media/image010.png)
-
-------
-
-##### 2.4
-
-![img](./media/image011.png)
-
-------
-
-##### 2.5
-
-![img](./media/image012.png)
-
-------
-
-##### 2.6
-
-![img](./media/image013.png)
-
-------
-
-##### 2.7
-
-![img](./media/image014.png)
-
-------
-
-##### 2.8 Connect the ESP32 board and the Relay Module
-
-|    Module    |                   Wire                    | Pin  |
-| :----------: | :---------------------------------------: | :--: |
-| Relay Module | <span style="color:red;">3PIN 20cm</span> | IO25 |
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io25       |
-
-![img](./media/image015.png)
-
-------
-
-##### 2.9
-
-![img](./media/image015-1.png)
-
-------
-
-### Step 3 Install the Substructure of the house
-
-##### 3.1 Required components
-
-![img](./media/image016.png)
-
-------
-
-##### 3.2
-
-![img](./media/image017.png)
-
-------
-
-##### 3.3
-
-![img](./media/image018.png)
-
-------
-
-##### 3.4
-
-![img](./media/image019.png)
-
-------
-
-##### 3.5
-
-![img](./media/image020.png)
-
-------
-
-##### 3.6
-
-![img](./media/image021.png)
-
-------
-
-##### 3.7
-
-![img](./media/image022.png)
-
-------
-
-##### 3.8
-
-![img](./media/image023.png)
-
-------
-
-##### 3.9
-
-![img](./media/image024.png)
-
-------
-
-##### 3.10
-
-![img](./media/image025.png)
-
-------
-
-##### 3.11
-
-![img](./media/image026.png)
-
-------
-
-### Step 4 Install the Door of the Feeding Cabin
-
-##### 4.1 Required components
-
-![img](./media/image027.png)
-
-------
-
-##### 4.2 Set Servo to 180°
-
-![image-20250416162128859](./media/image-20250416162128859.png)
-
-The acrylic sheet is packed separately, and it is recommended that you tear off its protective film to reduce the friction when it moves as a door.
-
-------
-
-##### 4.3 Install Servo
-
-![img](./media/image029.png)
-
-------
-
-##### 4.4 
-
-**Note: The screws need to be tightened to keep the servo stable, otherwise the door may get stuck**
-
-![img](./media/image030.png)
-
-------
-
-##### 4.5
-
-![image-20250416162337896](./media/image-20250416162337896.png)
-
-<span style="color:red;">Don’t screw over the gear.</span>
-
-![img](./media/6e1caadec8b1ec99b0093200763607b6.jpg)
-
-------
-
-##### 4.6
-
-![image-20250416162754513](./media/image-20250416162754513.png)
-
-------
-
-##### 4.7
-
-![img](./media/image033.png)
-
-------
-
-##### 4.8
-
-Do not turn the gear after it is installed on the servo. If you have already turned the gear you will need to readjust the servo angle to 180°.
-
-![img](./media/image034.png)
-
-------
-
-##### 4.9 
-
-**NOTE: When installing the lid of the feeding box, its opening should be fully closed.**
-
-![img](./media/image035.png)
-
-------
-
-##### 4.10
-
-![img](./media/image036.png)
-
-------
-
-##### 4.11
-
-![img](./media/image037.png)
-
-------
-
-##### 4.12
-
-![img](./media/image037-1.png)
-
-------
-
-##### 4.13 Test the door
-
-1) Connect Servo to pin IO26 of the ESP32 board. Connect yellow to S, red to V, black to G.
-
-![image028-1](./media/image028-1-1744850789118-1.png)
-
-2. Connect 6 AA batteries to the DC 7-12V port of ESP32 board. (Batteries not included in the kit)
-
-![image-20250417084747308](./media/image-20250417084747308.png)
-
-
-
-3. Upload the Test code
-
-A. Connect the ESP32 board to the computer with the usb cable. Open the INO file inside the **6.1Servo** folder with Arduino IDE.
-
-![image-20250418081022882](./media/image-20250418081022882.png)
-
-![image-20250418081231084](./media/image-20250418081231084.png)
-
-B. Click on Tools, select "ESP32 Dev Module" for the board type in the drop-down menu bar, and select COM-XX for Port (According to the port assigned by your computer in the device manager)
-
-
-
-C. Please make sure you have uploaded the **ESP32Servo** library and then upload the code. The door of the feeding cabin will open and close slowly.
-
-![image-20250417085407205](./media/image-20250417085407205.png)
-
-<span style="color:red;">NOTE: After uploading the code, ifthe door cannot be opened and closed and the servo is hot, please turn offthe powerimmediately.</span>
-
-**check:**
-
-1. Whether the plastic door has good contact and force points with the gear structure of the servo. 
-2. Whether the tip of the fixing screw on the gear structure of the servo is stuck with the plastic shell of the servo. If so, please loosen the fixing screw a little to prevent its tip from contacting the servo.
-
-![image-20250417085630662](./media/image-20250417085630662.png)
-
-### Step 5 Install the LCD display and the DHT11 Sensor
-
-##### 5.1 Required components
-
-![img](./media/image038.png)
-
-------
-
-##### 5.2
-
-![img](./media/image039.png)
-
-------
-
-##### 5.3
-
-![img](./media/image040.png)
-
-------
-
-##### 5.4
-
-![img](./media/image041.png)
-
-------
-
-##### 5.5 Prototype
-
-![img](./media/image042.png)
-
-------
-
-##### 5.6 Wiring
-
-**Connect modules via Dupont wires.**
-
-|             Module              |   Wire    |
-| :-----------------------------: | :-------: |
-| Temperature and Humidity Sensor | 3PIN 20cm |
-
-**Pay attention to the color of the Dupont wire:**
-
-**For temperature and humidity sensor, connect yellow to S, red to V, black to G.**
-
-![img](./media/image043.png)
-
-------
-
-##### 5.7
-
-|  Module  |              Wire               |
-| :------: | :-----------------------------: |
-| LCD 1602 | 4PIN **(Black-Red-Blue-Green)** |
-
-**For the LCD display, connect green to SCL, blue to SDA, red to VCC, black to GND.**
-
-![img](./media/image044.png)
-
-------
-
-### Step 6 Install the Ultrasonic Module
-
-##### 6.1 Required components
-
-![img](./media/image045.png)
-
-------
-
-##### 6.2
-
-![img](./media/image046.png)
-
-------
-
-##### 6.3
-
-![img](./media/image047.png)
-
-------
-
-##### 6.4 Wiring
-
-|      Module       |              Wire               |
-| :---------------: | :-----------------------------: |
-| Ultrasonic module | 4PIN **(Black-Green-Blue-Red)** |
-
-**Pay attention to the color of the Dupont wire: For the ultrasonic module, connect blue to TRIG,green  to ECHO, red to VCC, black to GND.**
-
-![img](./media/image048.png)
-
-------
-
-### Step 7 Install the PIR Motion Sensor and Button Module
-
-##### 7.1 Required components
-
-![img](./media/image049.png)
-
-------
-
-##### 7.2
-
-![img](./media/image050.png)
-
-------
-
-##### 7.3
-
-![img](./media/image051.png)
-
-------
-
-##### 7.4 Wiring
-
-**Connect modules via Dupont wires.**
-
-|      Module       |   Wire    |
-| :---------------: | :-------: |
-| PIR Motion Sensor | 3PIN 15cm |
-|   Button Module   | 3PIN 15cm |
-
-**Pay attention to the color of the Dupont wire: Connect yellow to S, red to V, black to G.**
-
-![img](./media/image052.png)
-
-------
-
-### Step 8 Install the Walls of the House
-
-##### 8.1 Required components
-
-![img](./media/image053.png)
-
-------
-
-##### 8.2
-
-![img](./media/image054.png)
-
-------
-
-##### 8.3
-
-![img](./media/image055.png)
-
-------
-
-##### 8.4
-
-![img](./media/image056.png)
-
-------
-
-##### 8.5
-
-![img](./media/image057.png)
-
-------
-
-##### 8.6
-
-![img](./media/image058.png)
-
-------
-
-##### 8.7
-
-![img](./media/image059.png)
-
-------
-
-##### 8.8 Prototype
-
-![img](./media/image060.png)
-
-------
-
-##### 8.9 Wiring
-
-|    Module     |              Wire               |
-| :-----------: | :-----------------------------: |
-|      Fan      | 4PIN **(Black-Red-Blue-Green)** |
-| Steam Sensor  |            3PIN 15cm            |
-| Photoresistor |            3PIN 15cm            |
-
-**Pay attention to the color of the Dupont wire: Connect yellow to S, red to V, black to G, blue to IN+, green to IN-.**
-
-![img](./media/image061.png)
-
-------
-
-### Step 9 Install the Roof of the house
-
-##### 9.1 Required components
-
-![img](./media/image062.png)
-
-------
-
-##### 9.2
-
-![img](./media/image063.png)
-
-------
-
-##### 9.3
-
-![img](./media/image064.png)
-
-------
-
-##### 9.4 Keep the wires organized
-
-![img](./media/image065.png)
-
-------
-
-### Step 10 Install the House and Ground
-
-##### 10.1 Required components
-
-![img](./media/image066.png)
-
-------
-
-##### 10.2
-
-![img](./media/image067.png)
-
-------
-
-##### 10.3
-
-![img](./media/image068.png)
-
-------
-
-##### 10.4 Bottom View
-
-![img](./media/image069.png)
-
-------
-
-##### 10.5
-
-![img](./media/image070.png)
-
-------
-
-##### 10.6 Arrange the wires
-
-![img](./media/image071.png)
-
-------
-
-##### 10.7 
-
-![img](./media/image072.png)
-
-------
-
-### Step 11 Wiring the House
-
-##### 11.1 
-
-**Pay attention to the color of the Dupont wire: Connect yellow to S, red to V, black to G.**
-
-| NO.  |           Components            |               Wires                |      ESP32 Board Pins      |
-| :--: | :-----------------------------: | :--------------------------------: | :------------------------: |
-|  1   |               Fan               | 4pin, Divided Black-Red-Blue-Green | io18(IN-)   \|   io19(IN+) |
-|  2   |        PIR Motion Sensor        |             3pin 15cm              |            io23            |
-|  3   |             Button              |             3pin 15cm              |            io5             |
-|  4   |        Ultrasonic Module        | 4pin,Divided Black-Green-Blue-Red  |    D12(TRIG) D13(ECHO)     |
-|  5   |            LCD 1602             |          4pin, Connected           |            I2C             |
-|  6   | Temperature and Humidity Sensor |             3pin 20cm              |            io17            |
-|  7   |          Steam Sensor           |             3pin 15cm              |            io35            |
-|  8   |          Photoresistor          |             3pin 15cm              |            io34            |
-|  9   |              Servo              |                 --                 |            io26            |
-|  10  |             Buzzer              |             3pin 20cm              |            io16            |
-|  11  |               LED               |             3pin 20cm              |            io27            |
-|  12  |       Water Level Sensor        |             3pin 25cm              |            io33            |
-|  13  |      Soil Humidity Sensor       |             3pin 20cm              |            io32            |
-|  14  |           Water Pump            |             3pin 20cm              |            io25            |
-
-
-
-##### 11.2 Fan
-
-Pass the Dupont wire connected to the fan through the hole **marked 30** on the wooden board.
-
-| Components |                Wire                 |   ESP32 Board Pins   |
-| :--------: | :---------------------------------: | :------------------: |
-|    Fan     | 4PIN Divided (Black-Red-Blue-Green) | io18(IN-), io19(IN+) |
-
-| Module Pin | Wire Color | ESP32 Board Pins |
-| :--------: | :--------: | :--------------: |
-|    IN-     |   GREEN    |    io18(IN-)     |
-|    IN+     |    BLUE    |    io19(IN+)     |
-|     V      |    RED     |     V (io19)     |
-|     G      |   BLACK    |     G (io19)     |
-
-![img](./media/image073.png)
-
-------
-
-##### 11.3 PIR Motion Sensor
-
-Pass the Dupont wire connected to the PIR motion sensor through the hole marked 24 on the wooden board.
-
-|     Component     |   Wire    | ESP32 Board Pin |
-| :---------------: | :-------: | :-------------: |
-| PIR Motion Sensor | 3PIN 15cm |      io23       |
-
-**Connect red to V, black to G, yellow to S.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io23       |
-
-![img](./media/image074.png)
-
-------
-
-##### 11.4 Button Module
-
-Pass the Dupont wire connected to the button module through the hole marked 25 on the wooden board.
-
-| Component |   Wire    | ESP32 Board Pin |
-| :-------: | :-------: | :-------------: |
-|  Button   | 3PIN 15cm |       io5       |
-
-**Connect red to V, black to G, yellow to S.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |       io5       |
-
-![img](./media/image075.png)
-
-------
-
-##### 11.5 Ultrasonic Module  
-
-|     Component     |                  Wire                   |    ESP32 Board Pins    |
-| :---------------: | :-------------------------------------: | :--------------------: |
-| Ultrasonic Module | 4PIN **Divided** (Black-Green-Blue-Red) | io13(ECHO), io12(TRIG) |
-
-**Connect red to V, black to G, blue to io12, green to io13.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |    V (io12)     |
-|     G      |   BLACK    |    G (io12)     |
-|    ECHO    |   GREEN    |      io13       |
-|    TRIG    |    BLUE    |      io12       |
-
-![img](./media/image076.png)
-
-------
-
-##### 11.6 LCD 1602
-
-| Component |                 Wire                  | ESP32 Board Pins |
-| :-------: | :-----------------------------------: | :--------------: |
-|  LCD1602  | 4PIN Connected (Black-Red-Blue-Green) |       I2C        |
-
-**Connect red to V, black to G, blue to SDA, green to SCL.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|    SCL     |   GREEN    |       SCL       |
-|    SDA     |    BLUE    |       SDA       |
-
-![img](./media/image077.png)
-
-------
-
-##### 11.7 Temperature and Humidity Sensor  
-
-Pass the Dupont wire connected to the button module through the hole marked 20 on the wooden board.
-
-|            Component            |   Wire    | ESP32 Board Pins |
-| :-----------------------------: | :-------: | :--------------: |
-| Temperature and Humidity Sensor | 3PIN 20cm |       io17       |
-
-**Connect red to V, black to G, yellow to io17.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io17       |
-
-![img](./media/image078.png)
-
-------
-
-##### 11.8 Steam Sensor
-
-|  Component   |   Wire    | ESP32 Board Pin |
-| :----------: | :-------: | :-------------: |
-| Steam Sensor | 3PIN 15cm |      io35       |
-
-**Connect red to V, black to G, yellow to io35.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io35       |
-
-![img](./media/image079.png)
-
-------
-
-##### 11.9 Photoresistor
-
-|   Component   |   Wire    | ESP32 Board Pin |
-| :-----------: | :-------: | :-------------: |
-| Photoresistor | 3PIN 15cm |      io34       |
-
-**Connect red to V, black to G, yellow to io34.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io34       |
-
-![img](./media/image080.png)
-
-------
-
-##### 11.10 Servo
-
-Pass the wire of Servo through the Hole 15, and then connect it to ESP32 board.
-
-| Component | Wire | ESP32 Board Pin |
-| :-------: | :--: | :-------------: |
-|   Servo   | 3PIN |      io26       |
-
-**Connect red to V, black to G, yellow to io26.**
-
-| ESP32 Board Pin | Wire Color |
-| :-------------: | :--------: |
-|        V        |    RED     |
-|        G        |   BLACK    |
-|      IO26       |   YELLOW   |
-
-![img](./media/image081.png)
-
-------
-
-##### 11.11 Buzzer
-
-Pass the wire of Buzzer through the Hole 17, and then connect it to ESP32 board.
-
-| Component |   Wire    | ESP32 Board Pin |
-| :-------: | :-------: | :-------------: |
-|  Buzzer   | 3PIN 20cm |      io16       |
-
-**Connect red to V, black to G, yellow to io16.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io16       |
-
-![image-20250417093147856](./media/image-20250417093147856.png)
-
-![img](./media/image082.png)
-
-------
-
-##### 11.12 LED
-
-Pass the wire of LED through the Hole 7, and then connect it to ESP32 board.
-
-| Component |   Wire    | ESP32 Board Pin |
-| :-------: | :-------: | :-------------: |
-|    LED    | 3PIN 20cm |      io27       |
-
-**Connect red to V, black to G, yellow to io27.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io27       |
-
-![img](./media/image083.png)
-
-------
-
-##### 11.13 Water Lever Sensor
-
-Pass the wire of water level sensor through the Hole 13, and then connect it to ESP32 board.
-
-|     Component      |                   Wire                    | ESP32 Board Pin |
-| :----------------: | :---------------------------------------: | :-------------: |
-| Water Lever Sensor | <span style="color:red;">3PIN 25cm</span> |      io33       |
-
-**Connect red to V, black to G, yellow to io33.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io33       |
-
-![img](./media/image084.png)
-
-------
-
-##### 11.14 Soil Humidity Sensor
-
-Pass the wire of soil humidity sensor through the Hole 11, and then connect it to ESP32 board.
-
-|      Component       |   Wire    | ESP32 Board Pin |
-| :------------------: | :-------: | :-------------: |
-| Soil Humidity Sensor | 3PIN 20cm |      io32       |
-
-**Connect red to V, black to G, yellow to io32.**
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io32       |
-
-![img](./media/image085.png)
-
-------
-
-##### 11.15 Relay Module  
-
-|  Component   | Wire | ESP32 Board Pin |
-| :----------: | :--: | :-------------: |
-| Relay Module | 3PIN |      io25       |
-
-| Module Pin | Wire Color | ESP32 Board Pin |
-| :--------: | :--------: | :-------------: |
-|     V      |    RED     |        V        |
-|     G      |   BLACK    |        G        |
-|     S      |   YELLOW   |      io25       |
-
-Pass the wire of Water Pump through the Hole 11 in the way as shown below:
-
-![img](./media/image086.png)
-
-The red wire of the water pump is connected to the middle terminal of the relay module, and the black wire is connected to the GND of the ESP32 board.
-
-In addition, you need to use a Dupont wire to connect the left terminal of the relay module to the 3.3V of the ESP32.
-
-![img](./media/image087.png)
-
-![img](./media/image088.png)
-
-Insert the male terminal of the Dupont wire into the female terminal of the relay module and tighten it with a screwdriver.
-
-![image-20250417093737686](./media/image-20250417093737686.png)
-
-<span style="color:red;">After the above steps, note that all the wiring has been finished. And wires of the LED, water level sensor, soil humidity sensor, buzzer and relay water pump have respectively passed through the holes of 7, 11, 13, 17 and 40 carved on the basswood board, preparing for the subsequent installation.</span>
-
-![354e13bf130d878628f1361fdd37b997](./media/354e13bf130d878628f1361fdd37b997.png)
-
-
-
-------
-
-### Step 12 Install the house and foundation
-
-##### 12.1 Required components
-
-![img](./media/image089.png)
-
-------
-
-##### 12.2
-
-![img](./media/image090.png)
-
-------
-
-##### 12.3
-
-![img](./media/image091.png)
-
-------
-
-##### 12.4
-
-![img](./media/image092.png)
-
-------
-
-##### 12.5
-
-![img](./media/image093.png)
-
-------
-
-### Step 13 Install the Plastic Sinks
-
-##### 13.1 Required components
-
-![img](./media/image094.png)
-
-------
-
-##### 13.2
-
-![img](./media/image095.png)
-
-------
-
-##### 13.3
-
-![img](./media/image096.png)
-
-------
-
-### Step 14 Install the soil module and water level module
-
-##### 14.1 Required components
-
-![img](./media/image098.png)
-
-------
-
-##### 14.2
-
-![img](./media/image099.png)
-
-------
-
-##### 14.3
-
-![img](./media/image100.png)
-
-------
-
-##### 14.4
-
-![image-20230718085623979](./media/image-20230718085623979.png)
-
-------
-
-##### 14.5
-
-![image-20230718085641291](./media/image-20230718085641291.png)
-
-------
-
-##### 14.6
-
-![image-20230718085722378](./media/image-20230718085722378.png)
-
-------
-
-##### 14.7
-
-![image-20230718085743776](./media/image-20230718085743776.png)
-
-------
-
-### Step 15 Install fence
-
-##### 15.1 Required components
-
-![image-20230718085854136](./media/image-20230718085854136.png)
-
-------
-
-##### 15.2
-
-![image-20230718085921988](./media/image-20230718085921988.png)
-
-------
-
-##### 15.3
-
-![image-20230718085936256](./media/image-20230718085936256.png)
-
-------
-
-##### 15.4
-
-![image-20230718085954487](./media/image-20230718085954487.png)
-
-------
-
-### Step 16 Install the Buzzer and the Led Module
-
-##### 16.1 Required components
-
-![image-20230718090031524](./media/image-20230718090031524.png)
-
-------
-
-##### 16.2
-
-![image-20230718090057124](./media/image-20230718090057124.png)
-
-------
-
-##### 16.3
-
-![image-20230718090110113](./media/image-20230718090110113.png)
-
-------
-
-##### 16.4
-
-![image-20230718090127577](./media/image-20230718090127577.png)
-
-------
-
-### Step 17 Decorate the House
-
-##### 17.1 Required components
-
-![image-20230718090150918](./media/image-20230718090150918.png)
-
-------
-
-##### 17.2
-
-![image-20230718090215504](./media/image-20230718090215504.png)
-
-------
-
-##### 17.3
-
-![image-20230718090227072](./media/image-20230718090227072.png)
-
-------
-
-### Step 18 Install Solar Panel
-
-##### 18.1 Required components
-
-![img](./media/image128.png)
-
-------
-
-##### 18.2
-
-![img](./media/image129.png)
-
-------
-
-
-
-##### 18.3
-
-![img](./media/image130.png)
-
-------
-
-##### 18.4
-
-![img](./media/image131.png)
-
-------
-
-##### 18.5
-
-Install the LED light of the solar panel into this hole.
-
-![img](./media/image132.png)
-
-------
-
-##### 18.6
-
-Use a sticker to secure its wires to the wall
-
-![img](./media/image131-1.png)
-
-------
-
-##### 18.7
-
-![img](./media/image132-1.png)
-
-------
-
-##### 18.8
-
-![img](./media/image133.png)
-
-------
-
-##### 18.9
-
-![img](./media/image135.png)
-
-------
-
-##### 18.10
-
-![image-20230718091556561](./media/image-20230718091556561.png)
-
-------
-
-### Step 19 Install Battery Case
-
-##### 19.1 Required components
-
-![image-20230718091623881](./media/image-20230718091623881.png)
-
-------
-
-##### 19.2
-
-Install 6 AA batteries（Not included in the kit）
-
-![image-20250417095312061](./media/image-20250417095312061.png)
-
-##### 19.3
-
-![image-20230718091649546](./media/image-20230718091649546.png)
-
-------
-
-##### 19.4
-
-![image-20230718091701966](./media/image-20230718091701966.png)
-
-------
-
-## 5. Projects
-
-**Things to note before starting the projects**
-
-Please make sure you have configured the Arduino according to section 1.
-
-1. Driverfor KEYESTUDIO ESP32 PLUS Board
-
-![](./media/a10-1744788429738-26.png)
-
-2. Add Librariesto Arduino IDE
-
-![image-20250416150847190](./media/image-20250416150847190.png)
-
-3. Install ESP32 environment in Arduino : **3.1.3** (ESP32 by Espressif Systems)
-
-![a33](./media/a33.png)
-
-Note: You must select **version 3.1.3**, otherwise it may be incompatible with the library files we provide
-
-4. Click on **Tools**, select "**EPS32 Dev Module**" for the board type, and select **COM-XX** Port that the computer assignsto your Arduino device.
-
-![51454125](./media/51454125.png)
-
-5. You can download all the files needed to run the robot arm, including the driver, codes, libraries
-
-[Click to download](./resource.zip)
-
-![](./media/image-20250417163433215.png)
-
-6. You need to prepare a 2.4 GHz WiFi(It can be a mobile hotspot or a router), another phone that can connect to the same WiFi and install the app we provided.
-
-Arduino's memory can store a project at a time, updating the code erasesthe previous code. 
-
-Let'slearn how thissmart farm worksstep by step through projects of different difficulty levels.
-
---------------
-
-### 5.1 Lighting System
-
-#### 5.1.1 Light up an LED
-
-Open the **5.1.1Blink** code with Arduino IDE.
+We have succeeded in blinking LED. Next, let’s observe what will happen to the LED if we modify the delay time.
 
 ```c
-#define LED_BUILTIN 27  //LED pins
-
-void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+//****************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 1.2
+ delay
+ http://www.keyestudio.com
+*/
+void setup()
+{  
+  // initialize digital pin 11 as an output.
+  pinMode(9, OUTPUT);
 }
-
 // the loop function runs over and over again forever
-void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
-  delay(1000);                      // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
-  delay(1000);                      // wait for a second
+void loop()
+{ 
+  digitalWrite(9, HIGH); // turn the LED on (HIGH is the voltage level)
+  delay(100); // wait for 0.1 second
+  digitalWrite(9, LOW); // turn the LED off by making the voltage LOW
+  delay(100); // wait for 0.1 second
 }
+//*****************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+The test result shows that the LED flashes faster. Therefore, the delaying time enables to affect the flash frequency of the LED.
 
-![51454125](./media/51454125.png)
+### Project 2: Adjust LED Brightness
 
-**Test Result:**
+**1.Description**
 
-LED blinks per second, because io27 on ESP32 board outputs high and low level alternatively every second.
+In previous lesson, we control LED on and off and make it blink.
 
-| Power Level | Result  |
-| :---------: | :-----: |
-|    HIGH     | LED ON  |
-|     LOW     | LED OFF |
+In this project, we will control LED’s brightness through PWM simulating breathing effect.
 
-![image-20250417101137576](./media/image-20250417101137576.png)
+PWM is a means of controlling the analog output via digital means. Digital control is used to generate square waves with different duty cycles (a signal that constantly switches between high and low levels) to control the analog output. In general, the input voltages of ports are 0V and 5V.
 
---------------
+What if the 3V is required? Or a switch among 1V, 3V and 3.5V? We cannot change resistors constantly. For this reason, we resort to PWM.
 
-#### 5.1.2 Controlthe LED with PWM
+![bbcfcb9ae56abb7e80ee587246fc4be9](./media/bbcfcb9ae56abb7e80ee587246fc4be9.GIF)
 
-Open the **5.1.2PWM** code with Arduino IDE.
+For the Arduino digital port voltage output, there are only LOW and HIGH, which correspond to the voltage output of 0V and 5V. You can define LOW as 0 and HIGH as 1, and let the Arduino output five hundred 0 or 1 signals within 1s.
+
+If all of the output five hundred are 1, that is 5V; if all of which are 0, that is 0V. If output 010101010101 in this way then the output port is 2.5V, which is like showing movie. The movie we watch are not completely continuous. It actually outputs 25 pictures per second. In this case, the human can’t see it, neither does PWM. If we want different voltage, we need to control the ratio of 0 and 1. The more 0,1 signals output per unit time, the more accurate the control.
+
+PWM is a technology that uses digital methods to obtain analog quantities. Digital control enables to form a square wave, the square wave signal only has on and off two states (high and low).  A voltage ranging from 0 to 5V can be simulated by controlling the ratio of on to off duration.  The time spent on (technically called high level) is called pulse width, so PWM is also called pulse width modulation. 
+
+The green vertical bars represent one period of the square wave.  The value written in each analogWrite(value) corresponds to a percentage, which is also called Duty Cycle. This percentage refers to the ratio of time occupied by the high level in a cycle, that is, duty cycle = high level time/cycle time. 
+
+ In the figure, from top to bottom, the duty cycle of the first square wave is 0%, and the corresponding value is 0, and the LED brightness is the lowest, that is, off state.  The longer the high level lasts, the brighter it will be.  Therefore, the value of the last duty cycle of 100% is 255, and the LED is the brightest.  50% is the brightest half, and 25% is darker.  
+
+PWM is more used to adjust the brightness of LED lights or the rotation speed of the motors, and the wheels speed driven by the motors can be easily controlled. When playing with some Arduino robots, the benefits of PWM can be better reflected. 
+
+**2.Components**
+
+|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+| :--------------------------------------: | :--------------------------------------: | :----------------------: |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
+|             3P Dupont Wire*1             |               USB Cable*1                |                          |
+|         ![img](./media/wps6.jpg)         |         ![img](./media/wps5.jpg)         |                          |
+
+**3.Wiring Diagram** 
+
+Keep the wiring-up unchanged.
+
+![image-20250508161123490](./media/image-20250508161123490.png)
+
+**4.Test Code**
 
 ```c
-#define led 27    //Define LED pin
+//*****************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 2.1
+ pwm
+ http://www.keyestudio.com
+*/
+int ledPin = 9; // Define the LED pin at D9
+int value;
 
-void setup(){
-  pinMode(led, OUTPUT);  //Set pin to output mode
+void setup () {
+  pinMode (ledPin, OUTPUT); // initialize ledpin as an output.
 }
 
-void loop(){
-  for(int i=0; i<255; i++)  //for loop statement. Constantly increase variable i till 255, exit the loop
+void loop () {
+  for (value = 0; value <255; value = value + 1) 
   {
-    analogWrite(led, i);  //PWM output, used to control the brightness of LED
-    delay(3);
+    analogWrite (ledPin, value); // LED lights gradually light up
+    delay (5); // delay 5ms
   }
-  for(int i=255; i>0; i--)  //for loop statement. Constantly decrease variable i till 0, exit the loop
+  for (value = 255; value> 0; value = value-1) 
   {
-    analogWrite(led, i);
-    delay(3);
+    analogWrite (ledPin, value); // LED gradually goes out
+    delay (5); // delay 5ms
   }
 }
+//*****************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**5.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and use a USB cable to connect the computer to power the board. After powering on, you will see that the LED gradually changes from bright to dark, like human’s breath, rather than turning on and off immediately.
 
-**Test Result:**
+**6.Code Explanation**
 
-At an appropriate signal frequency, PWM changes effective output voltage by changing the duty cycle in one period. In plain English, within a specified time, the more high level the IO port outputs,  the greater PWM value is, and the lighter LED will be.
+If we need to repeat a certain statement, we could use for statement.
 
-**The LED module willslowly light up from dark to bright, and then from dark to bright.**
+For statement format is shown below:
 
-![cou1k3](./media/cou1k3.png)
+![image-20250508162458776](./media/image-20250508162458776.png)
 
-----------
+FOR cyclic sequence:
 
-#### 5.1.3 Read the digital value of Button
+Round 1：1 → 2 → 3 → 4
 
-Open the **5.1.3Button** code with Arduino IDE.
+Round 2：2 → 3 → 4
 
-```c
-#define ButtonPin 5 //Define the button pin to 5
+…
 
-void setup() {
-  //initialize serial port and set baud rate to 9600
-  Serial.begin(9600);
-  //Set pin to input mode
-  pinMode(ButtonPin,INPUT);
-}
+Until number 2 is not established, “for”loop is over,
 
-void loop() {
-  //Define a value as the read button value
-  int ReadValue = digitalRead(ButtonPin); 
-  //Serial port prints the defined value
-  Serial.print("The current status of the button is : ");
-  Serial.println(ReadValue);
-  delay(500);
-}
-```
+After knowing this order, go back to code:
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**for (int value = 0; value \< 255; value=value+1)**
 
-![5458448](./media/5458448.png)
+**for (int value = 255; value \>0; value=value-1)**
 
-**Test Result:**
+The two“for”statements make value increase from 0 to 255, then reduce from 255 to 0, then increase to 255....infinitely loop.
 
-Open serial monitor and set the baud rate to 9600. 
+There is a new function in the following ----- analogWrite().
 
-When the button isreleased, the value is 1; if you pressthe button, it becomes 0.
+We know that digital port only has two state of 0 and 1. So how to send an analog value to a digital value? Here, this function is needed. Let’s observe the Arduino board and find 6 pins marked“\~”which can output PWM signals.
 
-The principle ofthe button module is a circuit controlled by this button. 
+Function format as follows:
 
-When the button is pressed, the circuit is closed so that current passes through the button to GND, which causesthe digital input pin to detect a low level. 
+**analogWrite(pin,value)**
 
-When the button isreleased, the circuit is cut and pin level increases due to a pull-up resistor, which makesthe digital pin to detect a high level.
+analogWrite() is used to write an analog value from 0\~255 for PWM port, so the value is in the range of 0\~255. Attention that you can only write the digital pins with PWM function, such as pin 3, 5, 6, 9, 10, 11.
 
-![image-20250417111724001](./media/image-20250417111724001.png)
+PWM is a technology to obtain analog quantity through digital method. Digital control forms a square wave, and the square wave signal only has two states of turning on and off (that is, high or low levels). By controlling the ratio of the duration of turning on and off, a voltage varying from 0 to 5V can be simulated. The time turning on(academically referred to as high level) is called pulse width, so PWM is also called pulse width modulation.
 
----------
+Through the following five square waves, let’s learn more about the PWM.
 
-#### 5.1.4 Auto-locking Button
+![image-20250508162529349](./media/image-20250508162529349.png)
 
-Open the **5.1.4Self-Locking_Button** code with Arduino IDE.
+In the above figure, the green line represents a period, and the value of analogWrite() corresponds to a percentage which is called Duty Cycle as well. Duty cycle implies the ratio of time occupied by the high level in the cycle. From top to bottom, the duty cycle of first square wave is 0% and its corresponding value is 0.
+
+The LED brightness is lowest, that is, light off. The more time the high level lasts, the brighter the LED. Therefore, the last duty cycle is 100%, which corresponds to 255, and LED is the brightest. And 50% is the brightest half, 25% means darker.
+
+PWM is more used for adjusting the LED’s brightness or the rotation speed of motors.
+
+It plays a vital role in controlling smart robot cars. I believe that you cannot wait to learn the next project.
+
+**7.Extension Practice**
+
+Let’s modify the value of delay and remain the pin unchanged, then observe how the LED changes.
 
 ```c
-#define ButtonPin 5 //Define the button pin
-int value = 0;      //Define a value to determine the status of button
-
-void setup() {
-  //Initialize the serial port and set baud rate to 9600
-  Serial.begin(9600);
-  //Set the pin to inpu tmode
-  pinMode(ButtonPin,INPUT);
+//***********************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 2.2
+ pwm
+ http://www.keyestudio.com
+*/
+int ledPin = 9; // Define the LED pin at D9
+void setup () {
+   pinMode(ledPin, OUTPUT); // initialize ledpin as an output.
 }
 
-void loop() {
-  //Define a value as the read button value
-  int ReadValue = digitalRead(ButtonPin); 
-  //Detect whether the button is pressed
-  if (ReadValue == 0) {
-    //Eliminate the button shake
-    delay(10);  
-    if (ReadValue == 0) {
-      value = !value;
-      Serial.print("The current status of the button is : ");
-      Serial.println(value);
-    }
-    //Detect again whether the button is still pressed
-    //Pressed: execute the loop; Released: exit the loop to next step
-    while (digitalRead(ButtonPin) == 0); 
-  }
-}
-
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Open serial monitor and set the baud rate to 9600. 
-
-When you press the button once, 1 will be displayed. If you press button for the second time, the value becomes 0. Now, a common button boaststhe function of an auto-locking one.
-
-![image-20250417111849947](./media/image-20250417111849947.png)
-
-------------
-
-#### 5.1.5 Use the button to control LED module
-
-Open the **5.1.5Lighting-System** code with Arduino IDE.
-
-```c
-#define ButtonPin 5   //Define a button pin
-#define LED       27  //Define LED pin
-int value = 0;        //Define a value to detect button status
-
-void setup() {
-  //initialize serial port and set baud rate to 9600
-  Serial.begin(9600);
-  //Set pin to input mode
-  pinMode(ButtonPin,INPUT);
-  //Set pin to output mode
-  pinMode(LED,OUTPUT);
-}
-
-void loop() {
-  //Define a value as the read button value
-  int ReadValue = digitalRead(ButtonPin); 
-  //Detect whether the button is pressed
-  if (ReadValue == 0) {
-    //Eliminate the button shake
-    delay(10);  
-    if (ReadValue == 0) {
-      value = !value;
-      //Detect the button status, press once to light up LED, press again to turn off LED, in a loop
-      if(value) {
-        digitalWrite(LED,HIGH);
-      }else{
-        digitalWrite(LED,LOW);
-      }
-    }
-    //Detect the button status again
-    //Pressed: execute the loop; Released: exit the loop to next step
-    while (digitalRead(ButtonPin) == 0); 
-  }
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-When you press the button once, LED lights up; if you press again, LED turns off. This operation is a loop, which is consistent with the lighting principle in reality
-
-![couj13](./media/couj13.png)
-
----------
-
-### 5.2 Light Control System
-
-#### 5.2.1 Photocell-sensor
-
-Open the **5.2.1Photocell-sensor** code with Arduino IDE.
-
-```c
-#define PhotocecllPin 34  //Define the photoresistor pin
-
-void setup() {
-  //Initialize the serial port
-  Serial.begin(9600);
-  //Set the pin to input mode
-  pinMode(PhotocecllPin,INPUT);
-}
-
-void loop() {
-  //Read the value of photoresistor
-  int ReadValue = analogRead(PhotocecllPin);
-  //Print the value. NOTE: ESP32 board is 12-bit ADC, whose detection value range is within 0~4095.
-  Serial.print("Photocecll value: ");
-  Serial.println(ReadValue);
-  delay(500);
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Open the serial monitor. 
-
-The brighterthe light detected by the photoresistoris, the greaterthe value will be.
-
-![image-20250417112320453](./media/image-20250417112320453.png)
-
-A photoresistor module converts light signal into electric signal (voltage, current, and resistor).  When light hits the photoresistor, the stronger the light is, the smaller the resistance will be, so the greaterthe VCC voltage will passthrough the photoresistor.
-
-![](./media/cou2.png)
-
------------
-
-#### 5.2.2 Light Control Syst
-
-Open the **5.2.2Light-Control-System** code with Arduino IDE.
-
-```c
-#define PhotocecllPin 34  //Define the photoresistor pin
-#define LED           27  //Define LED pin
-
-void setup() {
-  //Initialize serial port
-  Serial.begin(9600);
-  //Set the photoresistor pin to input mode 
-  pinMode(PhotocecllPin,INPUT);
-  //Set the LED pin to output mode
-  pinMode(LED,OUTPUT);
-}
-
-void loop() {
-  //Read the value of the photoresistor
-  int ReadValue = analogRead(PhotocecllPin);
-  //Print the value. NOTE: ESP32 board is 12-bit ADC, whose detection value range is within 0~4095.
-  Serial.print("Photocecll value: ");
-  Serial.println(ReadValue);
-  //Determine:
-  //The value of the photoresistor >= 800, LED turns off
-  //The value of the photoresistor =< 800, LED turns on
-  if(ReadValue >= 800) {
-    digitalWrite(LED,LOW);
-    Serial.println("LED OFF");
-  }
-  else{
-    digitalWrite(LED,HIGH);
-    Serial.println("LED ON");
-  }
-  delay(100);
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-When the value of the photoresistor is greater than 800 (in daytime), LED goes off. However, if the value islessthan 800, LED will automatically light on.
-
-![flo2](./media/flo2.png)
-
-![image-20250417113142484](./media/image-20250417113142484.png)
-
--------
-
-### 5.3 Alarm System
-
-#### 5.3.1 PIR Motion Sensor
-
-Open the **5.3.1PIR-Motion-Sensor** code with Arduino IDE.
-
-```c
-#define PyroelectricPIN 23
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(PyroelectricPIN,INPUT);
-}
-
-void loop() {
-  //Read the value of PIR motion sensor
-  int ReadValue = digitalRead(PyroelectricPIN);
-  if(ReadValue){
-    Serial.println("Someone");
-  }
-  else{
-    Serial.println("No one");
-  }
-  delay(100);
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-When someone is in the area, **Someone** is displayed on the monitor, and the red LED on the sensor goes off. However, if there is no one, **No one** will be printed and the LED on the sensor will always be on.
-
-![image-20250417113532007](./media/image-20250417113532007.png)
-
-
-
-Voltage: 3~5V
-
-Current: 3.6mA
-
-Power: 18mW
-
-Angle of View: Y = 90°, X = 110° (Theoretical value)
-
-Detection Distance: ≤5m
-
-![cou32](./media/cou32.png)
-
----------
-
-#### 5.3.2 Passive Buzzer
-
-![](./media/cou34.png)
-
-**Passive Buzzer** cannot vibrate to emit sound itself, unless putting a square wave signal with a certain frequency. Moreover, the
-
-emitting sound varies due to the different frequency of square wave, so a passive buzzer can simulate tunes. 
-
-An analog squire wave can be generated by changing the power level at pins. For example, after the high level lasting for 500ms, it shifts to a low level for another 500ms then to a high level again... 
-
-We drive the buzzer via a squire wave within 200~5000Hz, and we can compute the frequency(f): **f=1/T**, T is theperiod (the total time of high and low level).
-
-![cou38](./media/cou38.png)
-
-**Parameters:**
-
-Voltage: 3~5V
-
-Current: ≤5mA
-
-Power: ≤25mW
-
-Open the **5.3.2Passive-Buzzer** code with Arduino IDE.
-
-```c
-#define BuzzerPin 16  //Define the buzzer pin
-
-void setup() {
-  //Set the pin to output mode
-  pinMode(BuzzerPin,OUTPUT);
-}
-
-void loop() {
-  digitalWrite(BuzzerPin,HIGH);
-  delayMicroseconds(500);//Delay 500us
-  digitalWrite(BuzzerPin,LOW);
-  delayMicroseconds(500);//Delay 500us
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Passive Buzzer keeps emitting sound.
-
------------
-
-#### 5.3.3 Buzzer-Tone
-
-Open the **5.3.3Buzzer-Tone** code with Arduino IDE.
-
-```c
-const int buzzerPin = 16;   //Set buzzer pin to 16
-void setup() {
-  ledcAttachChannel(buzzerPin,1000,8,4);
-}
-void loop() {
-    ledcWriteTone(buzzerPin,532);           //duo --C2
-    delay(100);
-    ledcWriteTone(buzzerPin,587);           //re --D3
-    delay(100);
-    ledcWriteTone(buzzerPin,659);           //mi --E3
-    delay(100);
-   //Alarm
-   for(int i = 200; i<=1000; i+=10){ 
-    ledcWriteTone(buzzerPin,i);
-    delay(10);
+void loop () {
+   for (int value = 0; value <255; value = value + 1) {
+     analogWrite (ledPin, value); // LED lights gradually light up
+     delay (30); // delay 30MS
    }
-    //Alarm
-   for(int i = 1000; i>=200; i-=10){ 
-    ledcWriteTone(buzzerPin,i);
-    delay(10);
+   for (int value = 255; value> 0; value = value-1) {
+     analogWrite (ledPin, value); // LED gradually goes out
+     delay (30); // delay 30MS
    }
-ledcWriteTone(buzzerPin,0);
 }
+//***********************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+Upload the code to the development board, then the LED will blink more slowly.
 
-![5458448](./media/5458448.png)
+### Project 3: Line Tracking Sensor
 
-**Test Result:**
+![](./media/d37c24e508361ab86b019135ab6950a9.png)
 
-Buzzer alarms via`ledcWriteTone()`  function.
+**1.Description** 
 
-`ledcWriteTone()`  generates PWM signal with a certain frequency to drive the buzzer to vibrate, and the duration and tone is controlled by related parameters.
+The tracking sensor is actually an infrared sensor. The component used here is the TCRT5000 infrared tube. Its working principle is to use different reflectivity of infrared light to colors, then convert the strength of the reflected signal into a current signal.
 
-The `ledcWriteTone()` function needs to be used in conjunction with the `ledcAttachChannel()` function
+During the process of detection, black is active at HIGH level while white is active at LOW level. The detection height is 0-3 cm.
 
-**ledcAttachChannel**
+Keyestudio 3-channel line tracking module has integrated 3 sets of TCRT5000 infrared tubes on a board, which is more convenient for wiring and control.
 
-This function is used to set duty for the LEDC channel.
+By rotating the adjustable potentiometer on the sensor, it can adjust the detection sensitivity of the sensor.
 
-```
-bool ledcWriteChannel(uint8_t channel, uint32_t duty);
-```
+**2.Specification**
 
-- `channel` select LEDC channel.
-- `duty` select duty to be set for selected LEDC channel.
+- Operating Voltage: 3.3-5V (DC)
 
-This function will return `true` if setting duty is successful. If `false` is returned, error occurs and duty was not set.
+- Interface: 5PIN
 
-**ledcWriteTone**
+- Output Signal: Digital signal
 
-This function is used to setup the LEDC pin to 50 % PWM tone on selected frequency.
+- Detection Height: 0-3 cm
 
-```
-uint32_t ledcWriteTone(uint8_t pin, uint32_t freq);
-```
+![image-20250508163247479](./media/image-20250508163247479.png)
 
-- `pin` select LEDC pin.
-- `freq` select frequency of pwm signal. If frequency is `0`, duty will be set to 0.
+<span style="color: rgb(255, 76, 65);">Note:Before testing, rotate the potentiometer on the sensor to adjust the detection sensitivity. The sensitivity is best when adjusting the LED to a threshold between ON and OFF. </span> 
 
-This function will return `frequency` set for LEDC pin. If `0` is returned, error occurs and LEDC pin was not configured.
+**3.Components**
 
---------
+| Keyestudio 4.0 Development Board *1      | Keyestudio 8833 Motor Driver Expansion Board *1 | Red LED Module*1         | Keyestudio Line Tracking Sensor*1 |
+| ---------------------------------------- | ----------------------------------------------- | ------------------------ | --------------------------------- |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg)        | ![img](./media/wps3.jpg) | ![img](./media/wps7.png)          |
+| 5P Dupont Wire*1                         | USB Cable*1                                     | 3P Dupont Wire*1         |                                   |
+| ![img](./media/wps4.png)                 | ![img](./media/wps5.jpg)                        | ![img](./media/wps6.jpg) |                                   |
 
-#### 5.4 Buzzer-Music
+**4.Wiring Diagram**
 
-Open the **5.3.4Buzzer-Music** code with Arduino IDE
+![image-20250508164243044](./media/image-20250508164243044.png)
+
+G, V, S1, S2 and S3 of the line tracking sensor are connected to G（GND), V（VCC), D11, D7 and D8 of the sensor expansion board.
+
+**5.Test Code**
 
 ```c
-#define NOTE_B0  31
-#define NOTE_C1  33
-#define NOTE_CS1 35
-#define NOTE_D1  37
-#define NOTE_DS1 39
-#define NOTE_E1  41
-#define NOTE_F1  44
-#define NOTE_FS1 46
-#define NOTE_G1  49
-#define NOTE_GS1 52
-#define NOTE_A1  55
-#define NOTE_AS1 58
-#define NOTE_B1  62
-#define NOTE_C2  65
-#define NOTE_CS2 69
-#define NOTE_D2  73
-#define NOTE_DS2 78
-#define NOTE_E2  82
-#define NOTE_F2  87
-#define NOTE_FS2 93
-#define NOTE_G2  98
-#define NOTE_GS2 104
-#define NOTE_A2  110
-#define NOTE_AS2 117
-#define NOTE_B2  123
-#define NOTE_C3  131
-#define NOTE_CS3 139
-#define NOTE_D3  147
-#define NOTE_DS3 156
-#define NOTE_E3  165
-#define NOTE_F3  175
-#define NOTE_FS3 185
-#define NOTE_G3  196
-#define NOTE_GS3 208
-#define NOTE_A3  220
-#define NOTE_AS3 233
-#define NOTE_B3  247
-#define NOTE_C4  262
-#define NOTE_CS4 277
-#define NOTE_D4  294
-#define NOTE_DS4 311
-#define NOTE_E4  330
-#define NOTE_F4  349
-#define NOTE_FS4 370
-#define NOTE_G4  392
-#define NOTE_GS4 415
-#define NOTE_A4  440
-#define NOTE_AS4 466
-#define NOTE_B4  494
-#define NOTE_C5  523
-#define NOTE_CS5 554
-#define NOTE_D5  587
-#define NOTE_DS5 622
-#define NOTE_E5  659
-#define NOTE_F5  698
-#define NOTE_FS5 740
-#define NOTE_G5  784
-#define NOTE_GS5 831
-#define NOTE_A5  880
-#define NOTE_AS5 932
-#define NOTE_B5  988
-#define NOTE_C6  1047
-#define NOTE_CS6 1109
-#define NOTE_D6  1175
-#define NOTE_DS6 1245
-#define NOTE_E6  1319
-#define NOTE_F6  1397
-#define NOTE_FS6 1480
-#define NOTE_G6  1568
-#define NOTE_GS6 1661
-#define NOTE_A6  1760
-#define NOTE_AS6 1865
-#define NOTE_B6  1976
-#define NOTE_C7  2093
-#define NOTE_CS7 2217
-#define NOTE_D7  2349
-#define NOTE_DS7 2489
-#define NOTE_E7  2637
-#define NOTE_F7  2794
-#define NOTE_FS7 2960
-#define NOTE_G7  3136
-#define NOTE_GS7 3322
-#define NOTE_A7  3520
-#define NOTE_AS7 3729
-#define NOTE_B7  3951
-#define NOTE_C8  4186
-#define NOTE_CS8 4435
-#define NOTE_D8  4699
-#define NOTE_DS8 4978
 
-#define BUZZERPIN 16
- 
-// notes in the melody:
-int melody[] = {
-NOTE_E4, NOTE_E4, NOTE_E4, NOTE_C4, NOTE_E4, NOTE_G4, NOTE_G3,
-NOTE_C4, NOTE_G3, NOTE_E3, NOTE_A3, NOTE_B3, NOTE_AS3, NOTE_A3, NOTE_G3, NOTE_E4, NOTE_G4, NOTE_A4, NOTE_F4, NOTE_G4, NOTE_E4, NOTE_C4, NOTE_D4, NOTE_B3,
-NOTE_C4, NOTE_G3, NOTE_E3, NOTE_A3, NOTE_B3, NOTE_AS3, NOTE_A3, NOTE_G3, NOTE_E4, NOTE_G4, NOTE_A4, NOTE_F4, NOTE_G4, NOTE_E4, NOTE_C4, NOTE_D4, NOTE_B3,
-NOTE_G4, NOTE_FS4, NOTE_E4, NOTE_DS4, NOTE_E4, NOTE_GS3, NOTE_A3, NOTE_C4, NOTE_A3, NOTE_C4, NOTE_D4, NOTE_G4, NOTE_FS4, NOTE_E4, NOTE_DS4, NOTE_E4, NOTE_C5, NOTE_C5, NOTE_C5,
-NOTE_G4, NOTE_FS4, NOTE_E4, NOTE_DS4, NOTE_E4, NOTE_GS3, NOTE_A3, NOTE_C4, NOTE_A3, NOTE_C4, NOTE_D4, NOTE_DS4, NOTE_D4, NOTE_C4,
-NOTE_C4, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_C4, NOTE_A3, NOTE_G3, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_D4, NOTE_E4,
-NOTE_C4, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_D4, NOTE_E4, NOTE_C4, NOTE_A3, NOTE_G3
-};
- 
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-8,4,4,8,4,2,2,
-3,3,3,4,4,8,4,8,8,8,4,8,4,3,8,8,3,
-3,3,3,4,4,8,4,8,8,8,4,8,4,3,8,8,2,
-8,8,8,4,4,8,8,4,8,8,3,8,8,8,4,4,4,8,2,
-8,8,8,4,4,8,8,4,8,8,3,3,3,1,
-8,4,4,8,4,8,4,8,2,8,4,4,8,4,1,
-8,4,4,8,4,8,4,8,2
-};
- 
-void setup() {
-  ledcAttachChannel(BUZZERPIN,1000,8,4);
-  // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 98; thisNote++) {
+//****************************************************************************
+/*
+keyestudio 4wd BT Car
+lesson 3.1 
+ Line Track sensor
+ http://www.keyestudio.com
+*/
+int L_pin = 11;  //pins of  left line tracking sensor
+int M_pin = 7;  //pins of  middle line tracking sensor
+int R_pin = 8;  //pins of  right  line tracking sensor
+int val_L,val_R,val_M;// define the variable value of three sensors
+
+void setup()
+{
+  Serial.begin(9600); // initialize serial communication at 9600 bits per second
+  pinMode(L_pin,INPUT); // make the L_pin as an input
+  pinMode(M_pin,INPUT); // make the M_pin as an input
+  pinMode(R_pin,INPUT); // make the R_pin as an input
+}
+
+void loop() 
+{ 
+  val_L = digitalRead(L_pin);//read the L_pin:
+  val_R = digitalRead(R_pin);//read the R_pin:
+  val_M = digitalRead(M_pin);//read the M_pin:
+  Serial.print("left:");
+  Serial.print(val_L);
+  Serial.print(" middle:");
+  Serial.print(val_M);
+  Serial.print(" right:");
+  Serial.println(val_R);
+  delay(500);// delay in between reads for stability
+}
+//****************************************************************************
+```
+
+**6.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and use a USB cable to connect the computer to power the board.
+
+After powering on, open the serial monitor and you will view status of three line tracking sensors. When no signals are received, the value is 1. If we cover the sensor with a white paper, the value will be 0.
+
+![image-20250508164424571](./media/image-20250508164424571.png)
+
+![image-20250508164453274](./media/image-20250508164453274.png)
+
+**7.Code Explanation**
+
+Serial.begin(9600) - Initialize serial port, set baud rate to 9600
+
+pinMode -Define the pin as input or output mode
+
+digitalRead -Read the state of pin, which are generally HIGH and LOW level
+
+**8.Extension Practice**
+
+After knowing its working principle, you can connect an LED to D9 so as to control LED by it.
+
+![image-20250508164527429](./media/image-20250508164527429.png)
+
+```c
+/*
+keyestudio 4wd BT Car
+lesson 3.2
+ Line Track Sensor LED
+ http://www.keyestudio.com
+*/
+int L_pin = 11;  //pins of  left line tracking sensor
+int M_pin = 7;  //pins of  middle line tracking sensor
+int R_pin = 8;  //pins of  right line tracking sensor
+int val_L,val_R,val_M;// define the variables of three sensors 
+
+void setup()
+{
+  Serial.begin(9600); // initialize serial communication at 9600 bits per second
+  pinMode(L_pin,INPUT); // make the L_pin as an input
+  pinMode(M_pin,INPUT); // make the M_pin as an input
+  pinMode(R_pin,INPUT); // make the R_pin as an input
+  pinMode(9, OUTPUT);
+}
+
+void loop() 
+{ 
+  val_L = digitalRead(L_pin);//read the L_pin:
+  val_R = digitalRead(R_pin);//read the R_pin:
+  val_M = digitalRead(M_pin);//read the M_pin:
+  Serial.print("left:");
+  Serial.print(val_L);
+  Serial.print(" middle:");
+  Serial.print(val_M);
+  Serial.print(" right:");
+  Serial.println(val_R);
+  delay(500);// delay in between reads for stability
+  if ((val_L == LOW) || (val_M == LOW) || (val_R == LOW))//if left line tracking sensor detects signals
+  { 
+    Serial.println("HIGH");
+    digitalWrite(9, HIGH);//LED is off
+  }
+  else//if left line tracking sensor doesn’t detect signals
+  { 
+    Serial.println("LOW");
+    digitalWrite(9, LOW);//LED is off
+  }
+ }
+//****************************************************************************
+```
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and use a USB cable to connect the computer to power the board.
+
+After powering on, make a paper close to the sensor, then we can find the LED light up when covering the line tracking sensor.
+
+### Project 4 Servo Control
+
+**1.Description**
+
+![image-20250509084654137](./media/image-20250509084654137.png)
+
+Servo motor is a position control rotary actuator. It mainly consists of a housing, a circuit board, a core-less motor, a gear and a position sensor. Its working principle is that the servo receives the signal sent by MCUs or receivers and produces a reference signal with a period of 20ms and width of 1.5ms, then compares the acquired DC bias voltage to the voltage of the potentiometer and obtain the voltage difference output.
+
+![image-20250509084710719](./media/image-20250509084710719.png)
+
+In general, servo has three lines in brown, red and orange. The brown wire is grounded, the red one is a positive pole line and the orange one is a signal line.
+
+The rotation angle of servo motor is controlled by regulating the duty cycle of PWM (Pulse-Width Modulation) signal. The standard cycle of PWM signal is 20ms (50Hz). Theoretically, the width is distributed between 1ms-2ms, but in fact, it's between 0.5ms-2.5ms. The width corresponds the rotation angle from 0° to 180°. But note that for different brand motors, the same signal may have different rotation angles. 
+
+![image-20250509084727797](./media/image-20250509084727797.png)
+
+The corresponding servo angles are shown below:
+
+![image-20250509084739380](./media/image-20250509084739380.png)
+
+**2.Specification**
+
+- Working voltage: DC 4.8V \~ 6V
+
+- Operating angle range: about 180 ° (at 500 → 2500 μsec)
+
+- Pulse width range: 500 → 2500 μsec
+
+- No-load speed: 0.12 ± 0.01 sec / 60 (DC 4.8V) 0.1 ± 0.01 sec / 60(DC 6V)
   
-  // to calculate the note duration, take one second
-  // divided by the note type.
-  //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-  int noteDuration = 1000/noteDurations[thisNote];
-  ledcWriteTone(BUZZERPIN, melody[thisNote]);
-  delayMicroseconds(noteDuration);
+- No-load current: 200 ± 20mA (DC 4.8V) 220 ± 20mA (DC 6V)
+
+- Stopping torque: 1.3 ± 0.01kg · cm (DC 4.8V) 1.5 ± 0.1kg · cm (DC6V)
   
-  // to distinguish the notes, set a minimum time between them.
-  // the note's duration + 30% seems to work well:
-  int pauseBetweenNotes = noteDuration * 1.30;
-  delay(pauseBetweenNotes);
-  // stop
-  ledcWriteTone(BUZZERPIN,0);
-  }
-}
- 
-void loop() {
-// no need to repeat the melody.
-}
-```
+- Stop current: ≦ 850mA (DC 4.8V) ≦ 1000mA (DC 6V)
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+- Standby current: 3 ± 1mA (DC 4.8V) 4 ± 1mA (DC 6V)
 
-![5458448](./media/5458448.png)
+**3.Components**
 
-**Test Result:**
+|                     Development Board *1                     |     Motor Driver Expansion Board *1      |                           Servo*1                            |
+| :----------------------------------------------------------: | :--------------------------------------: | :----------------------------------------------------------: |
+|           ![img](./media/wps1-1746693582945-6.jpg)           | ![img](./media/wps2-1746693584914-8.jpg) | ![image-20250509084654137](./media/image-20250509084654137.png) |
+|                    18650 Battery Holder*1                    |               USB Cable*1                |               18650 Battery*2（self-provided）               |
+| ![image-20250509084950601](./media/image-20250509084950601.png) |         ![img](./media/wps5.jpg)         | ![image-20250509085010348](./media/image-20250509085010348.png) |
 
-The buzzer will play music.
+**4.Wiring Diagram**
 
---------
+![image-20250509085038006](./media/image-20250509085038006.png)
 
-#### 5.3.5 Alarm System
+Wiring note: The servo is connected to G（GND）、V（VCC）and A3, the brown line of servo is linked with Gnd(G), the red one is connected to 5v(V) and the orange one is attached to A3.
 
-Open the **5.3.5Alarm-System** code with Arduino IDE
+The servo is obliged to connect to the external power due to its high demand for driving servo current. Generally, the current of development board is not big enough. If without connecting the external power, the development board could be burnt.
+
+**5.Test Code**
 
 ```c
-#define BuzzerPin 16        //Set buzzer pin to 16
-#define PyroelectricPIN 23  //Set PIR mition sensor to 23
-#define Led 27              //Set led pin to 27
+//****************************************************************************
+/*
+keyestudio 4wd BT Car
+lesson 4.1
+Servo
+http://www.keyestudio.com
+*/
+#define servoPin A3  //servo Pin
+int pos; //the angle variable of servo
+int pulsewidth; //pulse width variable of servo
 
 void setup() {
-  Serial.begin(9600);
-  //Set the pins modes
-  pinMode(PyroelectricPIN,INPUT);
-  pinMode(Led,OUTPUT);
-
-  ledcAttachChannel(BuzzerPin,1000,8,4);
-}
-void loop() {
-  //Read the value of PIR motion sensor
-  int ReadValue = digitalRead(PyroelectricPIN);
-  if(ReadValue){
-    Serial.println("Someone");
-    digitalWrite(Led,HIGH);
-    //Alarm
-    for(int i = 200; i<=1000; i+=10){ 
-      ledcWriteTone(BuzzerPin,i);
-      delay(10);
-    }
-    digitalWrite(Led,LOW);
-    //Alarm
-    for(int i = 1000; i>=200; i-=10){ 
-      ledcWriteTone(BuzzerPin,i);
-      delay(10);
-    }
-  }
-  //Stop alarming
-  ledcWriteTone(BuzzerPin,0);
-  Serial.println("No one");
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-When the sensor detects a motion, buzzer emitssound and LED blinksto remind of an invasion.
-
-![couj33](./media/couj33.png)
-
----------
-
-### 5.4 Rain Detection System
-
-#### 5.4.1 Steam Sensor
-
-![cou41](./media/cou41.png)
-
-Steam sensor detects the presence of water, so it is usually used in rain detection. If the rain hits the conductive pads on the sensor, it will send a signal to the Arduino board.
-
-![couy41](./media/couy41.png)
-
-**Parameters**:
-
-- Voltage: 3~5V
-- Current: 1.5mA
-- Power: 7.5mW
-
-Open the **5.4.1Alarm-System** code with Arduino IDE.
-
-```c
-#define SteamPin 35   //Define the steam sensor pin to 35
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(SteamPin,INPUT);
+  pinMode(servoPin, OUTPUT);  //set the pins of servo to output
+  procedure(0); //set the angle of servo to 0 degree
 }
 
 void loop() {
-  //Read the value of steam sensor
-  int ReadValue = analogRead(SteamPin);
-  Serial.print("Steam Value: ");
-  Serial.println(ReadValue);
-  delay(500);
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    procedure(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                   //control the rotation speed of servo
+  }
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    procedure(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                    
+  }
 }
+  
+//function to control servo
+void procedure(int myangle) {
+  pulsewidth = myangle * 11 + 500;  //calculate the value of pulse width
+  digitalWrite(servoPin,HIGH);
+  delayMicroseconds(pulsewidth);   //The duration of high level is pulse width
+  digitalWrite(servoPin,LOW);
+  delay((20 - pulsewidth / 1000));  //the cycle is 20ms, the low level last for the rest of time
+}
+//****************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**6.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and power on the external power. After powering on, turn the dip switch to the "ON" end, then servo will swing in the range of 0° to 180°.
 
-**Test Result:**
+**7.Extension Practice**
 
-Touch the detection area with your finger. The larger the area you touched is, the larger the valuewill be. 
+What’s more, we empower to control the servo via library file. Please refer to the link:[https://www.arduino.cc/en/Reference/Servo](https://www.arduino.cc/en/Reference/Servo).
 
-You can open the serial monitorto observe the currently detected value (range: 0~4095).
-
-![image-20250417131110395](./media/image-20250417131110395.png)
-
---------
-
-#### 5.4.2 Rainwater Detection System
-
-Open the **5.4.2Rainwater-Detection-System** code with Arduino IDE
+![image-20250509085122183](./media/image-20250509085122183.png)
 
 ```c
-#define SteamPin 35   //Define pins
-#define BuzzerPin 16
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(SteamPin,INPUT);
-  pinMode(BuzzerPin,OUTPUT);
-}
-
-void loop() {
-  //Read the value of steam sensor
-  int ReadValue = analogRead(SteamPin);
-  Serial.print("Steam Value: ");
-  Serial.println(ReadValue);
-  //Determine whether the detected value is within 800~2000
-  if(ReadValue >= 800 && 2000 > ReadValue){
-    //Execute for 3 times
-    for (int i = 0; i < 3; i++) {
-      tone(BuzzerPin,200);
-      delay(100);
-      noTone(BuzzerPin);
-      delay(100);
-    }
-  }
-  //Determine whether the detected value is within 2000~4000
-  else if (ReadValue >= 2000 && 4000 >= ReadValue) {
-    for (int i = 0; i < 3; i++) {
-      tone(BuzzerPin,400);
-      delay(100);
-      noTone(BuzzerPin);
-      delay(100);
-    }
-  }
-  //Determine whether the detected value is greater than 4000
-  else if (ReadValue > 4000) {
-    for (int i = 0; i < 3; i++) {
-      tone(BuzzerPin,600);
-      delay(100);
-      noTone(BuzzerPin);
-      delay(100);
-    }
-  }
-  noTone(BuzzerPin);
-  delay(500);
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-The greater the detected value of the steam sensor is, the loader the sound emitted by the buzzer will be.
-
-![flo4](./media/flo4.png)
-
-------
-
-### 5.5 Solar Power System
-
-![image-20250417131715654](./media/image-20250417131715654.png)
-
-**Parameters**
-
- Voltage: 5V
-
- Current: 80mA
-
- Power: 400mW
-
- Dimensions: 60*60mm
-
-Codes are not required in this project. Importantly, we learn about the new environmental energy --- solar power. 
-
-When good illumination is provided, LED will light up in yellow. The brighter the light is, the brighter the LED will be.
-
-The solar panel absorbs light and directly or indirectly converts solar radiation into electricity. Compared with ordinary coal power generation, solar, wind and water power are more energy-saving and environment-friendly.
-
-![cou52](./media/cou52.png)
-
-The Sun emits energy in waves with a wide range of wavelengths, from ultraviolet to visible and infrared light.
-
-Wavelength of Ultraviolet:150~400nm;
-
-Wavelength of Visible Light:400~760nm;
-
-Wavelength of Infrared Light:760~4000nm;
-
-The panel absorbs one of these ranges of wavelength and converts them into electricity.
-
-**Q: Why does solar panel still work without sunlight?**
-
-A: It works with not only sunlight but also ambient light. The brighter the light is, the greater the voltage will be, and the lighter the LED will be.
-
-------------
-
-### 5.6 Smart Feeding System
-
-#### 5.6.1 Door of feeding cabin
-
-Open the **5.6.1Servo** code with Arduino IDE.
-
-```c
-#include <ESP32Servo.h>  //Import the library of servo
+//***************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 4.2
+ Servo
+ http://www.keyestudio.com
+*/
+#include <Servo.h>
 Servo myservo;  // create servo object to control a servo
-                // 16 servo objects can be created on the ESP32
-                
+// twelve servo objects can be created on most boards
 int pos = 0;    // variable to store the servo position
-// Recommended PWM GPIO pins on the ESP32 include 2,4,12-19,21-23,25-27,32-33 
-int servoPin = 26;
-                
+
 void setup() {
-  Serial.begin(9600);
-  myservo.attach(servoPin);   // attaches the servo on pin 26 to the servo object
-  myservo.write(180);
-  delay(2000);
+  myservo.attach(A3);  // attaches the servo on pin A3 to the servo object
 }
-
 void loop() {
-
-  for (pos = 80; pos <= 179; pos += 1) { // goes from 0 degrees to 80 degrees
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);                       // waits 15ms for the servo to reach the position
   }
-  for (pos = 180; pos >= 81; pos -= 1) { // goes from 80 degrees to 0 degrees
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(15);                       // waits 15ms for the servo to reach the position
   }
 }
+//***************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, and power on the external power. After powering on, turn the dip switch to the "ON" end, then servo will swing in the range of 0° to 180° too. We usually control it by library file.
 
-![5458448](./media/5458448.png)
+**8.Code Explanation**
 
-**Test Result:**
+Arduino comes with **\#include \<Servo.h\>** (servo function and statement）
 
-The door of feeding cabin is slowly opened and then closed.
+The following are some common statements of the servo function:
 
-**NOTE:** SG90 servo can rotate 180°. As the feeding box is small, 100° of rotation is enough to completely close the box. 
+1). **attach（interface）**——Set interface of the servo
 
-80°: fully open
+2). **write（angle）**——Used to set rotation angle of servo, and the set angle range is from 0° to 180°
 
-120°: half open
+3). **read（）**——used to read angle of servo, namely, reading the command value of“write()”
 
-180°: close
+4). **attached（）**——Judge if the parameter of servo is sent to its interface
 
-![cou63](./media/cou63.gif)
+<span style="color: rgb(255, 76, 65);">Note:</span> The above written format is“servo variable name, specific statement（）”, for instance: myservo.attach(9).
 
-**ATTENTION**
 
-Do not put your fingers into the box to avoid nipping!
+### Project 5 Ultrasonic Sensor
 
-Do not block the door with something to avoid damaging servo!
+**1.Description**
 
-The dooris controlled by a servo.
+![image-20250509085643931](./media/image-20250509085643931.png)
 
-**Internal Structure:**
+The HC-SR04 ultrasonic sensor uses sonar to determine distance to an object like what bats do. It offers excellent non-contact range detection with high accuracy and stable readings in an easy-to-use package. It comes complete with an ultrasonic transmitter and receiver modules.
 
-![cou61](./media/cou61.png)
+![Img](./media/img-20231031114752.png)
 
-① Signal(S): It receives the control signal from microcontroller. 
+The HC-SR04 or the ultrasonic sensor is being used in a wide range of electronics projects for creating obstacle detection and distance measuring application as well as various other applications. Here we have brought the simple method to measure the distance with arduino and an ultrasonic sensor and how to use the ultrasonic sensor with Arduino.
 
-② Potentiometer: the feedback part of the Servo. It measures the position of output shaft. 
+**2.Specification**
 
-③ Embedded board (Internal controller): the core of the Servo. It processes external control signal and the feedback signal of position and drives the Servo. 
+- Working Voltage :+5V DC
 
-④ DC motor: the execution part. It outputs speed, torque and position. 
+- Quiescent Current : \<2mA
 
-⑤ Gear system: It scales the outputs from motor to the final output Angle ccording to a certain transmission ratio.
+- Working Current: 15mA
 
-**Drive the Servo:**
+- Effectual Angle: \<15°
 
-Signal(S) receives PWM to control the output of Servo, and the position of output shaft directly relies on the duty cycle of PWM. 
+- Distance Range : 2cm – 300 cm
 
-**For instance:**
+- Precision : 0.3 cm
 
-A. If we send a signal with pulse width of 1.5ms to Servo, its shaft(horn) will revolves to the middle position(90°);
+- Measuring Angle: 30 degree
 
-B. If pulse width = 0.5ms, the shaft turns to its minimum(0°);
+- Trigger Input Pulse width: 10uS
 
-C. If pulse width = 2.5ms, the shaft turns to its maximum(180°). 
+![image-20250509085705309](./media/image-20250509085705309.png)
 
-**NOTE: The maximum angle varies from the types of Servos. Some are 170° while some are only 90°. In spite of this, Servos usually will move a half (of the maximum) if they receive a signal with pulse width of 1.5ms.**
+**3.Components**
 
-----------
+| Keyestudio 4.0 Development Board *1                          | Keyestudio 8833 Motor Driver Expansion Board *1 | Red LED Module*1         | HC-SR04 Ultrasonic Sensor*1                                  |
+| ------------------------------------------------------------ | ----------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
+| ![img](./media/wps1-1746693582945-6.jpg)                     | ![img](./media/wps2-1746693584914-8.jpg)        | ![img](./media/wps3.jpg) | ![image-20250509085643931](./media/image-20250509085643931.png) |
+| 4P Dupont Wire*1                                             | USB Cable*1                                     | 3P Dupont Wire*1         |                                                              |
+| ![image-20250509143737972](./media/image-20250509143737972.png) | ![img](./media/wps5.jpg)                        | ![img](./media/wps6.jpg) |                                                              |
 
-#### 5.6.2 Ultrasonic-Sensor
+**4.Working Principle**
 
-![cou65](./media/cou65.png)
+As the above picture shown, it is like two eyes. One is transmitting end, the other is receiving end.
 
-![couy61](./media/couy61.png)
+The ultrasonic module will emit the ultrasonic waves after triggering a signal. When the ultrasonic waves encounter the object and are reflected back, the module outputs an echo signal, so it can determine the distance of the object from the time difference between the trigger signal and the echo signal.
 
-Open the **5.6.2Ultrasonic-Sensor** code with Arduino IDE.
+The t is the time that emitting signal meets obstacle and returns. And the propagation speed of sound in the air is about 343m/s, and distance = speed \* time. However, the ultrasonic wave emits and comes back, which is 2 times of distance. Therefore, it needs to be divided by 2, the distance measured by ultrasonic wave = (speed \* time)/2.
+
+**Use method and chart of ultrasonic module:**
+
+1. Use the GPIO pin to give a high level signal of at least 10μs to the Trig pin of SR04, which can trigger it to detect distance.
+2. After triggering, the module will automatically send eight 40KHz ultrasonic pulses and detect whether there is a signal return. This step will be completed automatically by the module.
+3. If the signal returns, the Echo pin will output a high level, and the duration of the high level is the time from the transmission of the ultrasonic wave to the return.
+
+![image-20250509143833078](./media/image-20250509143833078.png)
+
+**Circuit diagram of ultrasonic sensor:**
+
+![image-20250509154035287](./media/image-20250509154035287.png)
+
+**5.Wiring Diagram**
+
+![image-20250509154107103](./media/image-20250509154107103.png)
+
+VCC, Trig, Echo and Gnd of the ultrasonic sensor are connected to 5V(V), D12, D13 and Gnd(G)
+
+**6.Test Code**
 
 ```c
-#define Trigpin 12 //connect trig to io12
-#define Echopin 13 //connect echo to io13
-int duration,distance;
+//***************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 5.1
+ Ultrasonic Sensor
+ http://www.keyestudio.com
+*/ 
+int trigPin = 12;    // Trigger
+int echoPin = 13;    // Echo
+long duration, cm, inches;
+void setup() {
+  //Serial Port begin
+  Serial.begin (9600);
+  //Define inputs and outputs
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
 
-void setup(){
-  Serial.begin(9600); //Set the baud rate to 9600
-  pinMode(Trigpin,OUTPUT);  //set trig pin to output mode
-  pinMode(Echopin,INPUT);   //set echo pin to input mode
-}
-void loop(){
-  digitalWrite(Trigpin,LOW);
+void loop() {
+  // The sensor is triggered by a HIGH pulse of 10 or more microseconds.
+  // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(Trigpin,HIGH);
-  delayMicroseconds(10);	//Trigger the trig pin via a high level lasting at least 10us
-  digitalWrite(Trigpin,LOW);
-  duration = pulseIn(Echopin,HIGH);	//the time of high level at echo pin
-  distance = duration/58;		//convert into distance(cm)
-  delay(50);
-  Serial.print("distance:");	//Serial monitor prints the value
-  Serial.print(distance);
-  Serial.println("cm");
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+   // Read the signal from the sensor: a HIGH pulse whose
+  // duration is the time (in microseconds) from the sending
+  // of the ping to the reception of its echo off of an object.
+  duration = pulseIn(echoPin, HIGH);
+   // Convert the time into a distance
+  cm = (duration/2) / 29.1;     // Divide by 29.1 or multiply by 0.0343
+  inches = (duration/2) / 74;   // Divide by 74 or multiply by 0.0135
+  Serial.print(inches);
+  Serial.print("in, ");
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  delay(250);
 }
+//***************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**7.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, open the serial monitor and set baud rate to 9600.
 
-**Test Result:**
+The detected distance will be displayed, and the unit is cm and inch. Hinder the ultrasonic sensor by hand, the displayed distance value gets smaller.
 
-In this kit, the detection range is within 3~8cm. 
+![image-20250509154147537](./media/image-20250509154147537.png)
 
-Open the serial monitor and set the baud rate to 9600, the serial monitor will display the distance between the ultrasonic module and the obstacle in front.
+**8.Code Explanation**
 
-![image-20250417140529545](./media/image-20250417140529545.png)
+**int trigPin-** this pin is defined to transmit ultrasonic waves,generally output.
 
--------
+**int echoPin -** this is defined as the pin of reception, generally input.
 
-#### 5.6.3 Intelligent Feeding System
+**cm = (duration/2) / 29.1-**
 
-Open the **5.6.3Intelligent-Feeding-System** code with Arduino IDE.
+**inches = (duration/2) / 74-**
+
+We can calculate the distance by using the following formula:
+
+distance = (traveltime/2) x speed of sound
+
+The speed of sound is: 343m/s = 0.0343 cm/us = 1/29.1 cm/us
+
+Or in inches: 13503.9in/s = 0.0135in/us = 1/74in/us
+
+We need to divide the traveltime by 2 for we have to take into account that the wave was sent, hit the object, and then returned back to the sensor.
+
+**9.Extension Practice**
+
+We have just measured the distance displayed by the ultrasonic. How about controlling the LED with the measured distance? Let's try it and connect an LED light module to the D9 pin.
+
+![image-20250509154232505](./media/image-20250509154232505.png)
 
 ```c
-#include <ESP32Servo.h>  //Import the library of servo on ESP32 board
-Servo myservo;  // create servo object to control a servo
-                // 16 servo objects can be created on the ESP32
+//*****************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 5.2
+ Ultrasonic LED
+ http://www.keyestudio.com
+*/ 
+int trigPin = 12;    // Trigger
+int echoPin = 13;    // Echo
+long duration, cm, inches;
 
-#define TrigPin 12 //connect trig to D12
-#define EchoPin 13 //connect echo to D13
-#define ServoPin 26
-int duration,distance;
-
-void setup(){
-
-  Serial.begin(9600); //Set the baud rate to 9600
-  pinMode(TrigPin,OUTPUT);  //set trig pin to output mode
-  pinMode(EchoPin,INPUT);   //Set echo pin to input mode
-  myservo.attach(ServoPin);   // attaches the servo on pin 26 to the servo object
-}
-void loop(){
-  Serial.println(getDistance());
-  //When the distance is detected within 2~7cm, open the feeding box. Or else, close. 
-  if (getDistance() >= 2 && 7 >= getDistance()) {
-    //Servo rotates to 80° to open the box
-    myservo.write(80);
-    delay(500);
-  }
-  else{
-    myservo.write(180);
-    delay(500);
-  }
+void setup() {
+  Serial.begin (9600);  //Serial Port begin
+  pinMode(trigPin, OUTPUT);  //Define inputs and outputs
+  pinMode(echoPin, INPUT);
 }
 
-//Put the gotten distance in a function
-float getDistance() {
-
-  digitalWrite(TrigPin,LOW);
+void loop() 
+{
+  // The sensor is triggered by a HIGH pulse of 10 or more microseconds.
+  // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
+  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(TrigPin,HIGH);
-  delayMicroseconds(10);	//Trigger the trig pin via a high level lasting at least 10us
-  digitalWrite(TrigPin,LOW);
-  duration = pulseIn(EchoPin,HIGH);	//the time of high level at echo pin
-  distance = duration/58;		//convert into distance(cm)
-  delay(50);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Read the signal from the sensor: a HIGH pulse whose
+  // duration is the time (in microseconds) from the sending
+  // of the ping to the reception of its echo off of an object.
+  duration = pulseIn(echoPin, HIGH);
+  // Convert the time into a distance
+  cm = (duration/2) / 29.1;     // Divide by 29.1 or multiply by 0.0343
+  inches = (duration/2) / 74;   // Divide by 74 or multiply by 0.0135
+  Serial.print(inches);
+  Serial.print("in, ");
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
+  delay(250);
+  if (cm>=2 && cm<=10)
+  {
+    Serial.println("HIGH");
+    digitalWrite(9, HIGH);
+  }
+  else
+  {
+    Serial.println("LOW");
+    digitalWrite(9, LOW);
+  }
+}
+//*****************************************************************
+```
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, block the ultrasonic sensor by hand(the distance is between 2-10cm), then check if the LED is on.
+
+### Project 6 IR Reception
+
+![9681c7da-a7c9-49ed-ad8c-32e00c6aeb07](./media/9681c7da-a7c9-49ed-ad8c-32e00c6aeb07.png)
+
+**1.Description** 
+
+There is no doubt that infrared remote control is ubiquitous in daily life. It is used to control various household appliances, such as TVs, stereos, video recorders and satellite signal receivers. Infrared remote control is composed of infrared transmitting and infrared receiving systems, that is, an infrared remote control and infrared receiving module and a single-chip microcomputer capable of decoding.  
+
+![image-20250509154423060](./media/image-20250509154423060.png)
+
+The 38K infrared carrier signal emitted by remote controller is encoded by the encoding chip in the remote controller. It is composed of a section of pilot code, user code, user inverse code, data code, and data inverse code. The time interval of the pulse is used to distinguish whether it is 0 or 1 signal and the encoding is made up of these 0, 1 signals.
+
+The user code of the same remote control is constant while the data code can distinguish the key.
+
+When the remote control button is pressed, the remote control sends out an infrared carrier signal. When the IR receiver receives the signal, the program will decode the carrier signal and determines which key is pressed. The MCU decodes the received 01 signal, thereby judging what key is pressed by the remote control.
+
+Infrared receiver we use is an infrared receiver module. Mainly composed of an infrared receiver head, which is a device that integrates reception, amplification, and demodulation. Its internal IC has completed demodulation, and can achieve from infrared reception to output and be compatible with TTL signals.
+
+Additionally, it is suitable for infrared remote control and infrared data transmission. The infrared receiving module made by the receiver has only three pins, signal line, VCC and GND. It is very convenient to communicate with Arduino and other microcontrollers.
+
+**2.Specification**
+
+- Operating Voltage: 3.3-5V（DC)
+
+- Output Signal: Digital signal
+
+- Receiving Angle: 90 degrees
+
+- Frequency: 38khz
+
+- Receiving Distance: 10m
+
+The picture shows the real product and circuit diagram of the infrared receiver.
+
+![image-20250510082651985](./media/image-20250510082651985.png)
+
+**3.Components**
+
+|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+| :--------------------------------------: | :--------------------------------------: | :----------------------: |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
+|             3P Dupont Wire*1             |               USB Cable*1                |                          |
+|         ![img](./media/wps6.jpg)         |         ![img](./media/wps5.jpg)         |                          |
+
+
+Since the 8833 board integrates with the IR receiver, it doesn’t need wiring up. Pins of IR receiver module are G(GND）, V（VCC）and D3.
+
+**4.Test Code**
+
+```c
+//*************************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 6.1
+ IR remote
+ http://www.keyestudio.com
+*/ 
+#include <IRremote.h>     //IRremote library statement  
+int RECV_PIN = 3;        //define the pins of IR receiver as D3
+IRrecv irrecv(RECV_PIN);   
+decode_results results;   // decode results exist in the“result” of “decode results”
+void setup()  
+{  
+  Serial.begin(9600);  
+  irrecv.enableIRIn(); // Enable receiver 
+}  
   
-  return distance;
-}
+ void loop() {  
+  if (irrecv.decode(&results))//decode successfully, receive a set of infrared signals  
+   {  
+     Serial.println(results.value, HEX);//Wrap word in 16 HEX to output and receive code 
+     irrecv.resume(); // Receive the next value
+   }  
+   delay(100);  
+ } 
+//*************************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**5.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, open the serial monitor and set baud rate to 9600.
 
-**Test Result:**
+Take out the remote control, and send signal to the infrared receiver sensor. You can see the key value of the corresponding key, if the key time is too long, FFFFFFFF is prone to garbled characters.
 
-The smart feeding system intelligently feeds domestic fowls via an ultrasonic module and a servo. The former detects the distance to animals while the later controls to open or close the feeding box. When a pet is detected close to the box, servo opens it to feed.
+![image-20250510082931375](./media/image-20250510082931375.png)
 
-**ATTENTION**
+The keys value of Keyestudio remote control are shown below.
 
-Do not put your fingers into the box to avoid nipping!
+![image-20250510082942450](./media/image-20250510082942450.png)
 
-Do not block the door with something to avoid damaging servo!
+**6.Code Explanation**
 
-![flo6](./media/flo6.png)
+**irrecv.enableIRIn():** After enabling IR decoding, the IR signals will be received,
 
---------
+**decode():** The function“decode()”will check continuously to make sure if decoding successfully.
 
-### 5.7 Temperature Control System
+**irrecv.decode(\&results):** after decoding successfully, this function will come back to “true”, and keep result in “results”. After decoding the IR signals, run the resume()function and continue to receive the next signal.
 
-#### 5.7.1 DHT11 temperature and humidity sensor
+**7.Extension Practice**
 
-![cou71](./media/cou71.png)
+We have decoded the key value of the IR remote control. How about controlling LED by the measured value? We could design an experiment.
 
-DHT11 temperature and humidity sensor outputs digital signals. It applies principles of analog signal acquisition and conversion as well as temperature and humidity sensing technology, so that it features long-term stability and high reliability. Besides, the sensor integrates a high-precision resistive humidity sensor and a resistive thermosensitive temperature sensor, and is connected with an 8-bit high-performance MCU.
+Attach an LED to D9, then press the keys of remote control to make LED light on and off.
 
-Open the **5.7.4Temperature-Control-System** code with Arduino IDE
+![image-20250508161123490](./media/image-20250508161123490.png)
 
 ```c
-#include <dht11.h>
-#define DHT11PIN 17
+//*************************************************************************************
+/* 
+keyestudio 4wd BT Car
+lesson 6.2
+IR remote LED
+http://www.keyestudio.com
+*/ 
+#include <IRremote.h>
+int RECV_PIN = 3;//define the pin of IR receiver as D3
+int LED_PIN = 9;//define the pin of LED as pin 9
+int a=0;
+IRrecv irrecv(RECV_PIN);
+decode_results results;
 
-dht11 DHT11;
+void setup()
+{Serial.begin(9600);
+  irrecv.enableIRIn(); //Initialize the IR receiver
+  pinMode(LED_PIN,OUTPUT);//set pin 9 of LED to OUTPUT
+}
+
+void loop() {
+  if (irrecv.decode(&results)) 
+  {
+    if(results.value==0xFF02FD && (a==0)) //according to the above key value, press“OK”on remote control , LED will be controlled
+    {
+      Serial.println("HIGH");
+      digitalWrite(LED_PIN,HIGH);//LED will be on
+      a=1;
+    }
+    else if(results.value==0xFF02FD && (a==1)) //press again
+    {
+      Serial.println("LOW");
+      digitalWrite(LED_PIN,LOW);//LED will go off
+      a=0;
+    }
+    irrecv.resume(); // receive the next value
+  }
+}
+//*************************************************************************************
+```
+
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, press the "**OK**" key on remote control can make the LED on and off.
+
+### Project 7 Bluetooth Remote Control
+
+**1.Description**
+
+![image-20250510083107283](./media/image-20250510083107283.png)
+
+There is a DX-BT24 5.1 Bluetooth module in this kit. This bluetooth module comes with 256Kb space and complies with V5.1BLE bluetooth specification, which supports AT commands. Users can change parameters such as the baud rate and device name of the serial port as required.
+
+Furthermore, it supports UART interface and bluetooth serial port transparent transmission, which also contains the advantages of low cost, small size, low power consumption and high sensitivity for sending and receiving. Notably, it solely needs a few peripheral components to realize its powerful functions.  
+
+**2.Specification**
+
+- Bluetooth protocol: Bluetooth Specification V5.1 BLE
+
+- Working distance: In an open environment, it can achieve 40m ultra-long distance communication
+  
+- Operating frequency: 2.4GHz ISM band
+
+- Communication interface: UART
+
+- Bluetooth certification: Accord with FCC CE ROHS REACH certification standard
+  
+- Serial port parameters: 9600, 8 data bits, 1 stop bit, invalid bit, no flow control
+  
+- Power: 5V DC
+
+- Operating temperature: –10℃ to +65℃
+  
+
+**3.Application**
+
+The DX-BT24 module also supports the BT5.1 BLE protocol, which can be directly connected to iOS devices with BLE Bluetooth function, and supports resident running of background programs. It is mainly used in the field of short-distance data wireless transmission. It enables to avoid cumbersome cable connections and can directly replace serial cables.
+
+**Successful application areas of BT24 modules:**
+
+※ Bluetooth wireless data transmission;
+
+※ Mobile phone, computer peripheral equipment;
+
+※ Handheld POS equipment;
+
+※ Wireless data transmission of medical equipment;
+
+※ Smart home control;
+
+※ Bluetooth printer;
+
+※ Bluetooth remote control toys;
+
+※ Shared bicycles;
+
+**4.Ports**
+
+![420af966-aaa4-4736-9d35-2a9ccc7215f3](./media/420af966-aaa4-4736-9d35-2a9ccc7215f3.png)
+
+①STATE：Status pin
+
+②RX：Receiving pin
+
+③TX：sending pin
+
+④GND：GND
+
+⑤VCC：Power
+
+⑥EN： Enable pin
+
+Connect the BT module to the development board.
+
+| Uno  | BT24 |
+| :--: | :--: |
+|  TX  |  RX  |
+|  RX  |  TX  |
+| VCC  |  5V  |
+| GND  | GND  |
+
+**5.Components**
+
+|           Development Board *1           |     Motor Driver Expansion Board *1      |                       Red LED Module*1                       |
+| :--------------------------------------: | :--------------------------------------: | :----------------------------------------------------------: |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) |                   ![img](./media/wps3.jpg)                   |
+|             3P Dupont Wire*1             |               USB Cable*1                |                  DX-BT24 Bluetooth Module*1                  |
+|         ![img](./media/wps6.jpg)         |         ![img](./media/wps5.jpg)         | ![image-20250510083534209](./media/image-20250510083534209.png) |
+
+**6.Wiring Diagram**
+
+![image-20250510083927915](./media/image-20250510083927915.png)
+
+RXD, TXD, GND and VCC of the BT module are connected to TX, RX, G and 5V.
+
+STATE and BRK of the BT module don’t need connection.
+
+<span style="color: rgb(255, 76, 65);">Note:the direction of the BT module when inserting it onto the 8833 board. And don’t insert it before uploading the code.</span> 
+
+**7.Test Code**
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+```c
+//***********************************************************************
+/*
+keyestudio 4wd BT Car
+lesson 7.1
+Bluetooth 
+http://www.keyestudio.com
+*/
+char ble_val; //character variable, used to store the value received by Bluetooth 
+
+
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  if(Serial.available() > 0)  //make sure if there is data in serial buffer
+  {
+    ble_val = Serial.read();  //Read data from serial buffer
+    Serial.println(ble_val);  //Print
+  }
+}
+//***********************************************************************
+```
+
+**8.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, insert the BT module and the LED will flash, then we need to download the BT app.
+
+**9.Download Bluetooth APP**
+
+**Apple system**
+
+1. Open the App Store on the iPhone.
+
+2. Search keyes BT car and download the APP to your phone.
+
+   
+
+   ![image-20250510084716811](./media/image-20250510084716811.png)
+       
+
+3. After installation, enter its interface.
+   
+
+![image-20250510084812821](./media/image-20250510084812821.png)
+    
+4. Click "**Connect**" button in the upper left corner to automatically search for Bluetooth. When **BT24** is found, click "**Connect**" to connect Bluetooth, and then click ![image-20250510084833837](./media/image-20250510084833837.png) to enter the control interface of 4WD smart car. 
+   
+
+![image-20250510084902641](./media/image-20250510084902641.png)
+    **Android System**
+    
+
+1. Enter google play store to search for“keyes 4wd”.
+
+![image-20250510084916086](./media/image-20250510084916086.png)
+
+2. The app icon is shown below after installation.
+
+![image-20250510084933465](./media/image-20250510084933465.png)
+
+3. Click app to enter the following page.
+
+![image-20250510084946146](./media/image-20250510084946146.png)
+
+4. After connecting Bluetooth, plug in power and LED indicator of Bluetooth module will flicker. Tap“**Connect**”to search the Bluetooth.
+
+![image-20250510085007028](./media/image-20250510085007028.png)
+
+5. When **BT24** is found, click "Connect" to connect Bluetooth. When "**Connect**" turns into "**is Connected**", it indicates that the Bluetooth connection is successful. As shown in the picture below, the Bluetooth LED becomes will stay on.
+
+![image-20250510085026219](./media/image-20250510085026219.png)
+
+6. After connecting Bluetooth module, open serial monitor to set baud rate to 9600. Pressing the button of the Bluetooth APP, and the corresponding characters will be displayed, as shown below:
+
+![image-20250510085039562](./media/image-20250510085039562.png)
+
+| Key                       | Function                          |
+| ------------------------- | --------------------------------- |
+| ![img](./media/wps14.jpg) | Pair DX-BT24 5.1 Bluetooth module |
+| ![img](./media/wps15.jpg) | Disconnect Bluetooth              |
+
+
+
+|                           | Control character                                            | Control character                                       |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
+| ![img](./media/wps16.jpg) | Press: F  Release: S                                         | Press the button, the car  goes front; release to stop  |
+| ![img](./media/wps17.jpg) | Press: L  Release: S                                         | Press the button, the car turns left; release to stop   |
+| ![img](./media/wps18.jpg) | Press: R  Release: S                                         | Press the button, the car turns right; release to stop  |
+| ![img](./media/wps19.jpg) | Press: B  Release: S                                         | Press the button, the car goes back; release to stop    |
+| ![img](./media/wps20.jpg) | Press: “a”  Release: “S”                                     | Click to speed up(maximum:255)                          |
+| ![img](./media/wps21.jpg) | Press: “d”  Release: “S”                                     | Click to slow down(minimum:0)                           |
+| ![img](./media/wps22.jpg) | Click to start the gravity sensing function of the <br />mobile phone: click again to exit the gravity sensing control |                                                         |
+| ![img](./media/wps23.jpg) | Click to send“X”, click again to send“S”                     | Start line tracking function; click again to exit       |
+| ![img](./media/wps24.jpg) | Click to send“Y”, click again to send“S”                     | Start ultrasonic avoiding function; click again to exit |
+| ![img](./media/wps25.jpg) | Click to send“U”, click again to send“S”                     | Start ultrasonic follow function; click  again to exit  |
+| ![img](./media/wps26.jpg) | Click to send“G”, click again to send“S”                     | Start restricting function; click  again to exit        |
+
+**9.Code Explanation**
+
+**Serial.available()** : Return the number of characters currently remaining in the serial port buffer. Generally, this function is used to judge whether there is data in the buffer of the serial port. When Serial.available()\>0, it means that the serial port has received data and can be read;
+
+**Serial.read() :** Refers to taking out and reading a Byte of data from the serial port buffer. For example, if a device sends data to Arduino through the serial port, we can use Serial.read() to read the sent data.
+
+**10.Extension Practice**
+
+Here we look to use the command sent by the mobile phone to turn on or off an LED light. Looking at the wiring diagram, an LED is connected to the D9 pin.
+
+![image-20250510085856954](./media/image-20250510085856954.png)
+
+```c
+//****************************************************************************
+/*
+ keyestudio smart turtle robot
+ lesson 7.2
+ Bluetooth LED
+ http://www.keyestudio.com
+*/ 
+int ledpin=9;
+char ble_val;// An integer variable used to store the value received by Bluetooth
 
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("DHT11 TEST PROGRAM ");
-  Serial.print("LIBRARY VERSION: ");
-  Serial.println(DHT11LIB_VERSION);
-  Serial.println();
+  pinMode(ledpin,OUTPUT);
 }
 
 void loop()
-{
-  Serial.println("\n");
-
-  int chk = DHT11.read(DHT11PIN);
-
-  Serial.print("Read sensor: ");
-  switch (chk)
+{ 
+  if (Serial.available() > 0) //Check whether there is data in the serial port cache
   {
-    case DHTLIB_OK: 
-                Serial.println("OK"); 
-                break;
-    case DHTLIB_ERROR_CHECKSUM: 
-                Serial.println("Checksum error"); 
-                break;
-    case DHTLIB_ERROR_TIMEOUT: 
-                Serial.println("Time out error"); 
-                break;
-    default: 
-                Serial.println("Unknown error"); 
-                break;
-  }
-
-  Serial.print("Humidity (%): ");
-  Serial.println((float)DHT11.humidity, 2);
-
-  Serial.print("Temperature (oC): ");
-  Serial.println((float)DHT11.temperature, 2);
-
-  Serial.print("Temperature (oF): ");
-  Serial.println(Fahrenheit(DHT11.temperature), 2);
-
-  Serial.print("Temperature (K): ");
-  Serial.println(Kelvin(DHT11.temperature), 2);
-
-  Serial.print("Dew Point (oC): ");
-  Serial.println(dewPoint(DHT11.temperature, DHT11.humidity));
-
-  Serial.print("Dew PointFast (oC): ");
-  Serial.println(dewPointFast(DHT11.temperature, DHT11.humidity));
-
-  delay(2000);
+    ble_val = Serial.read();  //Read data from the serial port cache
+    Serial.print("DATA RECEIVED:");
+    Serial.println(ble_val);
+    if (ble_val == 'F') {
+      digitalWrite(ledpin, HIGH);
+      Serial.println("led on");
+    }
+    if (ble_val == 'B') {
+      digitalWrite(ledpin, LOW);
+      Serial.println("led off");
+    }
+   }
 }
+//****************************************************************************
+```
 
-double Fahrenheit(double celsius) 
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then connect the computer via a USB cable to power the board. After powering on, click![image-20250510085919039](./media/image-20250510085919039.png) and ![image-20250510085931709](./media/image-20250510085931709.png) to control the LED turn on and turn off.
+
+
+### Project 8 Motor Driving and Speed Control
+
+![image-20250510090044895](./media/image-20250510090044895.png)
+
+**1.Description**
+
+There are many ways to drive motors. Our car uses the most commonly used DRV8833 motor driver chip, which provides a two-channel bridge electric drive solution for toys, printers and other integrated motor applications.
+
+When we stack the Shield on the 4.0 development board and power on the BAT, then set the DIP switch to the ON end, the external power supply will power on the two boards at the same time. To facilitate wiring connections, the Shield comes with an anti-reverse port (PH2.0-2P-3P-4P-5P). You can connect the motors, power supply, and sensor modules directly to the Shield. 
+
+The Bluetooth interface of the Shield is fully compatible with the DX-BT24 5.1 Bluetooth module. When connecting the Bluetooth module, you solely need to plug it into the corresponding interface.  At the same time, 2.54 row pins are used to draw out some unused digital and analog ports on the Shield, making it accessible for you to add other sensors and carry out extension experiments. 
+
+The expansion board can be connected to four DC motors. When the jumper cap is connected by default, the motors of ports A and A1 and B and B1 are connected in parallel and have the same motion law.  8 jumper caps can be used to control the rotation direction of the 4 motor interfaces.
+
+For example, when the 2 jumper caps in front of B1 of the M1 motor change from transverse connection to longitudinal connection, the rotation direction of M1 motor will be opposite to the original rotation direction. 
+
+**2.Specification**
+
+- Input voltage for logic：DC 5V
+
+- Input voltage for driving：DC 6-9 V
+
+- Working current for logic：\<36mA
+
+- Working current for driving：\<2A
+
+- Maximum power dissipation：25W（T=75℃）
+
+- Input level for control signal： high level is 2.3V\<Vin\<5V ，low level is -0.3V\<Vin\<1.5V
+
+- Working temperature：-25＋130℃
+
+**Keyestudio 8833 motor driver expansion board**
+
+![image-20250510090404192](./media/image-20250510090404192.png)
+
+**3.Working Principle**
+
+We use the same side parallel connection mode for the four motors, which can be regarded as two groups of motors.  As shown in the wiring diagram, B and B1 are a group, and A and A1 are a group.
+
+The motors in the same group should rotate in the same direction. If they are different, please adjust the corresponding jumper caps next to the terminal to change the direction.  
+
+As shown below, if the directions of A and A1 are different, adjust the direction of jumper caps until the motor movement direction of the same group is consistent. 
+
+![image-20250510090532851](./media/image-20250510090532851.png)
+
+From the above diagram, it is known that the direction pin of A motor is D4, the speed pin is D6; D2 is the direction pin of B motor; and D6 is speed pin.
+
+<span style="color:red;">PWM drives the robot car. The PWM value is in the range of 0-255. When we set the direction to HIGH, the smaller the PWM number, the faster the rotation of the motor.</span>
+
+|            | D2   | D5（PWM） | B Motor（ left）     | D4   | D6（PWM） | A Motor（right）     |
+| ---------- | ---- | --------- | -------------------- | ---- | --------- | -------------------- |
+| Go forward | HIGH | 255-200   | Rotate clockwise     | HIGH | 255-200   | Rotate clockwise     |
+| Go back    | LOW  | 200       | Rotate anticlockwise | LOW  | 200       | Rotate anticlockwise |
+| Turn left  | HIGH | 255-200   | Rotate clockwise     | LOW  | 200       | Rotate anticlockwise |
+| Turn right | LOW  | 200       | Rotate anticlockwise | HIGH | 255-200   | Rotate clockwise     |
+
+**4.Components**
+
+| Keyestudio 4.0 Development Board *1 | Keyestudio 8833 Motor Driver Expansion Board *1 | USB Cable*1                                        |
+| ----------------------------------- | ----------------------------------------------- | -------------------------------------------------- |
+| ![img](./media/wps27.jpg)           | ![img](./media/wps28.jpg)                       | ![img](./media/wps29.jpg)                          |
+| 18650 Battery Holder*1              | Motor*4                                         | 18650 Battery *2（self-provided）                  |
+| ![img](./media/wps30.png)           | ![img](./media/wps31.jpg)                       | ![img](./media/wps32.png)![img](./media/wps33.png) |
+
+**5.Wiring Diagram**
+
+![image-20250510090733191](./media/image-20250510090733191.png)
+
+Connect the power supply to the BAT port.
+
+**6.Test Code**
+
+```c
+//****************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 8.1
+ Motor driver shield
+ http://www.keyestudio.com
+*/ 
+#define ML_Ctrl 2     //define the direction control pins of group B motor
+#define ML_PWM 5   //define the PWM control pins of group B motor
+#define MR_Ctrl 4    //define the direction control pins of group A motor
+#define MR_PWM 6   //define the PWM control pins of group A motor
+
+void setup()
 {
-        return 1.8 * celsius + 32;
-}    //Convert Celsius degree to Fahrenheit degree
+  pinMode(ML_Ctrl, OUTPUT);//set direction control pins of group B motor to output
+  pinMode(ML_PWM, OUTPUT);//set PWM control pins of group B motor to output
+  pinMode(MR_Ctrl, OUTPUT);//set direction control pins of group A motor to output
+  pinMode(MR_PWM, OUTPUT);//set PWM control pins of group A motor to output
+}
+void loop()
+{ 
+  //front
+  digitalWrite(ML_Ctrl,HIGH);//set the direction control pins of group B motor to HIGH
+  analogWrite(ML_PWM,55);//set the PWM control speed of group B motor to 55
+  digitalWrite(MR_Ctrl,HIGH);//set the direction control pins of group A motor to HIGH
+  analogWrite(MR_PWM,55);// set the PWM control speed of group A motor to 55
+  delay(2000);//delay in 2000ms
+  //back
+  digitalWrite(ML_Ctrl,LOW);//set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,200);// set the PWM control speed of group B motor to 200 
+  digitalWrite(MR_Ctrl,LOW);//set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,200);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //left
+  digitalWrite(ML_Ctrl,LOW);//set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,200);//set the PWM control speed of group B motor to 200 
+  digitalWrite(MR_Ctrl,HIGH);//set the direction control pins of group A motor to HIGH level
+  analogWrite(MR_PWM,55);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //right
+  digitalWrite(ML_Ctrl,HIGH);//set the direction control pins of group B motor to HIGH level
+  analogWrite(ML_PWM,55);//set the PWM control speed of group B motor to 55 
+  digitalWrite(MR_Ctrl,LOW);// set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,200);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //stop
+  digitalWrite(ML_Ctrl, LOW);// set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,0);//set the PWM control speed of group B motor to 0
+  digitalWrite(MR_Ctrl, LOW);// set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,0);//set the PWM control speed of group A motor to 0
+  delay(2000);// delay in 2000ms
+}
+//****************************************************************************
+```
 
-double Kelvin(double celsius)
+**7.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then power on the external power and turn the DIP switch to ON, the car will go forward for 2s, back for 2s, turn left for 2s and right for 2s and stop for 2s
+
+**8.Code Explanation**
+
+**digitalWrite(ML\_Ctrl,LOW):** The rotation direction of motor is decided by the high/low level and and the pins that decide rotation direction are digital pins.
+
+**analogWrite(ML\_PWM,200):** The speed of motor is regulated by PWM, and the pins that decide the speed of motor must be PWM pins.
+
+**9.Code Explanation**
+
+Adjust the speed that PWM controls the motor, hook up in the same way.
+
+```c
+
+//************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 8.2
+ Motor driver
+ http://www.keyestudio.com
+*/ 
+#define ML_Ctrl 2     //define the direction control pins of group B motor
+#define ML_PWM 5   //define the PWM control pins of group B motor
+#define MR_Ctrl 4    //define the direction control pins of group A motor
+#define MR_PWM 6   //define the PWM control pins of group A motor
+
+void setup()
 {
-        return celsius + 273.15;
-}     //Convert Celsius degree to Kelvins
-
-//Dew Point. The air is saturated and dews are produced under this temperature.
-//Reference: http://wahiduddin.net/calc/density_algorithms.htm 
-double dewPoint(double celsius, double humidity)
-{
-        double A0= 373.15/(273.15 + celsius);
-        double SUM = -7.90298 * (A0-1);
-        SUM += 5.02808 * log10(A0);
-        SUM += -1.3816e-7 * (pow(10, (11.344*(1-1/A0)))-1) ;
-        SUM += 8.1328e-3 * (pow(10,(-3.49149*(A0-1)))-1) ;
-        SUM += log10(1013.246);
-        double VP = pow(10, SUM-3) * humidity;
-        double T = log(VP/0.61078);   // temp var
-        return (241.88 * T) / (17.558-T);
+  pinMode(ML_Ctrl, OUTPUT);//set direction control pins of group B motor to output
+  pinMode(ML_PWM, OUTPUT);//set PWM control pins of group B motor to output
+  pinMode(MR_Ctrl, OUTPUT);//set direction control pins of group A motor to output
+  pinMode(MR_PWM, OUTPUT);//set PWM control pins of group A motor to output
 }
-
-// Fast calculate the Dew Point, its speed is 5 times of dewPoint()
-// Reference: http://en.wikipedia.org/wiki/Dew_point
-double dewPointFast(double celsius, double humidity)
-{
-        double a = 17.271;
-        double b = 237.7;
-        double temp = (a * celsius) / (b + celsius) + log(humidity/100);
-        double Td = (b * temp) / (a - temp);
-        return Td;
+void loop()
+{ 
+  //front
+  digitalWrite(ML_Ctrl,HIGH);//set the direction control pins of group B motor to HIGH
+  analogWrite(ML_PWM,105);//set the PWM control speed of group B motor to 55
+  digitalWrite(MR_Ctrl,HIGH);//set the direction control pins of group A motor to HIGH
+  analogWrite(MR_PWM,105);// set the PWM control speed of group A motor to 55
+  delay(2000);//delay in 2000ms
+  //back
+  digitalWrite(ML_Ctrl,LOW);//set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,150);// set the PWM control speed of group B motor to 200 
+  digitalWrite(MR_Ctrl,LOW);//set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,150);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //left
+  digitalWrite(ML_Ctrl,LOW);//set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,150);//set the PWM control speed of group B motor to 200 
+  digitalWrite(MR_Ctrl,HIGH);//set the direction control pins of group A motor to HIGH level
+  analogWrite(MR_PWM,105);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //right
+  digitalWrite(ML_Ctrl,HIGH);//set the direction control pins of group B motor to HIGH level
+  analogWrite(ML_PWM,105);//set the PWM control speed of group B motor to 55 
+  digitalWrite(MR_Ctrl,LOW);// set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,150);//set the PWM control speed of group A motor to 200
+  delay(2000);//delay in 2000ms
+  //stop
+  digitalWrite(ML_Ctrl, LOW);// set the direction control pins of group B motor to LOW level
+  analogWrite(ML_PWM,0);//set the PWM control speed of group B motor to 0
+  digitalWrite(MR_Ctrl, LOW);// set the direction control pins of group A motor to LOW level
+  analogWrite(MR_PWM,0);//set the PWM control speed of group A motor to 0
+  delay(2000);// delay in 2000ms
 }
-
+//************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then power on the external power and turn the DIP switch to ON, then you find the speed of the motor is much slower.
 
-![5458448](./media/5458448.png)
+<span style="color: rgb(255, 76, 65);">Note:Low battery will lead to slow motor speed.</span> 
 
-**Test Result:**
 
-Open the serial monitor and set the baud rate to 9600, the serial monitor will display the the current temperature and humidity value.
+### Project 9 Facial Expression LED Board
 
-![image-20250417141933151](./media/image-20250417141933151.png)
+![image-20250510090912741](./media/image-20250510090912741.png)
 
--------
+**1.Description**
 
-#### 5.7.2 LCD 1602 Module
+How fun it is if a expression board is added to the robot. And the Keyestudio 8\*16 LED board can do the trick. With the help of it, you could design facial expressions, images, patterns and other displays by yourselves.
 
-LCD 1602 possesses a standard 14-pin (without backlight) or 16-pin (with backlight) interface, saving the pins of MCU. Its display drives IC to realize I2C control.
+The 8\*16 LED board comes with 128 LEDs. The data of the microprocessor(Arduino) communicates with the AiP1640 through a two-wire bus interface. Therefore, it can control the on and off of 128 LEDs on the module, so as to make the dot matrix on the module to display the pattern you need. A HX-2.54 4Pin cable is provided for your convenience of wiring.
 
-![cou72](./media/cou72.png)
+**2.Specification**
 
-Open the **5.7.2LCD1602** code with Arduino IDE.
+- Working voltage: DC 3.3-5V
 
-```c
-#include <LiquidCrystal_I2C.h>
+- Power loss: 400mW
 
-//Initialize LCD 1602, 0x27 is I2C address
-LiquidCrystal_I2C lcd(0x27,16,2);
+- Oscillation frequency: 450KHz
 
-void setup() {
-  //Initialize LCD
-  lcd.init();
-  // Turn the (optional) backlight off/on
-  lcd.backlight();
-  //lcd.noBacklight();
+- Drive current: 200mA
 
-  //Set the position o dcursor
-  lcd.setCursor(0, 0);
-  //LCD prints
-  lcd.print("HELLO WORLD 0");
-  lcd.setCursor(0, 1);
-  lcd.print("HELLO WORLD 1");
+- Working temperature: -40\~80℃
 
-  //Clear displays
-  // lcd.clear();
-}
-
-void loop() {
-
-  // Turn the display on/off (quickly)
-  //lcd.noDisplay();
-  //lcd.display();
-
-  // Turns the underline cursor on/off
-  //lcd.noCursor();
-  //lcd.cursor();
-
-  // Turn on and off the blinking cursor
-  // lcd.noBlink();
-  // lcd.blink();
-
-  // These commands scroll the display without changing the RAM
-  //lcd.scrollDisplayLeft();
-  //lcd.scrollDisplayRight();
-
-  // This is for text that flows Left to Right
-  //lcd.leftToRight();
-  //lcd.rightToLeft();
-
-  // This will 'right justify' text from the cursor
-  //lcd.autoscroll();
-  //lcd.noAutoscroll();
-
-}
-
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-LCD1602 opens its backlight and displays ”HELLO WORLD 0“ and ”HELLO WORLD 1“.
-
-![cou78](./media/cou78.png)
-
---------
-
-#### 5.7.3 Motor and Fan
-
-130 Motor is able to adjust speed via PWM. In the process, two pins are needed to be connected for controlling.
-
-![](./media/cou710.png)
-
-Open the **5.7.3Motor** code with Arduino IDE.
-
-```c
-#define MotorPin1 19  //(IN+)
-#define MotorPin2 18  //(IN-)
-
-void setup() {
-  pinMode(MotorPin1, OUTPUT);
-  pinMode(MotorPin2, OUTPUT);
-}
-
-void loop() {
-  //corotation 
-  analogWrite(MotorPin1, 255); //Adjust the motor speed by modifying the analog value output range from 0-255
-  analogWrite(MotorPin2, 0);
-  delay(2000);
-  //Stop Transition
-  delay(200);
-  analogWrite(MotorPin1, 0);
-  analogWrite(MotorPin2, 0);
-  delay(200);
-  //reversal
-  analogWrite(MotorPin1, 0);
-  analogWrite(MotorPin2, 255);
-  delay(2000);
-  //Stop
-  analogWrite(MotorPin1, 0);
-  analogWrite(MotorPin2, 0);
-  delay(2000);
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-130 motor alternatively rotatesleft and right every 2 seconds. 
-
-<span style="color:red;">NOTE: Since the fan is a high-power electronic device, please remember to use batteries to power it.</span>
-
------------
-
-#### 5.7.4 Temperature Control System
-
-Open the **5.7.4Temperature-Control-System** code with Arduino IDE.
-
-```c
-#include <LiquidCrystal_I2C.h>
-#include <dht11.h>
-
-#define DHT11PIN 17
-#define MotorPin1 19  //(IN+)
-#define MotorPin2 18  //(IN-)
-
-dht11 DHT11;
-
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-void setup() {
-  lcd.init();
-  lcd.backlight();
-
-  pinMode(MotorPin1, OUTPUT);
-  pinMode(MotorPin2, OUTPUT);
-}
-
-void loop() {
-  //Difine temperature and humidity value
-  int Temperature;
-  int Humidity;
-  //Read the value
-  int chk = DHT11.read(DHT11PIN);
-
-  Temperature = DHT11.temperature;
-  Humidity = DHT11.humidity;
-  lcd.setCursor(0, 0);
-  lcd.print("Temp:");
-  lcd.setCursor(5, 0);
-  lcd.print(Temperature);
-
-  lcd.setCursor(0, 1);
-  lcd.print("Hum:");
-  lcd.setCursor(5, 1);
-  lcd.print(Humidity);
-  delay(500);
-
-  if (Temperature >= 29) {
-    //Turn left
-    analogWrite(MotorPin1, 150);  //Adjust the motor speed by modifying the analog value output range from 0-255
-    analogWrite(MotorPin2, 0);
-  } else {
-    //Stop
-    delay(3000);
-    analogWrite(MotorPin1, 0);
-    analogWrite(MotorPin2, 0);
-    delay(200);
-  }
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-When the temperature reaches 29°C, the fan will turn on to dissipate heat. When it is lower than 29°C, the fan will turn off (the fan just simulates heat dissipation, so the effect is not good), which saves energy forthe farm.
-
-![flo7](./media/flo7.png)
-
---------
-
-### 5.8 Soil Humidity Monitoring System
-
-#### 5.8.1 Soil Humidity Sensor
-
-![](./media/cou81.png)
-
-<span style="color:red;">Pay attention:Do not overflow water from plastic pools in experiments. Spilling water on other sensors may cause not only a short circuit or modules to be out of work but also heat generation and even explosion. Do be extra careful! Especially for younger users, please operate with your parents.</span>
-
-Open the **5.8.1Soil-Humidity-Sensor** code with Arduino IDE.
-
-```c
-#define SoilHumidityPin 32
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(SoilHumidityPin,INPUT);
-}
-
-void loop() {
-  //Define a variable as the value of soil humidity sensor
-  int ReadValue = analogRead(SoilHumidityPin);
-  Serial.println(ReadValue);
-  delay(500);
-}
-
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Open the serial monitor. Touch the detection area of the sensor with a wet finger and the currently detected humidity value will be printed on the monitor(range: 0~4095).
-
-![image-20250417145121859](./media/image-20250417145121859.png)
-
-Soil humidity sensors are mainly used to measure water content in volumetric soil, monitor soil moisture,irrigate crops and protect forests.
-
-![couy81](./media/couy81.png)
-
-----------
-
-#### 5.8.2 Soil Humidity Monitoring System
-
-We adopt LCD1602 to reveal the real-time value of soil humidity value. When the value is lower than the set minimum humidity,the buzzer will emitsound to prompt farmers of irrigation. 
-
-Open the **5.8.2Soil-Humidity-Testing-System** code with Arduino IDE.
-
-```c
-#include <LiquidCrystal_I2C.h>
-
-#define BuzzerPin 16
-#define SoilHumidityPin 32
-
-LiquidCrystal_I2C lcd(0x27,16,2);
-
-void setup() {
-
-  ledcAttachChannel(BuzzerPin,1000,8,4);
-
-  pinMode(SoilHumidityPin,INPUT);
-
-  lcd.init();
-  lcd.backlight();  
-  lcd.clear();
-
-}
-
-void loop() {
-
-  float shvalue = analogRead(SoilHumidityPin);
-
-  lcd.setCursor(0, 0);
-  lcd.print("SoilHum:");
-  lcd.setCursor(9, 0);
-  lcd.print(shvalue);
+- Communication mode: I2C
   
-  //When the detected value is lower than the set threshold, the buzzer emits sound
-  if(200 >= shvalue)
+
+**3.Circuit Diagram**
+
+![image-20250510091309725](./media/image-20250510091309725.png)
+
+**4.Working Principle**
+
+How to control each LED of the 8\*16 dot matrix? It is known that each byte has 8 bits and each bit is 0 or 1. when it is 0, LED is off while when it is 1 LED is on. One byte can control one column of the LED,and naturally 16 bytes can control 16 columns of LEDs, that’s the 8\*16 dot matrix.
+
+**5.Pins description and communication protocol**
+
+The data of the microprocessor (Arduino) communicates with the AiP1640 through a two-wire bus cable.
+
+The communication protocol diagram is as follows (SCLK) is SCL, (DIN) is SDA.
+
+![image-20250510091407219](./media/image-20250510091407219.png)
+
+①The starting condition for data input: SCL is high level and SDA changes from high to low.
+
+②For data command setting, there are methods as shown in the figure below.
+
+In our sample program, select the way to **add 1 to the address automatically**, the binary value is 0100 0000 and the corresponding hexadecimal value is 0x40.
+
+![Img](./media/img-20231031140841.png)
+
+③For address command setting, the address can be selected as shown below.
+
+The first 00H is selected in our sample program, and the binary number 1100 0000 corresponds to the hexadecimal 0xc0.
+
+![Img](./media/img-20231031140543.png)
+
+④The requirement for data input is that when SCL is at high level when inputting data, the signal on SDA must remain unchanged. Only when the clock signal on SCL is at low level, can the signal on SDA be changed. The input of data is the low bit first, and the high bit later.
+
+⑤The condition for the end of data transmission is that when SCL is at low level, SDA at low level and SCL at high level, the level of SDA becomes high.
+
+⑥Display control, set different pulse width, pulse width can be selected as shown in the figure below.
+
+In the example, the pulse width is 4/16, and the hexadecimal corresponding to 1000 1010 is 0x8A.
+
+![Img](./media/img-20231031141157.png)
+
+**Instructions for the use of modulus tool**
+
+The dot matrix tool uses the online version, and the link is :[http://dotmatrixtool.com/\#](http://dotmatrixtool.com/\#)
+
+①Enter the link and the page appears as shown below
+
+![image-20250510091438524](./media/image-20250510091438524.png)
+
+②The dot matrix is 8\*16, so adjust the height to 8 and width to 16, as shown in the figure below.
+
+![image-20250510091446519](./media/image-20250510091446519.png)
+
+③Generate hexadecimal data from the pattern
+
+As shown in the figure below, press the left mouse button to select, right click to cancel; draw the pattern you want, click Generate, and the hexadecimal data we need will be generated.
+
+![image-20250510091457463](./media/image-20250510091457463.png)
+
+**6.Components**
+
+| Keyestudio 4.0 Development Board *1                          | Keyestudio 8833 Motor Driver Expansion Board *1              | USB Cable*1               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------- |
+| ![img](./media/wps27.jpg)                                    | ![img](./media/wps28.jpg)                                    | ![img](./media/wps29.jpg) |
+| USB Cable*1                                                  | HX-2.54 4P Dupont Wire 200mm *1                              |                           |
+| ![image-20250512155818434](./media/image-20250512155818434.png) | ![image-20250512155822969](./media/image-20250512155822969.png) |                           |
+
+**7.Wiring Diagram**
+
+![cec50fec4a335b6922e4c6694a133bc1](./media/cec50fec4a335b6922e4c6694a133bc1.png)
+
+The GND, VCC, SDA, and SCL of the 8x16 LED light board are respectively connected to the keyestudio sensor expansion board-(GND), + (VCC), A4, A5 for two-wire serial communication.
+
+(<span style="color: rgb(255, 76, 65);">Note:</span> Though it is connected with the IIC pin of Arduino, this module is not for IIC communication. And the IO port here is to simulate I2C communication and can be connected with any two pins ).
+
+**8.Test Code**
+The code will show the smile face.
+
+```c
+//************************************************************************
+/*
+ keyestudio 4wd BT Car
+  lesson 9.1
+  Matrix face
+  http://www.keyestudio.com
+*/
+//Data from the smile pattern obtained from the touch tool
+unsigned char smile[] = {0x00, 0x00, 0x1c, 0x02, 0x02, 0x02, 0x5c, 0x40, 0x40, 0x5c, 0x02, 0x02, 0x02, 0x1c, 0x00, 0x00};
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+void setup() {
+  //Set pin to output
+  pinMode(SCL_Pin, OUTPUT);
+  pinMode(SDA_Pin, OUTPUT);
+  //clear
+  //matrix_display(clear);
+}
+void loop() {
+  matrix_display(smile);  //display smiling expression pattern
+}
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
   {
-    ledcWriteTone(BuzzerPin,532);
-    delay(100);
-    ledcWriteTone(BuzzerPin,532);
-    delay(100);
-    ledcWriteTone(BuzzerPin,659);
-    delay(100);
-    ledcWriteTone(BuzzerPin,0);  //Stop alarming
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
   }
-  delay(500);
-  lcd.clear();
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
 }
-
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-The LCD1602 displaysthe reveal the real-time value ofsoil humidity value. When the value detected by the soil humidity sensorislowerthan 200, the buzzer emitssound to alarm.
-
-![flo8](./media/flo8.png)
-
-<span style="color:red;">Pay attention:Do not overflow water from plastic pools in experiments. Spilling water on other sensors may cause not only a short circuit or modules to be out of work but also heat generation and even explosion. Do be extra careful! Especially for younger users, please operate with your parents.</span>
-
---------
-
-### 5.9 Water Level Monitoring System
-
-#### 5.9.1 Water Level Sensor
-
-The water level sensor integrates a series of exposed parallel lines to measure the volume of water and droplets.
-
-![cou91](./media/cou91.png)
-
-<span style="color:red;">Pay attention:With the exception of the detection area, the sensor is not waterproof. Spilling water on other area may result in a short circuit.</span>
-
-Open the **5.9.1Water-Level-Sensor** code with Arduino IDE.
-
-```c
-#define WaterLevelPin 33
-
-void setup() {
-
-  Serial.begin(9600);
-  pinMode(WaterLevelPin,INPUT);
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
 }
-
-void loop() {
-  int ReadValue = analogRead(WaterLevelPin);
-  Serial.println(ReadValue);
-  delay(500);
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
 }
-
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Open the serial monitor. Touch the detection area of the sensor with a wet finger and the currently detected value will be printed on the monitor(range: 0~4095).
-
-![image-20250417150303854](./media/image-20250417150303854.png)
-
---------
-
-#### 5.9.2 Water Level Monitoring System
-
-Open the **5.9.2Water-Level-Testing-System** code with Arduino IDE
-
-```c
-#include <LiquidCrystal_I2C.h>
-
-#define BuzzerPin 16
-#define WaterLevelPin 33
-
-LiquidCrystal_I2C lcd(0x27,16,2);
-
-void setup() {
-
-  //Initialize the serial port
-  Serial.begin(9600);
-  //Set the water level pin to input mode
-  pinMode(WaterLevelPin,INPUT);
-
-  //Initialize LCD
-  lcd.init();
-  //turn on the LCD backlight
-  lcd.backlight();
-  //clear displays on LCD
-  lcd.clear();
-
-  ledcAttachChannel(BuzzerPin,1000,8,4);
-}
-
-void loop() {
-  //Read the value of water level sensor
-  int ReadValue = analogRead(WaterLevelPin);
-  //Set the display position of cursor
-  lcd.setCursor(0, 0);
-  //Set the display position of characters
-  lcd.print("WaterLevel:");
-  lcd.setCursor(6, 1);
-  lcd.print(ReadValue);
-  
-  //When the detected value exceeds the threshold, the buzzer starts to alarm
-  if(ReadValue >= 2000)
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
   {
-    ledcWriteTone(BuzzerPin,659);
-    delay(100);
-    ledcWriteTone(BuzzerPin,532);
-    delay(100);
-    ledcWriteTone(BuzzerPin,659);
-    delay(100);
-    ledcWriteTone(BuzzerPin,0);  //Stop alarming
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
   }
-  delay(500);
-  lcd.clear();
 }
+//************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**9.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, then turn the DIP switch to ON, a smile-shaped pattern will be displayed on the LED board.
 
-**Test Result:**
+![95bb011957896b12285fc6763137bb9a](./media/95bb011957896b12285fc6763137bb9a.png)
 
-LCD displays the real-time value of water level. When the water level sensor detects that the water level islowerthan 200, the buzzerstartsto alarm.
+**10.Code Explanation**
 
-![flo9](./media/flo9.png)
+We use the modulus tool we just learned, [http://dotmatrixtool.com/\#](http://dotmatrixtool.com/\#), to make the dot matrix display the start pattern, going forward, and stop and then clear the pattern. The time interval is 2000 ms.
 
--------
+![image-20250512155957415](./media/image-20250512155957415.png)![image-20250512160002378](./media/image-20250512160002378.png)![image-20250512160006841](./media/image-20250512160006841.png)![image-20250512160010543](./media/image-20250512160010543.png)
 
-### 5.10 Auto-Irrigation System
+**Code obtained from the module tool：**
 
-#### 5.10.1 Water Pumping System
+**Code for the pattern start:**
 
-In this experiment, we use ESP32 development board to turn on/off the water pump by a relay module. A pump lifts water and transports liquids, and usually is combined with a relay module in usage. 
+0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01
 
-**Relay Module:**
+**Code for the pattern going forward:**
 
-In usage, it is often used in the management of high voltage and load current, say, motors, high-currentsensors and high-powerlight.
+0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00
 
-![cou101](./media/551.png)
+**Code for the pattern stepping back:**
 
-**Normally Open (NO):** This pin is normally open, unless a signal is received by the signal pin of the relay. Therefore, common pins are disconnected via NC pin and connected through NO pin. 
+0x00,0x00,0x00,0x00,0x00,0x24,0x48,0x90,0x48,0x24,0x00,0x00,0x00,0x00,0x00,0x00
 
-**Common Contact (COM):** This pin connects to other modules, for example, water pump. 
+**Code for the pattern turning left：**
 
-**Normally Closed (NC):** NC pin is linked with COM pin to form a closed circuit. It uses ESP32 board to control the closure and the disconnection of the relay module.
+0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00
 
-![couy101](./media/couy101.png)
+**Code for the pattern turning right：**
 
-**Water Pump:**
+0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00
 
-![cou1011](./media/1561.png)
+**Code for the pattern stop：**
 
-**Parameters:** 
+0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00
 
-Power voltage: 5V
+**Code to clear screen：**
 
-Static current: 2mA
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 
-Maximum contact voltage: 250VAC/30VDC
-
-Maximum current: 10A
-
-Open the **5.10.1Water-Pump** code with Arduino IDE.
+![cec50fec4a335b6922e4c6694a133bc1](./media/cec50fec4a335b6922e4c6694a133bc1-1747036854531-3.png)
 
 ```c
-#define RelayPin 25
-char content;  //Define a character string as the received value from serial port
-
+//************************************************************************
+/*
+ keyestudio 4wd BT Car
+  lesson 9.2
+  Matrix face
+  http://www.keyestudio.com
+*/
+//Data from the smile pattern obtained from the touch tool
+unsigned char start01[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+unsigned char front[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x24, 0x12, 0x09, 0x12, 0x24, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+unsigned char back[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x24, 0x48, 0x90, 0x48, 0x24, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+unsigned char left[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x28, 0x10, 0x44, 0x28, 0x10, 0x44, 0x28, 0x10, 0x00};
+unsigned char right[] = {0x00, 0x10, 0x28, 0x44, 0x10, 0x28, 0x44, 0x10, 0x28, 0x44, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+unsigned char STOP01[] = {0x2E, 0x2A, 0x3A, 0x00, 0x02, 0x3E, 0x02, 0x00, 0x3E, 0x22, 0x3E, 0x00, 0x3E, 0x0A, 0x0E, 0x00};
+unsigned char clear[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
 void setup() {
-  Serial.begin(9600);
-  pinMode(RelayPin,OUTPUT);
+  //Set pin to output
+  pinMode(SCL_Pin, OUTPUT);
+  pinMode(SDA_Pin, OUTPUT);
+  //clear
+  //matrix_display(clear);
 }
-
 void loop() {
-  //Serial.read() receives one byte once. For example, when input "aaa", it receives one "a" at a time for three times in total.
-  if(Serial.available() > 0) {
-    if (Serial.read() == 'a') //When the input value equals to "a", irrigation begins.
-    {
-      digitalWrite(RelayPin,HIGH);
-      delay(400);//irrigation delay
-      digitalWrite(RelayPin,LOW);
-      delay(700);
+    matrix_display(start01);  //Show start pattern
+    delay(2000);
+    matrix_display(front);    //Show forward pattern
+    delay(2000);
+    matrix_display(STOP01);   //Show stop pattern
+    delay(2000);
+    matrix_display(clear);    //Clear Screen
+    delay(2000);
+}
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
     }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
   }
 }
-
+//************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+After uploading test code, the facial expression board shows these patterns orderly and repeats this sequence.
 
-![5458448](./media/5458448.png)
+![image-20250512160131674](./media/image-20250512160131674.png)![image-20250512160135717](./media/image-20250512160135717.png)![image-20250512160139283](./media/image-20250512160139283.png)
 
-**Test Result:**
 
-Open the serial monitor and **input "a", pump water once**. 
 
-<span style="color:red;">Pay attention:Do not overflow water from plastic pools in experiments. Spilling water on other sensors may cause not only a short circuit or modulesto be out of work but also heat generation and even explosion. Do be extra careful! Especially for younger users, please operate with your parents.</span>
+### Project 10 Restricting Smart Car
 
----------
+![644a1976bf17a6b64e0aed1a7240ff1e](./media/644a1976bf17a6b64e0aed1a7240ff1e.jpeg)
 
-#### 5.10.2 Auto-Irrigation System
+**1.Description**
 
-In this experiment, we connect the two sensors on ESP32 development board and program to read their output valuesto controlthe relay and water pump.
+In this project, we look to combine the knowledge of a line tracking sensor and motor driver modules to make a restricting smart car.  In the experiment, we aim to use the line tracking sensor to detect whether there is a black line around the smart car, and then control the rotation of the two motors according to the detection results in a way that lock the smart car in a circle drawn in black line.
 
-If the soil is very dry, the relay will turn on to control the water pump to irrigate plants; And if the waterlevel istoo low, the water pump will not be able to work, and the buzzer will alarm.
+**2.Flow Chart**
 
-Open the **5.10.2Auto-irrigation** code with Arduino IDE.
+![img](media/wps1-16943964312281.png)
+
+The specific logic of the restricting 4WD smart car is shown in the table.
+
+![Img](./media/img-20231031141415.png)
+
+**3.Wiring Diagram**
+
+![88422b5f1464ad447e28ccbb8c39a8d4](./media/88422b5f1464ad447e28ccbb8c39a8d4.png)
+
+G, V, S1, S2 and S3 of the line tracking sensor are connected to G（GND), V（VCC), D11, D7 and D8 of the sensor expansion board.
+
+The power is connected to the BAT port
+
+**4.Test Code**
 
 ```c
-#include <LiquidCrystal_I2C.h>
+//*************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 10
+ Restricting Smart Car
+ http://www.keyestudio.com
+*/ 
+//Data from the smile pattern obtained from the touch tool
+unsigned char start01[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+#define SDA_Pin  A4  //Set data pin to A4
+#define SCL_Pin  A5  //Set the clock pin to A5
 
-#define BuzzerPin 16
-#define SoilHumidityPin 32
-#define WaterLevelPin 33
-#define RelayPin 25
-#define ButtonPin 5  //Define a button pin
-int value = 0;       //Set an initial button value
-
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+int sensor_L = 11;//define the pin of left line tracking sensor
+int sensor_M = 7;//define the pin of middle line tracking sensor
+int sensor_R = 8;//define the pin of right line tracking sensor
+int L_val,M_val,R_val;//define these variables
 
 void setup() {
-  //Set the pins mode
-  pinMode(SoilHumidityPin, INPUT);
-  pinMode(WaterLevelPin, INPUT);
-  pinMode(RelayPin, OUTPUT);
-  pinMode(ButtonPin, INPUT);
-
-  //Initialize LCD
-  lcd.init();
-  //Turn on LCD backlight
-  lcd.backlight();
-  //Clear LCD displays
-  lcd.clear();
-
-  ledcAttachChannel(BuzzerPin, 1000, 8, 4);
+  Serial.begin(9600);//start serial monitor and set baud rate to 9600
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  pinMode(sensor_L,INPUT);//set the pins of left line tracking sensor to INPUT
+  pinMode(sensor_M,INPUT);//set the pins of middle line tracking sensor to INPUT
+  pinMode(sensor_R,INPUT);//set the pins of right line tracking sensor to INPUT
+ //Set pin to output
+  pinMode(SCL_Pin, OUTPUT);
+  pinMode(SDA_Pin, OUTPUT);
+  matrix_display(start01);//Show start pattern
 }
 
-void loop() {
-  //define variables as the read values of water level, humidity and button state
-  int shvalue = analogRead(SoilHumidityPin);
-  int wlvalue = analogRead(WaterLevelPin);
-  int ReadValue = digitalRead(ButtonPin);
+void loop() 
+{
+  tracking(); //run main program
+}
 
-  //Set the display position of cursor
-  lcd.setCursor(0, 0);
-  //Set the display position of character strings
-  lcd.print("SoilHum:");
-  lcd.setCursor(9, 0);
-  lcd.print(shvalue);
-  lcd.setCursor(0, 1);
-  lcd.print("WaterLevel:");
-  lcd.setCursor(11, 1);
-  lcd.print(wlvalue);
-
-  //Determine whether the button is pressed
-  if (ReadValue == 0) {
-    //Eliminate the button shake
-    delay(10);
-    if (ReadValue == 0) {
-      value = !value;
-      Serial.print("The current status of the button is : ");
-      Serial.println(value);
-    }
-    //Again, determine whether the button is still pressed
-    //Pressed: execute the loop; Released: exit the loop to next execution
-    while (digitalRead(ButtonPin) == 0)
-      ;
+void tracking()
+{
+  L_val = digitalRead(sensor_L);//read the value of left line tracking sensor
+  M_val = digitalRead(sensor_M);//read the value of middle line tracking sensor
+  R_val = digitalRead(sensor_R);//read the value of right line tracking sensor
+  if ( L_val == 0 && M_val == 0 && R_val == 0 ) { //when no black lines are detected，turtle car forward
+    Car_front();
   }
-  //When the detected humidity is lower than the set threshold, the buzzer starts to alarm. Press button to stop alarming.
-  if (500 >= shvalue && value == 0) {
-    ledcWriteTone(BuzzerPin, 532);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 532);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 659);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 0);  //Stop alarming
-  }
-  //When the detected water level is lower than the set threshold, the buzzer starts to alarm. Press button to stop alarming.
-  if (500 >= wlvalue && value == 0) {
-    ledcWriteTone(BuzzerPin, 411);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 639);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 411);
-    delay(100);
-    ledcWriteTone(BuzzerPin, 0);  //Stop alarming
-  }
-  //When the detected humidity is lower than the set threshold, and the water is sufficient in the pool, irrigation starts automatically.
-  if (500 >= shvalue && wlvalue >= 1000) {
-    digitalWrite(RelayPin, HIGH);
-    delay(400);  //Irrigation delay.
-    digitalWrite(RelayPin, LOW);
-    delay(700);
-  }
-  delay(500);
-  //Clear displays
-  lcd.clear();
-}
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-LCD 1602 will display the current value ofsoil humidity and waterlevel.
-
-![cou102](./media/cou102.png)
-
-When the detected soil humidity value islower than 500, the buzzer alarms to notify that the soil is being arid. If the waterlevel value is greaterthan 1000, the irrigation starts automatically. 
-
-When the detected water level is lower than 500, the water pumping system doesn't work, and the buzzer alarmsto notify that waterisinsufficient. Pressthe button to stop alarming.
-
-![flo10](./media/flo10.png)
-
----------
-
-### 5.11 Web-controlled Smart Farm
-
-#### 5.11.0 Connect the ESP32 Board to the Network
-
-ESP32 board is equipped with Wi-Fi(**2.4G**) and Bluetooth(4.2), which enable it to easily connect to WiFi and communicate with other devices on the network.
-
-<span style="color:red">**What do you need to prepare:**</span>
-
--A **2.4 GHz** WiFi(It can be a mobile hotspot or a router) 
-
--The WIFI name and password
-
--A phone/IPAD/computerthat can connect to the same WiFi.
-
-**Arduino IDE provides you wih library file <WiFi.h>, which support Wi-Fi configurations and ESP32 Wi-Fi networking**
-
-**monitoring.**
-
-A.**Base station mode** (STA or Wi-Fi client-side mode): In this mode, ESP32 connects to the Wi-Fi hotspot (AP). 
-
-B. **AP mode** (Soft-AP or Wi-Fi hotspot mode): In this mode, other Wi-Fi devices connect to ESP32. 
-
-C. **AP-STA mode**: In this mode, ESP32 is a Wi-Fi hotspot as well as a Wi-Fi device connecting to another Wi-Fi hotspot. 
-
-D. These modes is compatible with multiple safe modes, like WPA, WPA2 and WEP. 
-
-E. It is able to scan for Wi-Fi hotspot, including active and passive scan. 
-
-F. It supports promiscuous mode to monitor IEEE802.11 Wi-Fi Packets.
-
-
-
-**For wifi details, please refer to:**
-
-[https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_wifi.html](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_wifi.html)
-
-ESPRESSIF official website: [https://www.espressif.com.cn/en/home](https://www.espressif.com.cn/en/home)
-
-
-
-Open the **5.11.0Connect-the-ESP32-to-the-Network** code with Arduino IDE.
-
-```c
-#include <WiFi.h>
-
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-
-void setup() {
-  Serial.begin(9600);
-  //Initialize Wifi
-  WiFi.begin(ssid, password);
-  //Scan for wifi. If connection fails, stay in connecting, and execute "while" loop
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  //Connected. Print the IP address
-  Serial.println("Connected to WiFi");
-  Serial.println(WiFi.localIP());
-}
-
-void loop() {
-}
-```
-
-Change `your_SSID` in the code to the name of your wifi, and `your_PASSWORD` to the wifi password
-
-```c
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-Upload the code, and the board will connect to Wi-Fi network and print the IP Address on the serial monitor.
-
-![image-20250417153507142](./media/image-20250417153507142.png)
-
--------
-
-#### 5.11.1 Set Up a Website-HELLOWORLD
-
-As long as connecting to Wi-Fi, Web server library of ESP32 is able to provide web pages. In the following example code, we set up a simple website to show “Hello, World!”. 
-
-Open the **5.11.1WiFi-HTML-HELLOWORLD** code with Arduino IDE.
-
-```c
-#include <WiFi.h>
-#include <WebServer.h>
-
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-
-WebServer server(80); //Set the server port to 80. Enter the website by IP address rather than the port number.
-
-//Initialize the website
-void handleRoot() {
-  //Used to send HTTP to the client-side for response, sending 200 means success.
-  server.send(200, "text/html", "<h1>Hello, World!</h1>");
-}
-
-void setup() {
-  Serial.begin(9600);
-  //Initialize wifi
-  WiFi.begin(ssid, password);
-  //Scan for wifi. If connection fails, stay in connecting, and execute "while" loop
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-
-  //Connected. Print the IP address
-  Serial.println("Connected to WiFi");
-  Serial.println(WiFi.localIP());
-
-  server.on("/", handleRoot);
-  //Start server
-  server.begin();
-  Serial.println("Web server started");
-}
-
-void loop() {
-  server.handleClient();
-}
-```
-
-Change `your_SSID` in the code to the name of your wifi, and `your_PASSWORD` to the wifi password. Then upload the code.
-
-```c
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-```
-
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-In this example code, we establish a Web server by WebServer library on ESP32. The function handleRoot() asks for processing in root path and sends HTML response of “Hello, World!” to client-side. Then,setup()setsthe rootroute, and server.begin()startsthe Web server. 
-
-Click on the serial monitorto view the IP address：
-
-![image-20250417155849702](./media/image-20250417155849702.png)
-
-**NOTE: When PC, mobile phones and ESP32 board are connected to one network, you can visit this website at PC and**
-
-**phones at the same time.** 
-
-Accessthe IP in the PC browser or phone browser:
-
-![image-20250417155955349](./media/image-20250417155955349.png)
-
-<span style="color:red;">Note: Requires **2.4 GHz** WIFI, not 5G The PC or mobile phone accessing the IP address needs to be connected to the same WIFI asthe ESP32 board.</span>
-
-![image-20250417160135272](./media/image-20250417160135272.png)
-
--------
-
-#### 5.11.2 Web-controlled smart farm
-
-![flo11](./media/flo11.png)
-
-Open the **5.11.2WiFi-HTML-Smart-Farm** code with Arduino IDE.
-
-```c
-#include <Arduino.h>
-#include <WiFi.h>
-#include <WebServer.h>
-#include <LiquidCrystal_I2C.h>
-#include <dht11.h>
-#include <ESP32Servo.h>
-
-// Pin Definitions
-#define DHT11PIN        17  // Temperature and humidity sensor pin
-#define LEDPIN          27  // LED pin
-#define SERVOPIN        26  // Servo pin
-#define FANPIN1         19  // Fan IN+ pin
-#define FANPIN2         18  // Fan IN- pin
-#define STEAMPIN        35  // Steam sensor pin
-#define LIGHTPIN        34  // Photoresistor pin
-#define SOILHUMIDITYPIN 32  // Soil humidity sensor pin
-#define WATERLEVELPIN   33  // Water level sensor pin
-#define RELAYPIN        25  // Relay pin
-
-// Initialize sensors and components
-dht11 DHT11;
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-Servo myservo;  // Servo object to control the servo
-
-// WiFi credentials
-const char *SSID = "your_SSID";
-const char *PASS = "your_PASSWORD";
-
-// Create WebServer object
-WebServer server(80);
-
-// Variables for controlling states
-static int A = 0;
-static int B = 0;
-static int C = 0;
-
-// HTML Web page content
-const char index_html[] PROGMEM = R"rawliteral(
-<!DOCTYPE HTML>
-<html>
-<title>TEST HTML ESP32</title>
-<head>
-  <meta charset="utf-8">
-  <style>
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: #f0f0f0;
-    }
-
-    /* The main button container */
-    .btn {
-      display: flex;
-      justify-content: center;  /* Center the buttons */
-      gap: 10px;  /* Add space between buttons */
-      width: 320px;  /* Set width to ensure buttons are tightly packed */
-      flex-wrap: wrap; /* Allow buttons to wrap to new lines if needed */
-      margin-bottom: 20px;  /* Space between buttons and data display */
-    }
-
-    /* Button style */
-    .btn button {
-      width: 70px;  /* Set width for buttons */
-      height: 70px;  /* Set height for buttons */
-      border: none;
-      font-size: 16px;
-      color: #fff;
-      background-color: #89e689;
-      cursor: pointer;
-    }
-
-    .btn button:active {
-      top: 2px;
-    }
-
-    /* The data display area */
-    #dht {
-      text-align: center;  /* Center the text */
-      width: 320px;  /* Same width as the button container */
-      color: #fff;
-      background-color: #47a047;
-      font-size: 18px; /* Adjust font size for readability */
-      padding: 10px;
-      border-radius: 10px;  /* Rounded corners */
-      box-sizing: border-box;
-      margin-bottom: 10px; /* Add space between the data display and buttons */
-    }
-
-  </style>
-</head>
-<body>
-
-  <!-- Display area for sensor data -->
-  <div id="dht"></div>
-
-  <!-- Button row -->
-  <div class="btn">
-    <button id="btn-led" onclick="setLED()">LED</button>
-    <button id="btn-fan" onclick="setFan()">Fan</button>
-    <button id="btn-feeding" onclick="setFeeding()">Feeding</button>
-    <button id="btn-watering" onclick="setWatering()">Watering</button>
-  </div>
-
-  <script>
-    function setLED() {
-      var payload = "A"; 
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/set?value=" + payload, true);
-      xhr.send();
-    }
-    function setFan() {
-      var payload = "B"; 
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/set?value=" + payload, true);
-      xhr.send();
-    }
-    function setFeeding() {
-      var payload = "C"; 
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/set?value=" + payload, true);
-      xhr.send();
-    }
-    function setWatering() {
-      var payload = "D"; 
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/set?value=" + payload, true);
-      xhr.send();
-    }
-
-    setInterval(function () {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("dht").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("GET", "/dht", true);
-      xhttp.send();
-    }, 1000)
-  </script>
-
-</body>
-</html>
-
-)rawliteral";
-
-// Function to merge sensor data into HTML format
-String Merge_Data(void) {
-  String dataBuffer;
-  String Humidity;
-  String Temperature;
-  String Steam;
-  String Light;
-  String SoilHumidity;
-  String WaterLevel;
-  
-  // Read DHT11 sensor
-  int chk = DHT11.read(DHT11PIN);
-  
-  // Read other sensors
-  Steam = String(analogRead(STEAMPIN) / 4095.0 * 100);
-  Light = String(analogRead(LIGHTPIN));
-  int shvalue = analogRead(SOILHUMIDITYPIN) / 4095.0 * 100 * 2.3;
-  shvalue = shvalue > 100 ? 100 : shvalue;
-  SoilHumidity = String(shvalue);
-  int wlvalue = analogRead(WATERLEVELPIN) / 4095.0 * 100 * 2.5;
-  wlvalue = wlvalue > 100 ? 100 : wlvalue;
-  WaterLevel = String(wlvalue);
-  Temperature = String(DHT11.temperature);
-  Humidity = String(DHT11.humidity);
-  
-  // Construct HTML content
-  dataBuffer += "<p>";
-  dataBuffer += "<h1>Sensor Data</h1>";
-  dataBuffer += "<b>Temperature:</b><b>" + Temperature + "</b><b>℃</b><br/>";
-  dataBuffer += "<b>Humidity:</b><b>" + Humidity + "</b><b>%rh</b><br/>";
-  dataBuffer += "<b>WaterLevel:</b><b>" + WaterLevel + "</b><b>%</b><br/>";
-  dataBuffer += "<b>Steam:</b><b>" + Steam + "</b><b>%</b><br/>";
-  dataBuffer += "<b>Light:</b><b>" + Light + "</b><br/>";
-  dataBuffer += "<b>SoilHumidity:</b><b>" + SoilHumidity + "</b><b>%</b><br/>";
-  dataBuffer += "</p>";
-
-  return dataBuffer;
-}
-
-// Configure actions based on received HTTP requests
-void Config_Callback() {
-  if (server.hasArg("value")) {
-    String HTTP_Payload = server.arg("value");
-    Serial.printf("[%lu]%s\r\n", millis(), HTTP_Payload.c_str());
-
-    if (HTTP_Payload == "A") {
-      if (A) {
-        digitalWrite(LEDPIN, LOW);
-        A = 0;
-      } else {
-        digitalWrite(LEDPIN, HIGH);
-        A = 1;
-      }
-    }
-
-    if (HTTP_Payload == "B") {
-      if (B) {
-        digitalWrite(FANPIN1, LOW);
-        digitalWrite(FANPIN2, LOW);
-        B = 0;
-      } else {
-        delay(500);
-        digitalWrite(FANPIN1, HIGH);
-        digitalWrite(FANPIN2, LOW);
-        delay(500);
-        B = 1;
-      }
-    }
-
-    if (HTTP_Payload == "C") {
-      if (C) {
-        myservo.write(80);
-        delay(500);
-        C = 0;
-      } else {
-        C = 1;
-        myservo.write(180);
-        delay(500);
-      }
-    }
-
-    if (HTTP_Payload == "D") {
-      digitalWrite(RELAYPIN, HIGH);
-      delay(400);
-      digitalWrite(RELAYPIN, LOW);
-      delay(650);
-    }
-  }
-  server.send(200, "text/plain", "OK");
-}
-
-// Handle invalid URL access
-void notFound() {
-  server.send(404, "text/plain", "Not found");
-}
-
-void setup() {
-  Serial.begin(9600);
-  
-  // Connect to WiFi
-  WiFi.begin(SSID, PASS);
-  while (!WiFi.isConnected()) {
+  else { //Otherwise, if any of the patrol sensors detect a black line, back up and turn left
+    Car_back();
     delay(500);
-    Serial.print(".");
+    Car_left();
+    delay(500);
   }
-  Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-
-  // Set up pins
-  pinMode(LEDPIN, OUTPUT);
-  pinMode(STEAMPIN, INPUT);
-  pinMode(LIGHTPIN, INPUT);
-  pinMode(SOILHUMIDITYPIN, INPUT);
-  pinMode(WATERLEVELPIN, INPUT);
-  pinMode(RELAYPIN, OUTPUT);
-  pinMode(FANPIN1, OUTPUT);
-  pinMode(FANPIN2, OUTPUT);
-
-  delay(1000);
-
-  // Attach servo to the pin
-  myservo.attach(SERVOPIN);
-  myservo.write(180);
-
-  // Initialize LCD
-  lcd.init();
-  lcd.backlight();
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("IP:");
-  lcd.setCursor(0, 1);
-  lcd.print(WiFi.localIP());
-
-  // Set up server routes
-  server.on("/", HTTP_GET, []() {
-    server.send(200, "text/html", index_html);
-  });
-
-  server.on("/dht", HTTP_GET, []() {
-    server.send(200, "text/plain", Merge_Data().c_str());
-  });
-
-  server.on("/set", HTTP_GET, Config_Callback);
-  server.onNotFound(notFound);
-
-  // Start the server
-  server.begin();
 }
 
-void loop() {
-  server.handleClient();
+void Car_front()
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 180);
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 180);
 }
+void Car_back()
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 80);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 80);
+}
+void Car_left()
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 150);
+}
+
+void Car_Stop()
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 0);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 0);
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*************************************************************************
 
 ```
 
-Change `your_SSID` in the code to the name of your wifi, and `your_PASSWORD` to the wifi password. Then upload the code.
+**5.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power
+then turn the DIP switch to ON. Put the smart car in the black circle, then it will move solely in the circle.
+
+### Project 11 Line Tracking Smart Car
+
+![eff7a15e697e8b78bde391f806ea024d](./media/eff7a15e697e8b78bde391f806ea024d.png)
+
+**1.Description**
+
+Based on the working principle of the line tracking sensor, we empower to make a line tracking smart car.
+
+In this project, we detect whether there is a black line at the bottom of the smart car through a line tracking sensor, and then control the rotation of the two groups of motors according to the detection results in a way that controls the smart car to walk along the black line. 
+
+**2.Flow Chart**
+
+![img](media/wps1-16943964659332.png)
+
+![Img](./media/img-20231031141722.png)
+
+**3.Wiring Diagram**
+
+![88422b5f1464ad447e28ccbb8c39a8d4](./media/88422b5f1464ad447e28ccbb8c39a8d4-1747037216892-8.png)
+
+G, V, S1, S2 and S3 of the line tracking sensor are connected to G（GND), V（VCC), D11, D7 and D8 of the sensor expansion board.
+
+The power is connected to the BAT port
+
+**4.Test Code**
 
 ```c
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
-```
+//*************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 11
+ Tracking Car
+ http://www.keyestudio.com
+*/ 
+//Data from the smile pattern obtained from the touch tool
+unsigned char start01[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+#define SDA_Pin  A4  //Set data pin to A4
+#define SCL_Pin  A5  //Set the clock pin to A5
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
-
-![5458448](./media/5458448.png)
-
-**Test Result:**
-
-**NOTE: When PC, mobile phones and ESP32 board are connected to one network, you can visit this website at PC and phones at the same time.** 
-
-View IP address from LCD1602:：
-
-![image-20250417161040242](./media/image-2025047161040242.png)
-
-Input the IP addressin browsers at mobile phones or PC, you can see the sensor values at the top of the page and controlthe LED, fan, feeding cabin and water pump with the buttons below.
-
-![cou117](./media/cou117.png)
-
-<span style="color:red;">Note: Requires **2.4 GHz** WIFI, not 5G The PC or mobile phone accessing the IP address needs to be connected to the same WIFI asthe ESP32 board.</span>
-
-![image-20250417160135272](./media/image-20250417160135272.png)
-
-----------
-
-### 5.12 APP Control Smart Farm
-
-**Pay attention: Do not overflow water from plastic pools in experiments. Spilling water on other sensors may cause a short circuit or modules to be out of work. If batteries get wet,even explosion may occur. Do be extra careful! For younger users, please operate with yourparents. Use batteries for power instead of just USB.** 
-
-Open the **5.12.1APP-Smart-Farm** code with Arduino IDE. 
-
-```c
-#include <Arduino.h>
-#ifdef ESP32
-#include <WiFi.h>
-#elif defined(ESP8266)
-#include <ESP8266WiFi.h>
-#endif
-
-#include <dht11.h>
-#include <ESP32Servo.h>
-#include <LiquidCrystal_I2C.h>
-
-//To be displayed
-#define DHT11PIN 17         //Temperature and humidity sensor pin
-#define RAINWATERPIN 35     //Steam sensor pin
-#define LIGHTPIN 34         //Photoresistor pin
-#define WATERLEVELPIN 33    //Water level sensor pin
-#define SOILHUMIDITYPIN 32  //Soil humidity sensor pin
-//To be controlled
-#define LEDPIN 27     //LED pin
-#define RELAYPIN 25   //Relay pin (to control water pump)
-#define SERVOPIN 26   //Servo pin
-#define FANPIN1 19    //Fan IN+ pin
-#define FANPIN2 18    //Fan IN- pin
-#define BUZZERPIN 16  //Buzzer pin
-
-const char* ssid = "your_SSID";
-const char* pwd = "your_PASSWORD";
-
-//Initialize LCD1602, 0x27 is I2C address
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-WiFiServer server(80);  //Initialize wifi server
-dht11 DHT11;            //Initialize temperature and humidity sensor
-Servo myservo;          // create servo object to control a servo
-                        // 16 servo objects can be created on the ESP32
-
-//Define variable as detected values
-String request;
-String dataBuffer;
-int Temperature;   //Temperature
-int Humidity;      //Humidity
-int SoilHumidity;  //Soil humidity
-int Light;         //Brightness
-int WaterLevel;    //Water level
-int Rainwater;     //Rainfall
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+int sensor_L = 11;//define the pin of left line tracking sensor
+int sensor_M = 7;//define the pin of middle line tracking sensor
+int sensor_R = 8;//define the pin of right line tracking sensor
+int L_val,M_val,R_val;//define these variables
 
 void setup() {
-  Serial.begin(9600);
-  //Connect to wifi
-  WiFi.begin(ssid, pwd);
-  //Determine whether connected
-  Serial.println("Connecting to WiFi...");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print(".");
+  Serial.begin(9600);//start serial monitor and set baud rate to 9600
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  pinMode(sensor_L,INPUT);//set the pins of left line tracking sensor to INPUT
+  pinMode(sensor_M,INPUT);//set the pins of middle line tracking sensor to INPUT
+  pinMode(sensor_R,INPUT);//set the pins of right line tracking sensor to INPUT
+  //Set pin to output
+  pinMode(SCL_Pin, OUTPUT);
+  pinMode(SDA_Pin, OUTPUT);
+  matrix_display(start01);//Show start pattern
+}
+
+void loop() 
+{
+  tracking(); //run main program
+}
+
+void tracking()
+{
+  L_val = digitalRead(sensor_L);//read the value of left line tracking sensor
+  M_val = digitalRead(sensor_M);//read the value of middle line tracking sensor
+  R_val = digitalRead(sensor_R);//read the value of right line tracking sensor
+
+  if(M_val == 1){//if the state of middle one is 1, which means detecting black line
+
+     if (L_val == 1 && R_val == 0) { //If a black line is detected on the left, but not on the right, turn left
+        left();
+    }
+     else if (L_val == 0 && R_val == 1) { //Otherwise, if a black line is detected on the right and not on the left, turn right
+      right();
+    }
+     else { //Otherwise,forward
+      front();
+    }
   }
-  delay(1000);
-  //Serial monitor prints wifi name and IP address
-  Serial.println("Connected to WiFi");
-  Serial.print("WiFi NAME:");
-  Serial.println(ssid);
-  Serial.print("IP:");
-  Serial.println(WiFi.localIP());
+  else { //No black lines detected in the middle
+    if (L_val == 1 && R_val == 0) { //If a black line is detected on the left, but not on the right, turn left
+      left();
+    }
+    else if (L_val == 0 && R_val == 1) { //Otherwise, if a black line is detected on the right and not on the left, turn right
+      right();
+    }
+    else { //Otherwise,stop
+      Stop();
+    }
+  }
+}
+void front()//define the status of going forward
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,155);
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,155);
+}
+void back()//define the state of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,100);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,100);
+}
+void left()//define the left-turning state
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 155);
+}
+void right()//define the right-turning state
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 155);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 100);
+}
+void Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm,0);
+}
 
-  //Initialize LCD
-  lcd.init();
-  // Turn the (optional) backlight off/on
-  lcd.backlight();
-  //lcd.noBacklight();
-  lcd.clear();
-  //Set the position of cursor
-  lcd.setCursor(0, 0);
-  //LCD prints
-  lcd.print("IP:");
-  //Set the position of cursor
-  lcd.setCursor(0, 1);
-  //LCD prints
-  lcd.print(WiFi.localIP());
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
 
-  //set pins mode
-  pinMode(LEDPIN, OUTPUT);
-  pinMode(RAINWATERPIN, INPUT);
-  pinMode(LIGHTPIN, INPUT);
-  pinMode(SOILHUMIDITYPIN, INPUT);
-  pinMode(WATERLEVELPIN, INPUT);
-  pinMode(RELAYPIN, OUTPUT);
-  pinMode(FANPIN1, OUTPUT);
-  pinMode(FANPIN2, OUTPUT);
-  pinMode(BUZZERPIN, OUTPUT);
-  delay(1000);
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*************************************************************************
+```
+**5.Test Resul**
 
-  // attaches the servo on pin 26 to the servo object
-  myservo.attach(SERVOPIN);
-  myservo.write(160);
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON. Then the smart car will walk along the lines.
 
-  //Start server
-  server.begin();
+### Project 12 Ultrasonic Following Smart Car
 
-  // Configure LEDC channel
-  ledcAttachChannel(BUZZERPIN, 1000, 8, 4);
+![a3beaada39eb1471b7df6d9788e2bea3](./media/a3beaada39eb1471b7df6d9788e2bea3.png)
+
+**1.Description**
+
+In this project, we will look to detect the distance between the 4WD smart car and the obstacles ahead through an ultrasonic sensor to drive two motors in a way that make the car move and make the 8\*8 LED board show a smile facial pattern.
+
+**2.Flow Chart**
+
+![img](media/wps1-16943964916713.png)
+
+<table border="1">
+<tbody>
+<tr class="odd">
+<td>Detection</td>
+<td>Measured distance of front obstacles</td>
+<td>distance（unit：cm）</td>
+</tr>
+<tr class="even">
+<td>Setting</td>
+<td>8*16 LED board shows a smile pattern.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Set servo to 90°</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Condition</td>
+<td>distance≥20 and distance≤50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Status</td>
+<td>Go forward</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Condition</td>
+<td>distance＞10 and distance＜20</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>distance＞50</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Condition</td>
+<td>stop</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Condition</td>
+<td>distance≤10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Condition</td>
+<td>Go back</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+**3.Wiring Diagram**
+
+![568a66655a14dd34afd8cb1e6ae5951c](./media/568a66655a14dd34afd8cb1e6ae5951c.png)
+
+**Wiring up：**
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+
+2). VCC, Trig, Echo and Gnd of the ultrasonic sensor are connected to 5V(V), D12(S), D13(S) and Gnd(G)
+
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire
+is interfaced with A3.
+
+4). The power is connected to the BAT port
+
+**4.Test Code**
+
+```c
+
+//*******************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 12
+ Flowing Car
+ http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char smile[] = {0x00, 0x00, 0x1c, 0x02, 0x02, 0x02, 0x5c, 0x40, 0x40, 0x5c, 0x02, 0x02, 0x02, 0x1c, 0x00, 0x00};
+
+const int servopin = A3;//Set the pin of the steering gear
+ 
+#include "SR04.h" //define the function library of ultrasonic sensor
+#define TRIG_PIN 12// set the signal of ultrasonic sensor to D12
+#define ECHO_PIN 13// set the signal of ultrasonic sensor to D13
+SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
+long distance;
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+
+void setup() {
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  pinMode(TRIG_PIN, OUTPUT); //Set the trig pin to output
+  pinMode(ECHO_PIN, INPUT); //Set the echo pin to input
+  pinMode(SCL_Pin,OUTPUT);//Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  servopulse(servopin,90);//Set the initial steering gear angle to 90°
+  delay(500); //waits 500ms
+  matrix_display(smile);  //display smiling expression pattern  
 }
 
 void loop() {
-  //Check whether a client is connected to the web server
-  //When the client is connected to server, "server.available()" returns a WiFiClient object for communication at client-side.
-  WiFiClient client = server.available();
-  if (client) {
-    Serial.println("New client connected");
-    while (client.connected()) {
-      //Determine whether the server sends data
-      if (client.available()) {
-        request = client.readStringUntil('s');
-        Serial.print("Received message: ");
-        Serial.println(request);
-      }
-      //Acquire all senser data
-      getSensorsData();
-      //put all data into "dataBuffer"
-      dataBuffer = "";
-      dataBuffer += String(Temperature, HEX);
-      dataBuffer += String(Humidity, HEX);
-      dataBuffer += dataHandle(SoilHumidity);
-      dataBuffer += dataHandle(Light);
-      dataBuffer += dataHandle(WaterLevel);
-      dataBuffer += dataHandle(Rainwater);
-      //Send data to server, transmit to APP
-      client.print(dataBuffer);
-      delay(500);
-
-      //LED
-      if (request == "a") {
-        digitalWrite(LEDPIN, HIGH);
-      } else if (request == "A") {
-        digitalWrite(LEDPIN, LOW);
-      }
-      //Irrigation
-      else if (request == "b") {
-        digitalWrite(RELAYPIN, HIGH);
-        delay(400);  //Irrigation delay
-        digitalWrite(RELAYPIN, LOW);
-        delay(650);
-      }
-      //Fan
-      else if (request == "c") {
-        delay(800);
-        digitalWrite(FANPIN1, HIGH);
-        digitalWrite(FANPIN2, LOW);
-        delay(200);
-      } else if (request == "C") {
-        digitalWrite(FANPIN1, LOW);
-        digitalWrite(FANPIN2, LOW);
-      }
-      //Feeding box
-      else if (request == "d") {
-        //Servo rotates to 80°, open feeding box
-        myservo.write(80);
-        delay(500);
-      } else if (request == "D") {
-        //Servo rotates to 160°, close feeding box
-        myservo.write(160);
-      }
-      //Buzzer
-      else if (request == "e") {
-        ledcWriteTone(BUZZERPIN, 262);
-        delay(800);
-        ledcWriteTone(BUZZERPIN, 0);
-        delay(100);
-      }
-      request = "";
-    }
-    Serial.println("Client disconnected");
+  distance = sr04.Distance();//the distance detected by ultrasonic sensor
+   if(distance <= 10)//if distance is less than 10
+  {
+    back();//go back
+  }
+  else if((distance > 10)&&(distance< 20 ))//if 10<distance<20
+  {
+    Stop();//stop
+  }
+  else if((distance >= 20)&&(distance <= 50))//if 20≤distance＜50  
+{
+    front();//follow
+  }
+  else//otherwise
+  {
+    Stop();//stop
   }
 }
 
-void getSensorsData() {
-  //Acquire data
-  int chk = DHT11.read(DHT11PIN);
-  //Steam sensor
-  Rainwater = analogRead(RAINWATERPIN);
-  //Photoresistor
-  Light = analogRead(LIGHTPIN);
-  //Soil humidity sensor
-  SoilHumidity = analogRead(SOILHUMIDITYPIN) * 1.8;
-  //Water level sensor
-  WaterLevel = analogRead(WATERLEVELPIN) * 1.8;
-  //Temperature
-  Temperature = DHT11.temperature;
-  //Humidity
-  Humidity = DHT11.humidity;
+void front()//define the status of going front
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,100);
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,100);
+}
+void back()//define the status of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,150);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,150);
+}
+void left()//define the status of turning left
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 155);
+}
+void right()//define the status of right turning
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 155);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 100);
+}
+void Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl, LOW);  
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm,0);
 }
 
-
-//Convert data into percentage
-String dataHandle(int data) {
-  // Convert analog values into percentage
-  int percentage = (data / 4095.0) * 100;
-  // If the converted percentage is greater than 100, output 100.
-  percentage = percentage > 100 ? 100 : percentage;
-  // Six characters store hexadecimal strings, one character is as terminators
-  char hexString[3];
-  // Convert hexadecimal values to 6-digit hexadecimal strings, add leading zeros: 0 is 00, 1 is 01...
-  sprintf(hexString, "%02X", percentage);
-
-  return hexString;
+void servopulse(int servopin,int myangle)//Steering gear running angle
+{
+  for(int i=0; i<30; i++)
+  {
+    int pulsewidth = (myangle*11)+500;
+    digitalWrite(servopin,HIGH);
+    delayMicroseconds(pulsewidth);
+    digitalWrite(servopin,LOW);
+    delay(20-pulsewidth/1000);
+  }  
 }
 
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
 ```
 
-Change `your_SSID` in the code to the name of your wifi, and `your_PASSWORD` to the wifi password. Then upload the code.
+**5.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power
+then turn the DIP switch to ON. Set the servo to 90°，the smart car will move with the obstacles and the 8X16 LED board will show“smile”.
+
+### Project 13 Ultrasonic Obstacle Avoidance Smart Car
+
+![fd4044796307f709987b9d2e215e0911](./media/fd4044796307f709987b9d2e215e0911.png)
+
+**1.Description**
+
+In this project, we aim to make an ultrasonic obstacle avoidance smart car. We will use the ultrasonic to detect the distance from the obstacle, which can be used to control the servo to rotate so as to make the car move. Meanwhile, the 8X16 LED board will display the
+corresponding status pattern.
+
+**2.Flow Chart**
+
+![img](media/wps1-16943965182034.png)
+
+**The specific logic of ultrasonic obstacle avoidance smart car is shown below:**
+
+![Img](./media/img-20231031142227.png)
+
+![Img](./media/img-20231031142246.png)
+
+**3.Wiring Diagram**
+
+![](./media/568a66655a14dd34afd8cb1e6ae5951c.png)
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board module are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+
+2). VCC, Trig, Echo and Gnd of the ultrasonic sensor are connected to 5V(V), D12(S), D13(S) and Gnd(G)
+
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire
+is interfaced with A3.
+
+4). The power is connected to the BAT port
+
+**4.Test Code**
+
+```c 
+//*******************************************************************************
+/*
+ keyestudio 4wd BT Car
+ lesson 13
+ Avoiding Car
+ http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char front[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char left[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00};
+unsigned char right[] = {0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char STOP01[] = {0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00};
+unsigned char clear[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+
+#include "SR04.h"//define the library of ultrasonic sensor
+#define TRIG_PIN 12// set the signal output of ultrasonic sensor to D12 
+#define ECHO_PIN 13//set the signal input of ultrasonic sensor to D13 
+SR04 sr04 = SR04(ECHO_PIN,TRIG_PIN);
+long distance,a1,a2;//define three distance
+const int servopin = A3;//set the pin of servo to A3 
+
+void setup() {
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  pinMode(TRIG_PIN, OUTPUT); //Set the trig pin to output
+  pinMode(ECHO_PIN, INPUT); //Set the echo pin to input
+  servopulse(servopin,90);//the angle of servo is 90 degree
+  delay(300);
+  pinMode(SCL_Pin,OUTPUT);// Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  matrix_display(clear);
+}
+ 
+void loop()
+ {
+  avoid();//run the main program
+}
+
+void avoid()
+{
+  distance=sr04.Distance(); //obtain the value detected by ultrasonic sensor 
+
+  if((distance < 20)&&(distance != 0))//if the distance is greater than 0 and less than 10  
+
+  {
+    car_Stop();//stop
+    matrix_display(clear);
+    matrix_display(STOP01);//show stop pattern
+    delay(1000);
+    servopulse(servopin,160);//servo rotates to 160°
+    delay(500);
+    a1=sr04.Distance();//measure the distance
+    delay(100);
+    servopulse(servopin,20);//rotate to 20 degree
+    delay(500);
+    a2=sr04.Distance();//measure the distance
+    delay(100);
+    servopulse(servopin,90);  //Return to the 90 degree position
+    delay(500);
+    if(a1 > a2)//compare the distance, if left distance is more than right distance
+    {
+      car_left();//turn left
+      matrix_display(clear);
+      matrix_display(left);    //display left-turning pattern
+      servopulse(servopin,90);//servo rotates to 90 degree
+      delay(700); //turn left 700ms
+      matrix_display(clear);
+      matrix_display(front);  //show forward pattern
+    }
+    else//if the right distance is greater than the left
+    {
+      car_right();//turn right
+      matrix_display(clear);
+      matrix_display(right);  //display right-turning pattern
+      servopulse(servopin,90);//servo rotates to 90 degree
+      delay(700);
+      matrix_display(clear);
+      matrix_display(front);  //show forward pattern
+    }
+  }
+  else//otherwise
+  {
+    car_front();//go forward
+    matrix_display(clear);
+    matrix_display(front);  // show forward pattern
+  }
+}
+
+void car_front()//car goes forward
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,155);
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,155);
+}
+void car_back()//go back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,100);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,100);
+}
+void car_left()//car turns left
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 155);
+}
+void car_right()//car turns right
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 155);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 100);
+}
+void car_Stop()//stop
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,0);
+}
+
+void servopulse(int servopin,int myangle)//the running angle of servo
+{
+  for(int i=0; i<20; i++)
+  {
+    int pulsewidth = (myangle*11)+500;
+    digitalWrite(servopin,HIGH);
+    delayMicroseconds(pulsewidth);
+    digitalWrite(servopin,LOW);
+    delay(20-pulsewidth/1000);
+  } 
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
+```
+
+ 5. Test Result
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON.
+
+The smart car moves forward and automatically avoids obstacles. When there is no road ahead, the servo will drive the ultrasonic sensor to scan the left, middle and right distances, and the car will turn to the open side. Meanwhile, the 8X16 LED board will display the corresponding status pattern.
+
+### Project 14 IR Remote Control Smart Car
+
+![ff2fec813f8765e1bcd593b37b9c0a4f](./media/ff2fec813f8765e1bcd593b37b9c0a4f-1747037744378-14.jpeg)
+
+**1.Description**
+
+In this project, we will make an IR remote control smart car and press the button on the IR remote control to drive the car to move.
+
+**2.Flow Chart**
+
+![img](media/wps1-16943965431305.png)
+
+**The specific logic of IR remote control smart car is shown below:**
+
+| Initial setup                             |           | LED board displays smile face                     |
+| ----------------------------------------- | --------- | ------------------------------------------------- |
+| Remote control                            | Key value | Key state                                         |
+| ![img](./media/wps6-1747037981476-25.jpg) | FF629D    | Go front8*8 LED board shows front icon            |
+| ![img](./media/wps7-1747037985784-27.jpg) | FFA857    | Back8*8 LED board shows back icon                 |
+| ![img](./media/wps8.jpg)                  | FF22DD    | Rotate to left8*8 LED board shows leftward icon   |
+| ![img](./media/wps9.jpg)                  | FFC23D    | Rotate to right8*8 LED board shows rightward icon |
+| ![img](./media/wps10.jpg)                 | FF02FD    | Stop8*8 LED board shows“STOP”                     |
+
+**3.Wiring Diagram**
+
+![9d8b58dff14fe22b5c87514db944530c](./media/9d8b58dff14fe22b5c87514db944530c-1747038033533-33.png)
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board module are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+
+2). As the IR receiver is integrated on the 8833 motor Shield, there is no need for additional wiring. The pins of the IR receiver on the 8833 board are G (GND), V (VCC) and D3 respectively. 
+
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire is interfaced with A3.
+
+4). The power is connected to the BAT port
+    
+
+**4.Test Code**
 
 ```c
-const char* ssid = "your_SSID";
-const char* password = "your_PASSWORD";
+//*******************************************************************************
+/*
+keyestudio 4wd BT Car 
+lesson 14
+IR remote Control Car
+http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char start01[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01};
+unsigned char front[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char back[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x48,0x90,0x48,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char left[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00};
+unsigned char right[] = {0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char STOP01[] = {0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00};
+unsigned char clear[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
+#include <Arduino.h>
+#include <IRremote.h>//function library of IR remote control
+int RECV_PIN = 3;//set the pin of IR receiver to D3
+IRrecv irrecv(RECV_PIN);
+long irr_val;
+decode_results results;
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+
+#include <Servo.h>
+Servo servo_A3;//set the pin of servo to A3 
+
+unsigned char data_line = 0;
+unsigned char delay_count = 0;
+
+void setup() {
+  Serial.begin(9600);//
+  // In case the interrupt driver crashes on setup, give a clue
+  // to the user what's going on.
+  Serial.println("Enabling IRin");
+  irrecv.enableIRIn(); // Start the receiver
+  Serial.println("Enabled IRin");
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  servo_A3.attach(A3);
+  servo_A3.write(90);//the angle of servo is 90 degree
+  delay(300);
+  pinMode(SCL_Pin,OUTPUT);// Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  matrix_display(clear);
+  matrix_display(start01); //display start01 expression pattern
+}
+
+void loop()
+ {
+  if (irrecv.decode(&results)) 
+ {
+    irr_val = results.value;
+    Serial.println(irr_val, HEX);//serial prints the read IR remote signals 
+    switch(irr_val)
+    {
+      case 0xFF629D : car_front(); //Receive 0xFF629D,the car goes forward
+      matrix_display(clear);
+      matrix_display(front);   
+      break;
+      
+      case 0xFFA857 : car_back(); //Receive 0xFFA857,the car goes back
+      matrix_display(clear);
+      matrix_display(back); 
+      break;
+
+      case 0xFF22DD : car_left(); //Receive 0xFF22DD,the car left rotates
+      matrix_display(clear);
+      matrix_display(left); 
+      break;
+     
+      case 0xFFC23D : car_right();//Receive 0xFFC23D,the car right rotates
+      matrix_display(clear);
+      matrix_display(right);  
+      break;
+     
+      case 0xFF02FD : car_Stop();//Receive 0xFF02FD,the car stops
+      matrix_display(clear);
+      matrix_display(STOP01); 
+      break;
+    }
+        irrecv.resume(); // Receive the next value
+  }
+}
+
+void car_front()//define the state of going front
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,105);
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,105);
+}
+void car_back()//define the status of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,150);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,150);
+}
+void car_left()//set the status of left turning
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 155);
+}
+void car_right()//set the status of right turning
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 155);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 100);
+}
+void car_Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,0);
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
 ```
 
-Choose the **ESP32 Dev Module** board and **COM** port, and upload the code.
+**5.Test Result**
 
-![5458448](./media/5458448.png)
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON. Then we enable to use the IR remote control drive the car to move to and the 8X16 LED board will display the corresponding status pattern.
 
-**Download APP**
+### Project 15 Bluetooth Control Smart Car
 
-**For Android：**
+![8abdadfa2fc462bdcc0542df52a793e3](./media/8abdadfa2fc462bdcc0542df52a793e3.jpeg)
 
-Method 1: Search “**IOT Farm”** in Google Play and download it.
+**1.Description**
 
-![couapp2](./media/couapp2.png)
+We’ve learned the basic knowledge of Bluetooth. And in this lesson, we will make a Bluetooth control smart car. In this project, we aim to regard the mobile phone as the transmitter (host), and the smart car connected to the BT24 Bluetooth module (slave) as the receiver and use the mobile APP to control the smart car via the Bluetooth. 
 
-**For iOS：**
+**2.APP Control Button**
 
-Search **IOT farm** in APP Store and tap to download.
+|                           | Control character                                            | Control character                                       |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
+| ![img](./media/wps16.jpg) | Press: F  Release: S                                         | Press the button, the car  goes front; release to stop  |
+| ![img](./media/wps17.jpg) | Press: L  Release: S                                         | Press the button, the car turns left; release to stop   |
+| ![img](./media/wps18.jpg) | Press: R  Release: S                                         | Press the button, the car turns right; release to stop  |
+| ![img](./media/wps19.jpg) | Press: B  Release: S                                         | Press the button, the car goes back; release to stop    |
+| ![img](./media/wps20.jpg) | Press: “a”  Release: “S”                                     | Click to speed up(maximum:255)                          |
+| ![img](./media/wps21.jpg) | Press: “d”  Release: “S”                                     | Click to slow down(minimum:0)                           |
+| ![img](./media/wps22.jpg) | Click to start the gravity sensing function of the <br />mobile phone: click again to exit the gravity sensing control |                                                         |
+| ![img](./media/wps23.jpg) | Click to send“X”, click again to send“S”                     | Start line tracking function; click again to exit       |
+| ![img](./media/wps24.jpg) | Click to send“Y”, click again to send“S”                     | Start ultrasonic avoiding function; click again to exit |
+| ![img](./media/wps25.jpg) | Click to send“U”, click again to send“S”                     | Start ultrasonic follow function; click  again to exit  |
+| ![img](./media/wps26.jpg) | Click to send“G”, click again to send“S”                     | Start restricting function; click  again to exit        |
 
-![image-20250417162032912](./media/image-20250417162032912.png)
+**3.Flow Chart**
 
-**The home page of the APP**
+![img](media/wps1.png)
 
-![cou124](./media/cou124.png)
-
-**APP Function Description**
-
-1. After upload the code, connect the phone to the same WIFI as the ESP32, you only need to input IP address at upper-right conner to connect. **Note:** Requires **2.4 GHz** WIFI, not 5G.
-
-![img](./media/cou126.png)
-
-2. Displays the temperature value of the farm in real time.
-
-![img](./media/cou127.png)
-
-3. Displays the air humidity value of the farm in real time.
-
-![img](./media/cou128.png)
-
-4. Displays the soil humidity value of the farm in real time.
-
-![img](./media/cou129.png)
-
-5. Displays the sun brightness value of the farm in real time.
-
-![img](./media/cou1210.png)
-
-6. Displays the water level of the farm in real time.
-
-![img](./media/cou1211.png)
-
-7. Displays the analog rainfall value of the farm in real time.
-
-![img](./media/cou1212.png)
-
-8. Control LED.
-
-![img](./media/cou1213.png)
-
-9. Control irrigation via water pump.
-
-![img](./media/cou1214.png)
-
-10. Control the fan to adjust temperature.
-
-![img](./media/cou1215.png)
-
-11. Control servo to open or close feeding box.
-
-![img](./media/cou1216.png)
-
-12. Control the buzzer to sound.
-
-![img](./media/cou1217.png)
+**4.Wiring Diagram**
 
 
+
+![61be6959693b2111639252ea45ec60fc](./media/61be6959693b2111639252ea45ec60fc-1747038917283-37.png)
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+    
+2). The RXD, TXD, GND and VCC of the Bluetooth module are respectively connected to TX, RX, G and 5V on the 8833 motor Shield, while the STATE and BRK pins of the Bluetooth module do not need to be connected. 
+    
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire is interfaced with A3.
+    
+4). The power is connected to the BAT port
+    
+
+**5.Test Code**
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+```c
+//*******************************************************************************
+/*
+keyestudio 4wd BT Car 
+lesson 15
+Bluetooth Control Car
+http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char start01[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01};
+unsigned char front[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char back[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x48,0x90,0x48,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char left[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00};
+unsigned char right[] = {0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char STOP01[] = {0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00};
+unsigned char clear[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+
+const int servopin = A3;//set the pin of servo to A3 
+
+char BLE_val;
+
+void setup() {
+  Serial.begin(9600);//
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  servopulse(servopin,90);//the angle of servo is 90 degree
+  delay(300);
+  pinMode(SCL_Pin,OUTPUT);// Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  matrix_display(clear);
+  matrix_display(start01); //display start01 expression pattern
+}
+
+void loop() {
+   if(Serial.available()>0) {
+    BLE_val = Serial.read();
+    Serial.println(BLE_val);
+  } 
+    switch(BLE_val)
+    {
+      case 'F' : car_front(); //Receive 'F',the car goes forward
+      matrix_display(clear);
+      matrix_display(front);   
+      break;
+      
+      case 'B' : car_back(); //Receive 'B',the car goes back
+      matrix_display(clear);
+      matrix_display(back); 
+      break;
+
+      case 'L' : car_left(); //Receive 'L',the car left rotates
+      matrix_display(clear);
+      matrix_display(left); 
+      break;
+     
+      case 'R' : car_right();//Receive 'R',the car right rotates
+      matrix_display(clear);
+      matrix_display(right);  
+      break;
+     
+      case 'S' : car_Stop();//Receive 'S',the car stops
+      matrix_display(clear);
+      matrix_display(STOP01); 
+      break;
+}
+}
+
+void car_front()//define the state of going front
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,155);
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,155);
+}
+void car_back()//define the status of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,100);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,100);
+}
+void car_left()//set the status of left turning
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, 100);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, 155);
+}
+void car_right()//set the status of right turning
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, 155);
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, 100);
+}
+void car_Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,0);
+}
+
+void servopulse(int servopin,int myangle)//Steering gear running angle
+{
+  for(int i=0; i<30; i++)
+  {
+    int pulsewidth = (myangle*11)+500;
+    digitalWrite(servopin,HIGH);
+    delayMicroseconds(pulsewidth);
+    digitalWrite(servopin,LOW);
+    delay(20-pulsewidth/1000);
+  }  
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
+```
+
+**6.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON.
+
+Inset the BT module and open your cellphone to connect the Bluetooth to control the smart car. The can will move forward, backward, turn left and right and stop. Also the 8\*8 LED board will show the corresponding patterns.
+
+
+### Project 16 Bluetooth Speed Control Smart Car
+
+![](./media/8abdadfa2fc462bdcc0542df52a793e3.jpeg)
+
+**1.Description**
+
+In this project, we will use a Bluetooth to adjust the speed of the smart car. We empower to define a variable speeds and change it to change the speed of the smart car. 
+
+**2.Flow Chart**
+
+![90ab1f7fb1e16ad3c018b1c631e407c3](./media/90ab1f7fb1e16ad3c018b1c631e407c3.png)
+
+**3.Wiring Diagram**
+
+![](/media/61be6959693b2111639252ea45ec60fc.png)
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+
+2). The RXD, TXD, GND and VCC of the Bluetooth module are respectively connected to TX, RX, G and 5V on the 8833 motor Shield, while the STATE and BRK pins of the Bluetooth module do not need to be connected. 
+
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire is interfaced with A3.
+
+4). The power is connected to the BAT port
+
+ **4.Test Code**
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+```c
+//*******************************************************************************
+/*
+keyestudio 4wd BT Car 
+lesson 16
+Bluetooth Speed Control Car
+http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char start01[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01};
+unsigned char front[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char back[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x48,0x90,0x48,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char left[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00};
+unsigned char right[] = {0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char STOP01[] = {0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00};
+unsigned char clear[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char speed_a[] = 
+{0x00,0x40,0x20,0x10,0x08,0x04,0x02,0xff,0x02,0x04,0x08,0x10,0x20,0x40,0x00,0x00};
+unsigned char speed_d[] = 
+{0x00,0x02,0x04,0x08,0x10,0x20,0x40,0xff,0x40,0x20,0x10,0x08,0x04,0x02,0x00,0x00};
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+
+int speeds = 150; //Set the initial speed to 150
+
+const int servopin = A3;//set the pin of servo to A3 
+
+char BLE_val;
+
+void setup() {
+  Serial.begin(9600);//
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  servopulse(servopin,90);//the angle of servo is 90 degree
+  delay(300);
+  pinMode(SCL_Pin,OUTPUT);// Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  matrix_display(clear);
+  matrix_display(start01); //display start01 expression pattern
+}
+
+void loop() {
+   if(Serial.available()>0) {
+    BLE_val = Serial.read();
+    Serial.println(BLE_val);
+  } 
+    switch(BLE_val)
+    {
+      case 'F' : car_front(); 
+      matrix_display(clear);
+      matrix_display(front);   
+      break;
+      
+      case 'B' : car_back(); 
+      matrix_display(clear);
+      matrix_display(back); 
+      break;
+
+      case 'L' : car_left(); 
+      matrix_display(clear);
+      matrix_display(left); 
+      break;
+     
+      case 'R' : car_right();
+      matrix_display(clear);
+      matrix_display(right);  
+      break;
+     
+      case 'S' : car_Stop();
+      matrix_display(clear);
+      matrix_display(STOP01); 
+      break;
+
+      case 'a' : speeds_a();
+      matrix_display(clear);
+      matrix_display(speed_a);  
+      break;
+     
+      case 'd' : speeds_d();
+      matrix_display(clear);
+      matrix_display(speed_d); 
+      break;
+    }
+}
+
+void car_front()//define the state of going front
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,(255-speeds));
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,(255-speeds));
+}
+void car_back()//define the status of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,speeds);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,speeds);
+}
+void car_left()//set the status of left turning
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, speeds);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, (255-speeds));
+}
+void car_right()//set the status of right turning
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, (255-speeds));
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, speeds);
+}
+void car_Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,0);
+}
+
+void speeds_a() { //rapidly growing function
+  while (1) {
+    Serial.println(speeds);  //display speed information 
+    if (speeds < 255) { //Up to 255
+      matrix_display(clear);
+      matrix_display(speed_a);
+      speeds++;
+      delay(10);  //adjust the speed of growth
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') //Receive 'S',the car stops accelerating
+    break;
+  }
+}
+void speeds_d() { //velocity reduction function
+  while (1) {
+    Serial.println(speeds);  //display speed information
+    if (speeds > 0) { //down to 0
+      matrix_display(clear);
+      matrix_display(speed_d);
+      speeds--;
+      delay(10);    //adjust the speed of deceleration
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') //Receive 'S',the car stops deceleration
+    break;
+}
+}
+
+void servopulse(int servopin,int myangle)//Steering gear running angle
+{
+  for(int i=0; i<30; i++)
+  {
+    int pulsewidth = (myangle*11)+500;
+    digitalWrite(servopin,HIGH);
+    delayMicroseconds(pulsewidth);
+    digitalWrite(servopin,LOW);
+    delay(20-pulsewidth/1000);
+  }  
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
+```
+
+**5.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON. Pairing the APP with Bluetooth, the smart car can be controlled to move by the APP.
+
+Press![049343f587e0e7cf19fe8b665d735321](./media/049343f587e0e7cf19fe8b665d735321.png), the car will speed up, press ![264f77cce6018584b54f46676fee4247](./media/264f77cce6018584b54f46676fee4247.png), the car will slow down, and the 8\*16 LED board will display the corresponding status pattern of the smart car.
+
+
+### Project 17 Multi-purpose Bluetooth Smart Car
+
+![2c1198e0ebd7c31622b7438469fb572c](./media/2c1198e0ebd7c31622b7438469fb572c.jpeg)
+
+**1.Description**
+
+In previous projects, the car only performs a single function. However, in this lesson, we will integrate all of its functions via a Bluetooth.
+
+**2.Flow Chart**
+
+![73f4da1e321bc29282d3b2f5cb3168dd](./media/73f4da1e321bc29282d3b2f5cb3168dd.png)
+
+**3.Wiring Diagram**
+
+![fce8edd349ddbcfe02e6f27feb73e90f](./media/fce8edd349ddbcfe02e6f27feb73e90f.png)
+
+1). GND, VCC, SDA and SCL of the 8\*8 LED board are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
+
+2). The RXD, TXD, GND and VCC of the Bluetooth module are respectively connected to TX, RX, G and 5V on the 8833 motor Shield, while the STATE and BRK pins of the Bluetooth module do not need to be connected. 
+
+3). The servo is connected to G, V and A3. The brown wire is interfaced with Gnd(G), the red wire is interfaced with 5V(V) and the orange wire is interfaced with A3.
+
+4). G, V, S1, S2 and S3 of the line tracking sensor are connected to G（GND), V（VCC), D11, D7 and D8 of the sensor expansion board.
+
+5). VCC, Trig, Echo and Gnd of the ultrasonic sensor are connected to 5V(V), D12(S), D13(S) and Gnd(G).
+
+6). The power is connected to the BAT port
+
+**4.Test Code**
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+```c
+
+//*******************************************************************************
+/*
+keyestudio 4wd BT Car 
+lesson 17
+Bluetooth Multifunctional Car
+http://www.keyestudio.com
+*/ 
+#define SCL_Pin  A5  //Set the clock pin to A5
+#define SDA_Pin  A4  //Set data pin to A4
+//Array, used to store the data of pattern, can be calculated by yourself or obtained from the modulus tool
+unsigned char start01[] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01};
+unsigned char front[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x12,0x09,0x12,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char back[] = {0x00,0x00,0x00,0x00,0x00,0x24,0x48,0x90,0x48,0x24,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char left[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x28,0x10,0x44,0x28,0x10,0x44,0x28,0x10,0x00};
+unsigned char right[] = {0x00,0x10,0x28,0x44,0x10,0x28,0x44,0x10,0x28,0x44,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char STOP01[] = {0x2E,0x2A,0x3A,0x00,0x02,0x3E,0x02,0x00,0x3E,0x22,0x3E,0x00,0x3E,0x0A,0x0E,0x00};
+unsigned char clear[] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+unsigned char speed_a[] = 
+{0x00,0x40,0x20,0x10,0x08,0x04,0x02,0xff,0x02,0x04,0x08,0x10,0x20,0x40,0x00,0x00};
+unsigned char speed_d[] = 
+{0x00,0x02,0x04,0x08,0x10,0x20,0x40,0xff,0x40,0x20,0x10,0x08,0x04,0x02,0x00,0x00};
+
+int left_ctrl = 2;//define the direction control pins of group B motor
+int left_pwm = 5;//define the PWM control pins of group B motor
+int right_ctrl = 4;//define the direction control pins of group A motor
+int right_pwm = 6;//define the PWM control pins of group A motor
+int speeds = 150; //Set the initial speed to 150
+
+const int servopin = A3;//set the pin of servo to A3 
+
+int L_pin = 11; //define the left tracking sensor pin as D11
+int M_pin = 7; //define the middle tracking sensor pin as D7
+int R_pin = 8; //define the right tracking sensor pin as D8
+int L_val, M_val, R_val;
+
+int trigPin = 12; //TRIG Pin be connected to D12
+int echoPin = 13; //ECHO Pin be connected to D13
+int distance, distance_l, distance_r;
+
+char BLE_val;
+
+void setup() {
+  Serial.begin(9600);//Set baud rate to 9600
+  pinMode(left_ctrl,OUTPUT);//set direction control pins of group B motor to OUTPUT
+  pinMode(left_pwm,OUTPUT);//set PWM control pins of group B motor to OUTPUT
+  pinMode(right_ctrl,OUTPUT);//set direction control pins of group A motor to OUTPUT
+  pinMode(right_pwm,OUTPUT);//set PWM control pins of group A motor to OUTPUT
+  servopulse(servopin,90);//the angle of servo is 90 degree
+  delay(300);
+  pinMode(L_pin, INPUT); //Tracking sensor pins are configured for input mode
+  pinMode(M_pin, INPUT);
+  pinMode(R_pin, INPUT);
+  pinMode(trigPin, OUTPUT); //define TRIG as the output mode
+  pinMode(echoPin, INPUT); //define ECHO as the input mode
+  pinMode(SCL_Pin,OUTPUT);// Set the clock pin to output
+  pinMode(SDA_Pin,OUTPUT);//Set the data pin to output
+  matrix_display(clear);
+  matrix_display(start01); //display start01 expression pattern
+}
+
+void loop() {
+   if(Serial.available()>0) {
+    BLE_val = Serial.read();
+    Serial.println(BLE_val);
+  } 
+    switch(BLE_val)
+    {
+      case 'F' : car_front(); 
+      matrix_display(clear);
+      matrix_display(front);   
+      break;
+      
+      case 'B' : car_back(); 
+      matrix_display(clear);
+      matrix_display(back); 
+      break;
+
+      case 'L' : car_left(); 
+      matrix_display(clear);
+      matrix_display(left); 
+      break;
+     
+      case 'R' : car_right();
+      matrix_display(clear);
+      matrix_display(right);  
+      break;
+     
+      case 'S' : car_Stop();
+      matrix_display(clear);
+      matrix_display(STOP01); 
+      break;
+
+      case 'a' : speeds_a();
+      matrix_display(clear);
+      matrix_display(speed_a);  
+      break;
+     
+      case 'd' : speeds_d();
+      matrix_display(clear);
+      matrix_display(speed_d); 
+      break;
+
+      case  'U':  follow();  //Receiving ‘U’,enter follow mode
+      break; 
+      case  'Y':  avoid(); //Receiving ‘Y’,enter obstacle avoidance mode  
+      break;  
+      case  'G':  confinement(); //Receiving ‘G’,enter confinement mode
+      break;  
+      case  'X':  tracking(); //Receiving ‘X’,enter tracking mode
+      break;  
+    }
+}
+
+void car_front()//define the state of going front
+{
+  digitalWrite(left_ctrl,HIGH);
+  analogWrite(left_pwm,(255-speeds));
+  digitalWrite(right_ctrl,HIGH);
+  analogWrite(right_pwm,(255-speeds));
+}
+void car_back()//define the status of going back
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,speeds);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,speeds);
+}
+void car_left()//set the status of left turning
+{
+  digitalWrite(left_ctrl, LOW);
+  analogWrite(left_pwm, speeds);  
+  digitalWrite(right_ctrl, HIGH);
+  analogWrite(right_pwm, (255-speeds));
+}
+void car_right()//set the status of right turning
+{
+  digitalWrite(left_ctrl, HIGH);
+  analogWrite(left_pwm, (255-speeds));
+  digitalWrite(right_ctrl, LOW);
+  analogWrite(right_pwm, speeds);
+}
+void car_Stop()//define the state of stop
+{
+  digitalWrite(left_ctrl,LOW);
+  analogWrite(left_pwm,0);
+  digitalWrite(right_ctrl,LOW);
+  analogWrite(right_pwm,0);
+}
+
+void speeds_a() { //rapidly growing function
+  while (1) {
+    Serial.println(speeds);  //display speed information 
+    if (speeds < 255) { //Up to 255
+      matrix_display(clear);
+      matrix_display(speed_a);
+      speeds++;
+      delay(10);  //adjust the speed of growth 
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') //Receive 'S',the car stops accelerating
+    break;
+  }
+}
+void speeds_d() { //velocity reduction function
+  while (1) {
+    Serial.println(speeds);  //display speed information
+    if (speeds > 0) { //down to 0
+      matrix_display(clear);
+      matrix_display(speed_d);
+      speeds--;
+      delay(10);    //adjust the speed of deceleration
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') //Receive 'S',the car stops deceleration
+    break;
+}
+}
+
+int get_distance() {
+  int distance = 0;
+  digitalWrite(trigPin, LOW);     // send pulse through Trig/Pin, trigger HC-SR04 ranging, so that send out ultrasonic signal interface low level 2μs
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);    // make ultrasonic signal interface high level 10μs, here is at least 10μs
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);     // keep the ultrasonic signal interface low level
+  distance = pulseIn(echoPin, HIGH) / 58; // read the pulse time and convert the pulse time to the distance (unit: cm)
+  Serial.println(distance);        //output distance value
+  return distance;
+}
+
+void follow() {
+  servopulse(servopin,90);
+  delay(200);
+  int follow_flag = 1;
+  while (follow_flag) {
+    distance = get_distance(); //call the ranging function
+    if (distance < 8 ) {//If the distance is less than 8
+      car_back();//the car goes back
+      matrix_display(clear);
+      matrix_display(back); 
+    }
+    else if (distance >= 8 && distance < 13) { //If the distance is greater than or equal to 8, it's less than 13
+      car_Stop();//stop
+      matrix_display(clear);
+      matrix_display(STOP01); 
+    }
+    else if (distance >= 13 && distance <= 35 ) { //If the distance is greater than or equal to 13, it's less than 35
+      car_front();//the car goes forward
+      matrix_display(clear);
+      matrix_display(front);
+    }
+    else {//If none of the above
+      car_Stop();//stop
+      matrix_display(clear);
+      matrix_display(STOP01); 
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') { //When S is received, the car stops
+      follow_flag = 0;
+      car_Stop();
+    }
+  }
+}
+
+void avoid() {
+  int avoid_flag = 1;
+  while (avoid_flag) {
+    distance = get_distance(); //Call the ranging function
+    if (distance > 0 && distance < 20) { //If the distance is less than 20 and greater than 0
+      car_Stop();//stops
+      matrix_display(clear);
+      matrix_display(STOP01);   //the dot matrix displays a stop pattern
+      delay(1000);
+      servopulse(servopin,160); //bring the steering gear over 180 degrees
+      delay(500);
+      distance_l = get_distance(); //gets the left distance 
+      delay(100);
+      servopulse(servopin,20); //turn the steering gear to 0 degrees
+      delay(500);
+      distance_r = get_distance(); //get the right distance
+      delay(100);
+      if (distance_l > distance_r) { //compare the distance, if the left is bigger than the right
+        car_left();  //the car turns left
+        matrix_display(clear);
+        matrix_display(left);   //the dot matrix shows a left pattern
+        servopulse(servopin,90);//the steering gear returns to 90 degrees
+        delay(700);
+        matrix_display(clear);
+        matrix_display(front);   //the dot matrix displays a forward pattern
+      } 
+      else { //Otherwise if the right is bigger than the left
+        car_right();//the car turns right
+        matrix_display(clear);
+        matrix_display(right);   //the dot matrix shows a left pattern
+        servopulse(servopin,90);//the steering gear returns to 90 degrees
+        delay(700);
+        matrix_display(clear);
+        matrix_display(front);   //the dot matrix displays a forward pattern
+      }
+    }
+    else { //When the front distance is less than or equal to 10cm
+      car_front();//the car goes forward
+      matrix_display(clear);
+      matrix_display(front);   //the dot matrix displays a forward pattern
+
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') {//When S is received, the car stops
+      avoid_flag = 0;
+      car_Stop();
+    }
+  }
+}
+
+void confinement() {
+  int confinement_flag = 1;
+  while (confinement_flag) {
+    L_val = digitalRead(L_pin); //read the value of the left sensor
+    M_val = digitalRead(M_pin); //read the value of the middle sensor
+    R_val = digitalRead(R_pin); //read the value of the right sensor
+    if ( L_val == 0 && M_val == 0 && R_val == 0 ) { //the car goes forward when no black line is detected
+      car_front();
+    }
+    else { //Otherwise, if any of the tracking sensors detect a black line, the goes back and then turns left
+      car_back();
+      delay(500);
+      car_left();
+      delay(800);
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') { //When S is received, the car stops
+      confinement_flag = 0;
+      car_Stop();
+    }
+  }
+}
+
+void tracking() {
+  int track_flag = 1;
+  while (track_flag) {
+    L_val = digitalRead(L_pin); //read the value of the left sensor
+    M_val = digitalRead(M_pin); //read the value of the middle sensor
+    R_val = digitalRead(R_pin); //read the value of the right sensor
+    if (M_val == 1) { //Black line detected in the middle
+      if (L_val == 1 && R_val == 0) { //If a black line is detected on the left, but not on the right, turn left
+        car_left();
+      }
+      else if (L_val == 0 && R_val == 1) { //Otherwise, if a black line is detected on the right and not on the left, turn right
+        car_right();
+      }
+      else { //Otherwise, the car goes forward
+        car_front();
+      }
+    }
+    else { //no black lines detected in the middle
+      if (L_val == 1 && R_val == 0) { //If a black line is detected on the left, but not on the right, turn left
+        car_right();
+      }
+      else if (L_val == 0 && R_val == 1) { //Otherwise, if a black line is detected on the right and not on the left, turn right
+        car_right();;
+      }
+      else { //Otherwise, stop
+        car_Stop();
+      }
+    }
+    BLE_val = Serial.read();
+    if (BLE_val == 'S') { //When S is received, the car stops
+      track_flag = 0;
+      car_Stop();
+    }
+  }
+}
+
+void servopulse(int servopin,int myangle)//Steering gear running angle
+{
+  for(int i=0; i<30; i++)
+  {
+    int pulsewidth = (myangle*11)+500;
+    digitalWrite(servopin,HIGH);
+    delayMicroseconds(pulsewidth);
+    digitalWrite(servopin,LOW);
+    delay(20-pulsewidth/1000);
+  }  
+}
+
+//this function is used for dot matrix display
+void matrix_display(unsigned char matrix_value[])
+{
+  IIC_start();  //the function that calls the data transfer start condition
+  IIC_send(0xc0);  //select address
+
+  for (int i = 0; i < 16; i++) //the pattern data is 16 bytes
+  {
+    IIC_send(matrix_value[i]); //Transmit the data of the pattern
+  }
+  IIC_end();   //End pattern data transmission
+  IIC_start();
+  IIC_send(0x8A);  //Display control, select 4/16 pulse width
+  IIC_end();
+}
+//Conditions under which data transmission begins
+void IIC_start()
+{
+  digitalWrite(SDA_Pin, HIGH);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, LOW);
+}
+//Indicates the end of data transmission
+void IIC_end()
+{
+  digitalWrite(SCL_Pin, LOW);
+  digitalWrite(SDA_Pin, LOW);
+  delayMicroseconds(3);
+  digitalWrite(SCL_Pin, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(SDA_Pin, HIGH);
+  delayMicroseconds(3);
+}
+//transmit data
+void IIC_send(unsigned char send_data)
+{
+  for (byte mask = 0x01; mask != 0; mask <<= 1) //Each byte has 8 bits and is checked bit by bit starting at the lowest level
+  {
+    if (send_data & mask) { //Sets the high and low levels of SDA_Pin depending on whether each bit of the byte is a 1 or a 0
+      digitalWrite(SDA_Pin, HIGH);
+    } else {
+      digitalWrite(SDA_Pin, LOW);
+    }
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, HIGH); //Pull the clock pin SCL_Pin high to stop data transmission
+    delayMicroseconds(3);
+    digitalWrite(SCL_Pin, LOW); //pull the clock pin SCL_Pin low to change the SIGNAL of SDA 
+  }
+}
+//*******************************************************************************
+```
+
+**6.Test Result**
+
+After successfully uploading the code to the V4.0 board, connect the wirings according to the wiring diagram, power on the external power then turn the DIP switch to ON.
+
+After the Bluetooth module is plugged into the APP and the mobile APP is successfully connected to the Bluetooth, the smart car can be controlled by the mobile APP.  We can achieve the corresponding functions by pressing the corresponding buttons on the mobile APP. 
 
 
 
