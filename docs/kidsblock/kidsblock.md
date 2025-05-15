@@ -1120,19 +1120,19 @@ After successfully uploading the code to the V4.0 board, connect the wirings acc
 | ![wps14](./media/wps14.jpg)                  | Pair DX-BT24 5.1 Bluetooth module |
 | ![wps15](./media/wps15-1747098046815-28.jpg) | Disconnect Bluetooth              |
 
-|                                                              | Control character                                            | Function                                                |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
-| ![wps16](./media/wps16-1747098124137-30.jpg)                 | Press: F  Release: S                                         | Press the button, the car  goes front; release to stop  |
-| ![wps17](./media/wps17-1747098176435-32.jpg)                 | Press: L  Release: S                                         | Press the button, the car turns left; release to stop   |
-| ![wps18](./media/wps18-1747098188240-34.jpg)                 | Press: R  Release: S                                         | Press the button, the car turns right; release to stop  |
-| ![wps19](./media/wps19-1747098201008-36.jpg)                 | Press: B  Release: S                                         | Press the button, the car goes back; release to stop    |
-| ![wps20](./media/wps20-1747098215501-38.jpg)                 | Press: “a”  Release: “S”                                     | Click to speed up(maximum:255)                          |
-| ![wps21](./media/wps21-1747098231991-40.jpg)                 | Press: “d”  Release: “S”                                     | Click to slow down(minimum:0)                           |
-| ![wps22](./media/wps22-1747098241463-42.jpg)                 | Click to start the gravity sensing function of the <br />mobile phone: click again to exit the gravity sensing control |                                                         |
-| ![wps23](./media/wps23-1747098250338-44.jpg)                 | Click to send“X”, click again to send“S”                     | Start line tracking function; click again to exit       |
-| ![wps24](./media/wps24-1747098261914-46.jpg)                 | Click to send“Y”, click again to send“S”                     | Start ultrasonic avoiding function; click again to exit |
-| ![wps25](./media/wps25-1747098272938-48-1747288473173-252.jpg) | Click to send“U”, click again to send“S”                     | Start ultrasonic follow function; click  again to exit  |
-| ![wps26](./media/wps26-1747098283292-50.jpg)                 | Click to send“G”, click again to send“S”                     | Start restricting function; click  again to exit        |
+|                                                              | Control character                                            | Function                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![wps16](./media/wps16-1747098124137-30.jpg)                 | Press: F  <br />Release: S                                   | Press the button, the car  goes front; <br />release to stop |
+| ![wps17](./media/wps17-1747098176435-32.jpg)                 | Press: L  <br />Release: S                                   | Press the button, the car turns left; <br />release to stop  |
+| ![wps18](./media/wps18-1747098188240-34.jpg)                 | Press: R  <br />Release: S                                   | Press the button, the car turns right; <br />release to stop |
+| ![wps19](./media/wps19-1747098201008-36.jpg)                 | Press: B  <br />Release: S                                   | Press the button, the car goes back; <br />release to stop   |
+| ![wps20](./media/wps20-1747098215501-38.jpg)                 | Press: “a”  <br />Release: “S”                               | Click to speed up(maximum:255)                               |
+| ![wps21](./media/wps21-1747098231991-40.jpg)                 | Press: “d”  <br />Release: “S”                               | Click to slow down(minimum:0)                                |
+| ![wps22](./media/wps22-1747098241463-42.jpg)                 | Click to start the gravity <br />sensing function of the <br />mobile phone: click again to <br />exit the gravity sensing control |                                                              |
+| ![wps23](./media/wps23-1747098250338-44.jpg)                 | Click to send“X”,<br /> click again to send“S”               | Start line tracking function; <br />click again to exit      |
+| ![wps24](./media/wps24-1747098261914-46.jpg)                 | Click to send“Y”, <br />click again to send“S”               | Start ultrasonic avoiding function;<br /> click again to exit |
+| ![wps25](./media/wps25-1747098272938-48-1747288473173-252.jpg) | Click to send“U”, <br />click again to send“S”               | Start ultrasonic follow function;<br /> click  again to exit |
+| ![wps26](./media/wps26-1747098283292-50.jpg)                 | Click to send“G”,<br />click again to send“S”                | Start restricting function;<br /> click  again to exit       |
 
 **9.Extension Practice**
 
@@ -1898,19 +1898,19 @@ We’ve learned the basic knowledge of Bluetooth. And in this lesson, we will ma
 | ![wps14](./media/wps14.jpg)                  | Pair DX-BT24 5.1 Bluetooth module |
 | ![wps15](./media/wps15-1747098046815-28.jpg) | Disconnect Bluetooth              |
 
-| Control character                                            | Control character                                            |                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
-| ![wps16](./media/wps16-1747098124137-30.jpg)                 | Press: F  Release: S                                         | Press the button, the car  goes front; release to stop  |
-| ![wps17](./media/wps17-1747098176435-32.jpg)                 | Press: L  Release: S                                         | Press the button, the car turns left; release to stop   |
-| ![wps18](./media/wps18-1747098188240-34.jpg)                 | Press: R  Release: S                                         | Press the button, the car turns right; release to stop  |
-| ![wps19](./media/wps19-1747098201008-36.jpg)                 | Press: B  Release: S                                         | Press the button, the car goes back; release to stop    |
-| ![wps20](./media/wps20-1747098215501-38.jpg)                 | Press: “a”  Release: “S”                                     | Click to speed up(maximum:255)                          |
-| ![wps21](./media/wps21-1747098231991-40.jpg)                 | Press: “d”  Release: “S”                                     | Click to slow down(minimum:0)                           |
-| ![wps22](./media/wps22-1747098241463-42.jpg)                 | Click to start the gravity sensing function of the <br />mobile phone: click again to exit the gravity sensing control |                                                         |
-| ![wps23](./media/wps23-1747098250338-44.jpg)                 | Click to send“X”, click again to send“S”                     | Start line tracking function; click again to exit       |
-| ![wps24](./media/wps24-1747098261914-46.jpg)                 | Click to send“Y”, click again to send“S”                     | Start ultrasonic avoiding function; click again to exit |
-| ![wps25](./media/wps25-1747098272938-48-1747288473173-252.jpg) | Click to send“U”, click again to send“S”                     | Start ultrasonic follow function; click  again to exit  |
-| ![wps26](./media/wps26-1747098283292-50.jpg)                 | Click to send“G”, click again to send“S”                     | Start restricting function; click  again to exit        |
+|                                                              | Control character                                            | Function                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![wps16](./media/wps16-1747098124137-30.jpg)                 | Press: F  <br />Release: S                                   | Press the button, the car  goes front; <br />release to stop |
+| ![wps17](./media/wps17-1747098176435-32.jpg)                 | Press: L  <br />Release: S                                   | Press the button, the car turns left; <br />release to stop  |
+| ![wps18](./media/wps18-1747098188240-34.jpg)                 | Press: R  <br />Release: S                                   | Press the button, the car turns right; <br />release to stop |
+| ![wps19](./media/wps19-1747098201008-36.jpg)                 | Press: B  <br />Release: S                                   | Press the button, the car goes back; <br />release to stop   |
+| ![wps20](./media/wps20-1747098215501-38.jpg)                 | Press: “a”  <br />Release: “S”                               | Click to speed up(maximum:255)                               |
+| ![wps21](./media/wps21-1747098231991-40.jpg)                 | Press: “d”  <br />Release: “S”                               | Click to slow down(minimum:0)                                |
+| ![wps22](./media/wps22-1747098241463-42.jpg)                 | Click to start the gravity <br />sensing function of the <br />mobile phone: click again to <br />exit the gravity sensing control |                                                              |
+| ![wps23](./media/wps23-1747098250338-44.jpg)                 | Click to send“X”,<br /> click again to send“S”               | Start line tracking function; <br />click again to exit      |
+| ![wps24](./media/wps24-1747098261914-46.jpg)                 | Click to send“Y”, <br />click again to send“S”               | Start ultrasonic avoiding function;<br /> click again to exit |
+| ![wps25](./media/wps25-1747098272938-48-1747288473173-252.jpg) | Click to send“U”, <br />click again to send“S”               | Start ultrasonic follow function;<br /> click  again to exit |
+| ![wps26](./media/wps26-1747098283292-50.jpg)                 | Click to send“G”,<br />click again to send“S”                | Start restricting function;<br /> click  again to exit       |
 
 **3.Flow Chart**
 
