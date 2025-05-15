@@ -114,7 +114,9 @@ It has 14 digital input/output pins (of which 6 can be used as PWM outputs), 6 a
 
 ![](./media/95bcb6f3d82a26fd7286459f2e5dd2e6.jpeg)
 
-It contains everything needed to support the microcontroller: simply connect it to a computer with a USB cable or power it via an external DC power jack (DC 7-12V) or via female headers Vin/ GND(DC 7-12V) to get started.
+It contains everything needed to support the microcontroller: 
+simply connect it to a computer with a USB cable or power it via an external DC power jack (DC 7-12V) or via female headers Vin/ GND(DC 7-12V) to get started.
+
 
 |       Microcontroller       |                      ATmega328P-PU                       |
 | :-------------------------: | :------------------------------------------------------: |
