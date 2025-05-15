@@ -242,7 +242,7 @@ The LED can flash in diverse color by altering the delay time in the test code. 
 
 **3.Components**
 
-|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+|           Development Board *1           |           8833 Motor Driver *1           |     Red LED Module*1     |
 | :--------------------------------------: | :--------------------------------------: | :----------------------: |
 | ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
 |             3P Dupont Wire*1             |               USB Cable*1                |                          |
@@ -349,7 +349,7 @@ PWM is more used to adjust the brightness of LED lights or the rotation speed of
 
 **2.Components**
 
-|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+|           Development Board *1           |           8833 Motor Driver *1           |     Red LED Module*1     |
 | :--------------------------------------: | :--------------------------------------: | :----------------------: |
 | ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
 |             3P Dupont Wire*1             |               USB Cable*1                |                          |
@@ -509,11 +509,11 @@ By rotating the adjustable potentiometer on the sensor, it can adjust the detect
 
 **3.Components**
 
-| Keyestudio 4.0 Development Board *1      | Keyestudio 8833 Motor Driver Expansion Board *1 | Red LED Module*1         | Keyestudio Line Tracking Sensor*1 |
-| ---------------------------------------- | ----------------------------------------------- | ------------------------ | --------------------------------- |
-| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg)        | ![img](./media/wps3.jpg) | ![img](./media/wps7.png)          |
-| 5P Dupont Wire*1                         | USB Cable*1                                     | 3P Dupont Wire*1         |                                   |
-| ![img](./media/wps4.png)                 | ![img](./media/wps5.jpg)                        | ![img](./media/wps6.jpg) |                                   |
+| Development Board *1                     | 8833 Motor Driver *1                     | Red LED Module*1         | Line Tracking Sensor*1   |
+| ---------------------------------------- | ---------------------------------------- | ------------------------ | ------------------------ |
+| ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) | ![img](./media/wps7.png) |
+| 5P Dupont Wire*1                         | USB Cable*1                              | 3P Dupont Wire*1         |                          |
+| ![img](./media/wps4.png)                 | ![img](./media/wps5.jpg)                 | ![img](./media/wps6.jpg) |                          |
 
 **4.Wiring Diagram**
 
@@ -676,7 +676,7 @@ The corresponding servo angles are shown below:
 
 **3.Components**
 
-|                     Development Board *1                     |     Motor Driver Expansion Board *1      |                           Servo*1                            |
+|                     Development Board *1                     |           8833 Motor Driver *1           |                           Servo*1                            |
 | :----------------------------------------------------------: | :--------------------------------------: | :----------------------------------------------------------: |
 |           ![img](./media/wps1-1746693582945-6.jpg)           | ![img](./media/wps2-1746693584914-8.jpg) | ![image-20250509084654137](./media/image-20250509084654137.png) |
 |                    18650 Battery Holder*1                    |               USB Cable*1                |               18650 Battery*2（self-provided）               |
@@ -825,11 +825,11 @@ The HC-SR04 or the ultrasonic sensor is being used in a wide range of electronic
 
 **3.Components**
 
-| Keyestudio 4.0 Development Board *1                          | Keyestudio 8833 Motor Driver Expansion Board *1 | Red LED Module*1         | HC-SR04 Ultrasonic Sensor*1                                  |
-| ------------------------------------------------------------ | ----------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
-| ![img](./media/wps1-1746693582945-6.jpg)                     | ![img](./media/wps2-1746693584914-8.jpg)        | ![img](./media/wps3.jpg) | ![image-20250509085643931](./media/image-20250509085643931.png) |
-| 4P Dupont Wire*1                                             | USB Cable*1                                     | 3P Dupont Wire*1         |                                                              |
-| ![image-20250509143737972](./media/image-20250509143737972.png) | ![img](./media/wps5.jpg)                        | ![img](./media/wps6.jpg) |                                                              |
+| Development Board *1                                         | 8833 Motor Driver *1                     | Red LED Module*1         | Ultrasonic Sensor*1                                          |
+| ------------------------------------------------------------ | ---------------------------------------- | ------------------------ | ------------------------------------------------------------ |
+| ![img](./media/wps1-1746693582945-6.jpg)                     | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) | ![image-20250509085643931](./media/image-20250509085643931.png) |
+| 4P Dupont Wire*1                                             | USB Cable*1                              | 3P Dupont Wire*1         |                                                              |
+| ![image-20250509143737972](./media/image-20250509143737972.png) | ![img](./media/wps5.jpg)                 | ![img](./media/wps6.jpg) |                                                              |
 
 **4.Working Principle**
 
@@ -1031,7 +1031,7 @@ The picture shows the real product and circuit diagram of the infrared receiver.
 
 **3.Components**
 
-|           Development Board *1           |     Motor Driver Expansion Board *1      |     Red LED Module*1     |
+|           Development Board *1           |           8833 Motor Driver *1           |     Red LED Module*1     |
 | :--------------------------------------: | :--------------------------------------: | :----------------------: |
 | ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) | ![img](./media/wps3.jpg) |
 |             3P Dupont Wire*1             |               USB Cable*1                |                          |
@@ -1222,7 +1222,7 @@ Connect the BT module to the development board.
 
 **5.Components**
 
-|           Development Board *1           |     Motor Driver Expansion Board *1      |                       Red LED Module*1                       |
+|           Development Board *1           |           8833 Motor Driver *1           |                       Red LED Module*1                       |
 | :--------------------------------------: | :--------------------------------------: | :----------------------------------------------------------: |
 | ![img](./media/wps1-1746693582945-6.jpg) | ![img](./media/wps2-1746693584914-8.jpg) |                   ![img](./media/wps3.jpg)                   |
 |             3P Dupont Wire*1             |               USB Cable*1                |                  DX-BT24 Bluetooth Module*1                  |
@@ -1451,11 +1451,11 @@ From the above diagram, it is known that the direction pin of A motor is D4, the
 
 **4.Components**
 
-| Keyestudio 4.0 Development Board *1 | Keyestudio 8833 Motor Driver Expansion Board *1 | USB Cable*1                                        |
-| ----------------------------------- | ----------------------------------------------- | -------------------------------------------------- |
-| ![img](./media/wps27.jpg)           | ![img](./media/wps28.jpg)                       | ![img](./media/wps29.jpg)                          |
-| 18650 Battery Holder*1              | Motor*4                                         | 18650 Battery *2（self-provided）                  |
-| ![img](./media/wps30.png)           | ![img](./media/wps31.jpg)                       | ![img](./media/wps32.png)![img](./media/wps33.png) |
+| Development Board *1      | 8833 Motor Driver *1      | USB Cable*1                       |
+| ------------------------- | ------------------------- | --------------------------------- |
+| ![img](./media/wps27.jpg) | ![img](./media/wps28.jpg) | ![img](./media/wps29.jpg)         |
+| 18650 Battery Holder*1    | Motor*4                   | 18650 Battery *2（self-provided） |
+| ![img](./media/wps30.png) | ![img](./media/wps31.jpg) | ![img](./media/wps32.png)         |
 
 **5.Wiring Diagram**
 
@@ -1682,7 +1682,7 @@ As shown in the figure below, press the left mouse button to select, right click
 
 **6.Components**
 
-| Keyestudio 4.0 Development Board *1                          | Keyestudio 8833 Motor Driver Expansion Board *1              | USB Cable*1               |
+| Development Board *1                                         | 8833 Motor Driver *1                                         | USB Cable*1               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------- |
 | ![img](./media/wps27.jpg)                                    | ![img](./media/wps28.jpg)                                    | ![img](./media/wps29.jpg) |
 | USB Cable*1                                                  | HX-2.54 4P Dupont Wire 200mm *1                              |                           |
