@@ -2,60 +2,7 @@
 
 ## 1. Get Started With Arduino 
 
-### 1.1 KEYESTUDIO V4.0 Development Board
-
-We need to know keyestudio V4.0 development board, as a core of this smart car.
-
-![](media/image-20231012081546188.png)
-
-KEYESTUDIO V4.0 development board is an Arduino uno -compatible board, which is based on ATmega328P MCU, and with a cp2102 Chip as a UART-to-USB converter.
-
-![](media/image-20231012081631448.png)
-
-It has 14 digital input/output pins (of which 6 can be used as PWM outputs), 6 analog inputs, a 16 MHz quartz crystal, a USB connection, a power jack, 2 ICSP headers and a reset button.
-
-![](media/image-20231012081652388.png)
-
-It contains everything needed to support the microcontroller; simply connect it to a computer with a USB cable or power it via an external DC power jack (DC 7-12V) or via female headers Vin/ GND(DC 7-12V) to get started.
-
-| Microcontroller             | ATmega328P-PU                                            |
-|-----------------------------|----------------------------------------------------------|
-| Operating Voltage           | 5V                                                       |
-| Input Voltage (recommended) | DC7-12V                                                  |
-| Digital I/O Pins            | 14 (D0-D13) (of which 6 provide PWM output)              |
-| PWM Digital I/O Pins        | 6 (D3, D5, D6, D9, D10, D11)                             |
-| Analog Input Pins           | 6 (A0-A5)                                                |
-| DC Current per I/O Pin      | 20 mA                                                    |
-| DC Current for 3.3V Pin     | 50 mA                                                    |
-| Flash Memory                | 32 KB (ATmega328P-PU) of which 0.5 KB used by bootloader |
-| SRAM                        | 2 KB (ATmega328P-PU)                                     |
-| EEPROM                      | 1 KB (ATmega328P-PU)                                     |
-| Clock Speed                 | 16 MHz                                                   |
-| LED_BUILTIN                 | D13                                                      |
-
-### 1.2 Keyestudio 8833 Motor Driver Expansion Board 
-
-The 8833 board adopts the 8833 motor driver chip driven by two-channel H bridges , and the maximum driving current of a single channel is up to 1.5A, and the terminal of PH2.0 is used. 
-
-The IR receiver module is also integrated on the board. Furthermore, there are many PH2.0 expansion interfaces on the board such as ultrasonic interface, analog interface, three-channel tracking interface as well as pin interfaces with Bluetooth and motor driver. 
-
-
-
-| Name                                | Parameter                                                    |
-| ----------------------------------- | ------------------------------------------------------------ |
-| Voltage                             | USB 5V，DC 6-9V                                              |
-| Current                             | The maximum output is 3A, the actual output is about 1A (it’s 2A when the motor is loaded) |
-| Maximum power                       | · 27W（The actual value is about 9W）                        |
-| Working temperature                 | -10~50 Degree                                                |
-| Dimension                           | 69*56*18mm                                                   |
-| Weight                              | 25.5g                                                        |
-| Environmental protection attributes | ROHS                                                         |
-
-![image-20250513140909089](./media/image-20250513140909089.png)
-
-![image-20250513140932577](./media/image-20250513140932577.png)
-
-### 1.3 Installing Arduino IDE
+**Installing Arduino IDE**
 
 ![](media/ide.png)
 
@@ -69,9 +16,207 @@ The IR receiver module is also integrated on the board. Furthermore, there are m
 
 Click on the link to download the code and library files required for the course：[Click to download](./Arduino.zip)
 
-![image-20250513140511474](./media/image-20250513140511474.png)
+![image-20250515092716807](./media/image-20250515092716807.png)
 
-## 3. Projects
+## 3. Assemble
+
+1.1. Components Needed.
+
+![Img](./media/img-20231030144203.png)
+
+1.2. Installation Diagram.
+
+![Img](./media/img-20231030144628.png)
+
+1.3. Prototype.
+
+![Img](./media/img-20231030144718.png)
+
+2.1. Components Needed.
+
+![Img](./media/img-20231030144955.png)
+
+2.2. Installation Diagram.
+
+![Img](./media/img-20231030145034.png)
+
+![Img](./media/img-20231030145102.png)
+
+![Img](./media/img-20231030145109.png)
+
+2.3. Prototype.
+
+![Img](./media/img-20231030145230.png)
+
+3.1. Components Needed.
+
+![Img](./media/img-20231030145508.png)
+
+![Img](./media/img-20231030145518.png)
+
+3.2. Installation Diagram.
+
+![Img](./media/img-20231030145624.png)
+
+3.3. Plug Wire.
+
+![Img](./media/img-20231030145642.png)
+
+3.4. Prototype.
+
+![Img](./media/img-20231030145659.png)
+
+4.1. Components Needed.
+
+![Img](./media/img-20231030145754.png)
+
+4.2. Rotate the servo to 90 degrees.
+
+![Img](./media/img-20231030152952.png)
+
+![image-20250509085038006](./media/image-20250509085038006.png)
+
+<span style="color:red;">If you have any questions about uploading code to the development board, please refer to "2. Dowmload code and library files"!!</span>
+
+Code file location:
+
+![image-20250515092700018](./media/image-20250515092700018.png)
+
+```c
+//*****************************************************************
+/*
+Set the 90-degree code,Copy the code and upload it to the development board. The steering gear connected to port A3 will rotate to 90 °
+*/
+#define servoPin A3  //servo Pin
+int pos; //the angle variable of servo
+int pulsewidth; // pulse width variable of servo
+void setup() {
+  pinMode(servoPin, OUTPUT);  //set servo pin to OUTPUT
+  procedure(0); //set the angle of servo to 0°
+}
+void loop() {
+
+    procedure(90);              // tell servo to go to position in variable 90°
+
+}
+// function to control servo
+void procedure(int myangle) {
+  pulsewidth = myangle * 11 + 500;  //calculate the value of pulse width
+  digitalWrite(servoPin,HIGH);
+  delayMicroseconds(pulsewidth);   //The duration of high level is pulse width
+  digitalWrite(servoPin,LOW);
+  delay((20 - pulsewidth / 1000));  // the cycle is 20ms, the low level last for the rest of time
+}
+//*****************************************************************
+```
+
+4.3. Installation Diagram.
+
+![Img](./media/img-20231030150427.png)
+
+![Img](./media/img-20231030150435.png)
+
+![Img](./media/img-20231030150500.png)
+
+![Img](./media/img-20231030150519.png)
+
+4.4. Prototype.
+
+![Img](./media/img-20231030150546.png)
+
+5.1. Components Needed.
+
+![Img](./media/img-20231030150735.png)
+
+5.2. Installation Diagram.
+
+![Img](./media/img-20231030150830.png)
+
+![Img](./media/img-20231030150837.png)
+
+5.3. Prototype.
+
+![Img](./media/img-20231030150855.png)
+
+6.1. Components Needed.
+
+![Img](./media/img-20231030150916.png)
+
+![Img](./media/img-20231030150919.png)
+
+6.2. Installation Diagram.
+
+![Img](./media/img-20231030150939.png)
+
+![Img](./media/img-20231030150947.png)
+
+6.3. Prototype.
+
+![Img](./media/img-20231030151008.png)
+
+7.1. Components Needed.
+
+![Img](./media/img-20231030151039.png)
+
+7.2. Installation Diagram.
+
+![Img](./media/img-20231030151152.png)
+
+![Img](./media/img-20231030151215.png)
+
+7.3. Prototype.
+
+![Img](./media/img-20231030151703.png)
+
+8.1. Wiring Diagram.
+
+![Img](./media/img-20231030151721.png)
+
+8.2. M2 Motor is connected to B interface,，M3 Motor is connected to A interface.
+
+![Img](./media/img-20231030151819.png)
+
+8.3. M1 Motor is connected to B1 interface，M4 Motor is connected to A1 interface.
+
+![Img](./media/img-20231030151838.png)
+
+8.4. The wiring of the 3-channel line-tracking sensor.
+
+![Img](./media/img-20231030151903.png)
+
+8.5. The power supply is connected to BAT.
+
+![Img](./media/img-20231030151923.png)
+
+8.6. The wiring of the ultrasonic sensor.
+
+![Img](./media/img-20231030153533.png)
+
+![Img](./media/img-20231030152013.png)
+
+8.7. The wiring of the 8*16 LED Board.
+
+![Img](./media/img-20231030153640.png)
+
+![Img](./media/img-20231030154056.png)
+
+8.8. The wiring of the servo.
+
+![Img](./media/img-20231030154247.png)
+
+![Img](./media/img-20231030154300.png)
+
+8.9. Plug in the Bluetooth module and jumper caps.
+
+![Img](./media/img-20231030152216.png)
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+8.10. Complete Prototype.
+
+![Img](./media/img-20231030152243.png)                    
+
+## 4. Projects
 
 ### Project 1: LED Blink
 

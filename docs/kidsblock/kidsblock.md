@@ -14,9 +14,9 @@ The Kidsblock, based on the Scratch graphical programming software, integrates m
 
 ## 2.Download code file
 
-Click to download the code file required for the course：[Click to download](./kidsblockCode.zip)
+Click to download the code file required for the course：[Click to download](./Kidsblock.zip)
 
-
+![image-20250515092833629](./media/image-20250515092833629.png)
 
 ## 3. How to use KidsBlock
 
@@ -162,10 +162,180 @@ The way of deleting other sensors or modules is as same as the passive buzzer.
 <span style="color: rgb(255, 76, 65);">Note：Please refer to the following link for MacOS：</span>
 [https://kidsblocksite.readthedocs.io/en/latest/](https://kidsblocksite.readthedocs.io/en/latest/)
 
+## 4. Assemble
+
+1.1. Components Needed.
+
+![Img](./media/img-20231030144203.png)
+
+1.2. Installation Diagram.
+
+![Img](./media/img-20231030144628.png)
+
+1.3. Prototype.
+
+![Img](./media/img-20231030144718.png)
+
+2.1. Components Needed.
+
+![Img](./media/img-20231030144955.png)
+
+2.2. Installation Diagram.
+
+![Img](./media/img-20231030145034.png)
+
+![Img](./media/img-20231030145102.png)
+
+![Img](./media/img-20231030145109.png)
+
+2.3. Prototype.
+
+![Img](./media/img-20231030145230.png)
+
+3.1. Components Needed.
+
+![Img](./media/img-20231030145508.png)
+
+![Img](./media/img-20231030145518.png)
+
+3.2. Installation Diagram.
+
+![Img](./media/img-20231030145624.png)
+
+3.3. Plug Wire.
+
+![Img](./media/img-20231030145642.png)
+
+3.4. Prototype.
+
+![Img](./media/img-20231030145659.png)
+
+4.1. Components Needed.
+
+![Img](./media/img-20231030145754.png)
+
+4.2. Rotate the servo to 90 degrees.
+
+![Img](./media/img-20231030152952.png)
+
+![image-20250509085038006](./media/image-20250509085038006.png)
+
+<span style="color:red;">If you have any questions about uploading code to the development board, please refer to "2. Dowmload code and library files"!!</span>
+
+Code file location:
+
+![image-20250515092920543](./media/image-20250515092920543.png)
+
+![KidsBlock Project-1747272116881](./media/KidsBlock Project-174727211688.png)
+
+4.3. Installation Diagram.
+
+![Img](./media/img-20231030150427.png)
+
+![Img](./media/img-20231030150435.png)
+
+![Img](./media/img-20231030150500.png)
+
+![Img](./media/img-20231030150519.png)
+
+4.4. Prototype.
+
+![Img](./media/img-20231030150546.png)
+
+5.1. Components Needed.
+
+![Img](./media/img-20231030150735.png)
+
+5.2. Installation Diagram.
+
+![Img](./media/img-20231030150830.png)
+
+![Img](./media/img-20231030150837.png)
+
+5.3. Prototype.
+
+![Img](./media/img-20231030150855.png)
+
+6.1. Components Needed.
+
+![Img](./media/img-20231030150916.png)
+
+![Img](./media/img-20231030150919.png)
+
+6.2. Installation Diagram.
+
+![Img](./media/img-20231030150939.png)
+
+![Img](./media/img-20231030150947.png)
+
+6.3. Prototype.
+
+![Img](./media/img-20231030151008.png)
+
+7.1. Components Needed.
+
+![Img](./media/img-20231030151039.png)
+
+7.2. Installation Diagram.
+
+![Img](./media/img-20231030151152.png)
+
+![Img](./media/img-20231030151215.png)
+
+7.3. Prototype.
+
+![Img](./media/img-20231030151703.png)
+
+8.1. Wiring Diagram.
+
+![Img](./media/img-20231030151721.png)
+
+8.2. M2 Motor is connected to B interface,，M3 Motor is connected to A interface.
+
+![Img](./media/img-20231030151819.png)
+
+8.3. M1 Motor is connected to B1 interface，M4 Motor is connected to A1 interface.
+
+![Img](./media/img-20231030151838.png)
+
+8.4. The wiring of the 3-channel line-tracking sensor.
+
+![Img](./media/img-20231030151903.png)
+
+8.5. The power supply is connected to BAT.
+
+![Img](./media/img-20231030151923.png)
+
+8.6. The wiring of the ultrasonic sensor.
+
+![Img](./media/img-20231030153533.png)
+
+![Img](./media/img-20231030152013.png)
+
+8.7. The wiring of the 8*16 LED Board.
+
+![Img](./media/img-20231030153640.png)
+
+![Img](./media/img-20231030154056.png)
+
+8.8. The wiring of the servo.
+
+![Img](./media/img-20231030154247.png)
+
+![Img](./media/img-20231030154300.png)
+
+8.9. Plug in the Bluetooth module and jumper caps.
+
+![Img](./media/img-20231030152216.png)
+
+<span style="color: rgb(255, 76, 65);">**Note:** Before uploading the test code, you need to remove the Bluetooth module, otherwise the code will fail to be uploaded.Connect the Bluetooth module after uploading the code successfully.</span>
+
+8.10. Complete Prototype.
+
+![img-20231030152243](./media/img-20231030152243.png)
 
 
-
-## 4. Projects
+## 5. Projects
 
 ### Project 1 LED Blink
 

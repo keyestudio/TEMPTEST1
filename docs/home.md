@@ -3,7 +3,7 @@
 
 ![image-20230425133641976](media/image-20230425133641976.png)
 
-**Download Profile：**</span>[https://fs.keyestudio.com/KS0559](https://fs.keyestudio.com/KS0559)
+**Download Profile：**[https://fs.keyestudio.com/KS0559](https://fs.keyestudio.com/KS0559)
 
 
 ## 1. Introduction
@@ -77,11 +77,11 @@ This product boasts 17 learning projects, from simple to complex, whic
 |18|Keyestudio Base Board|1|![](./media/83350480574b8e3536daed90c43f25bf.png)|
 |19|Fixed Parts |4|![](./media/31da46b304fa5546d457f444e6f24a95.png)|
 |20|Wheels|4|![](./media/de153b270a2635a082af13f6c530aac2.png)|
-|21|M3*10MM Dual-pass Copper Pillar|10|<p>![](./media/792d8043677d2c3fe52bf52d87623734.png) ![](./media/792d8043677d2c3fe52bf52d87623734.png)</p>|
+|21|M3*10MM Dual-pass Copper Pillar|10|![](./media/792d8043677d2c3fe52bf52d87623734.png)|
 |22|M3*40MM Dual-pass Copper Pillar|4|![](./media/484d02a86e672277bf844de19f99d952.png)|
 |23|M3*30MM Round Head Screw|8|![](./media/80af09d425cfdc4788c441042c553346.png)|
-|24|M3*6MM Round Head Screw|40|<p>![](./media/05a777927510346c0201f5fdfec45bda.png) ![](./media/05a777927510346c0201f5fdfec45bda.png) ![](./media/05a777927510346c0201f5fdfec45bda.png) ![](./media/05a777927510346c0201f5fdfec45bda.png)</p>|
-|25|M3 Nickle-plated Nut|16|<p>![](./media/3665fc5a77e96330bd56e9e00dda8c93.png) ![](./media/3665fc5a77e96330bd56e9e00dda8c93.png)</p>|
+|24|M3*6MM Round Head Screw|40|![](./media/05a777927510346c0201f5fdfec45bda.png)|
+|25|M3 Nickle-plated Nut|16|![](./media/3665fc5a77e96330bd56e9e00dda8c93.png)|
 |26|M2*8MM Round Head Screw|6|![](./media/36abc1252edb2c3b025a3b6169eb55cf.png)|
 |27|M3*8MM Round Head Screw|4|![](./media/2f7b5616f43002e2903a3e7eec952bfa.png)|
 |28|M2 Nickle-plated Nut|6|![](./media/350883d58fb992c8eacd3ce8aad07976.png)|
@@ -90,7 +90,7 @@ This product boasts 17 learning projects, from simple to complex, whic
 |31|Screwdriver|1|![](./media/5e24edf5e1ffcfd78a8b80ac0fc5bb63.png)|
 |32|Black Tie|6|![](./media/c22c1a490f3363434fd8bf89f8548a43.png)|
 |33|Winding Pipe|1|![](./media/f27f76695b544f1bbf9ab7ff10a8c065.png)|
-|34|<p>20CM 3pin F-F Dupont Cable</p>|1|![](./media/5b7f11db661f0d85719ffd420e5c06fe.png)|
+|34|20CM 3pin F-F Dupont Cable|1|![](./media/5b7f11db661f0d85719ffd420e5c06fe.png)|
 |35|Decorative Card|1|![](./media/fe5918ebfcdfccd63e3264f914f79a41.png)|
 |36|Blue Jumper Cap|4|![](./media/92e2cc0c92b9b9f6d6889ad58f70245e.png)|
 |37|Red Jumper Cap|4|![](./media/e401b5766620874fb11226e60983157e.png)|
@@ -135,13 +135,13 @@ It contains everything needed to support the microcontroller: simply co
 
 ## 6.Motor shield
 
- 1. Description
+**6.1 Description**
 
 The 8833 board adopts the 8833 motor driver chip driven by two-channel H bridges , and the maximum driving current of a single channel is up to 1.5A, and the terminal of PH2.0 is used. 
 
 The IR receiver module is also integrated on the board. Furthermore, there are many PH2.0 expansion interfaces on the board such as ultrasonic interface, analog interface, three-channel tracking interface as well as pin interfaces with Bluetooth and motor driver. 
 
- 2. Specification
+**6.2 Specification**
 
 |               Voltage               |                       USB 5V，DC 6-9V                        |
 | :---------------------------------: | :----------------------------------------------------------: |
@@ -154,27 +154,27 @@ The IR receiver module is also integrated on the board. Furthermore, there are m
 
 
 
- 3. Function
+**6.3 Function**
 
 ![](/media/d8696e83ade31f2b7c56cc5911eacbd7.GIF)
 
- 4. Schematic Diagram
+**6.4 Schematic Diagram**
 
-![](/media/eea66cf414c489a43e04de775a072bc4.jpeg)
+![image-20250513140932577](./media/image-20250513140932577.png)
+
+
 
 
 
 ## 7.Common Problems
 
-
-  1. The car has no reaction
+**7.1 The car has no reaction**
 
 1). Please check whether the batteries are sufficient
 
 2). Please check whether the wirings are correct
 
-
- 2. Computers can't recognize the USB ports
+**7.2 Computers can't recognize the USB ports**
 
 1). Please ensure whether the CP2102 driver is installed
 
@@ -182,7 +182,7 @@ The IR receiver module is also integrated on the board. Furthermore, there are m
 
 
 
- 3. Code fails to burn
+**7.3 Code fails to burn**
 
 1). Please try whether we can use Keyestudio V4.0 motherboard alone for burning (unplug the peripheral sensors/modules or other electronic components to eliminate external interference). 
 
@@ -190,5 +190,12 @@ The IR receiver module is also integrated on the board. Furthermore, there are m
 
 3). Please check whether the library files are imported.
 
+## 8. Tutorial
 
+**8.1 Arduino IDE Tutorial**
 
+![image-20250515094204016](./media/image-20250515094204016.png)
+
+**8.2 KidsBlocK Tutorial**
+
+![image-20250515094228545](./media/image-20250515094228545.png)
