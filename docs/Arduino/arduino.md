@@ -1337,6 +1337,22 @@ After successfully uploading the code to the V4.0 board, connect the wirings acc
 ![img](./media/wps25.jpg)
 ![img](./media/wps26.jpg)
 
+|                           |                           |                           |
+| ------------------------- | ------------------------- | ------------------------- |
+| ![img](./media/wps16.jpg) |                           |                           |
+| ![img](./media/wps17.jpg) |                           |                           |
+| ![img](./media/wps18.jpg) |                           |                           |
+| ![img](./media/wps19.jpg) |                           |                           |
+| ![img](./media/wps20.jpg) |                           |                           |
+| ![img](./media/wps21.jpg) |                           |                           |
+| ![img](./media/wps22.jpg) |                           |                           |
+| ![img](./media/wps23.jpg) |                           |                           |
+| ![img](./media/wps24.jpg) |                           |                           |
+| ![img](./media/wps25.jpg) |                           |                           |
+| ![img](./media/wps26.jpg) |                           |                           |
+
+
+---
 
 |                           | Control character                                            | Control character                                       |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -1351,6 +1367,9 @@ After successfully uploading the code to the V4.0 board, connect the wirings acc
 | ![img](./media/wps24.jpg) | Click to send“Y”, click again to send“S”                     | Start ultrasonic avoiding function; click again to exit |
 | ![img](./media/wps25.jpg) | Click to send“U”, click again to send“S”                     | Start ultrasonic follow function; click  again to exit  |
 | ![img](./media/wps26.jpg) | Click to send“G”, click again to send“S”                     | Start restricting function; click  again to exit        |
+
+---
+
 
 **9.Code Explanation**
 
