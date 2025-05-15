@@ -1274,48 +1274,47 @@ After successfully uploading the code to the V4.0 board, connect the wirings acc
 
 **Apple system**
 
-1. Open the App Store on the iPhone.
+(1). Open the App Store on the iPhone.
 
-2. Search keyes BT car and download the APP to your phone.
+(2). Search keyes BT car and download the APP to your phone.
 
-   
 
-   ![image-20250510084716811](./media/image-20250510084716811.png)
-       
 
-3. After installation, enter its interface.
-   
+![image-20250510084716811](./media/image-20250510084716811.png)
+    
+
+(3). After installation, enter its interface.
 
 ![image-20250510084812821](./media/image-20250510084812821.png)
     
-4. Click "**Connect**" button in the upper left corner to automatically search for Bluetooth. When **BT24** is found, click "**Connect**" to connect Bluetooth, and then click ![image-20250510084833837](./media/image-20250510084833837.png) to enter the control interface of 4WD smart car. 
-   
+
+(4). Click "**Connect**" button in the upper left corner to automatically search for Bluetooth. When **BT24** is found, click "**Connect**" to connect Bluetooth, and then click ![image-20250510084833837](./media/image-20250510084833837.png) to enter the control interface of 4WD smart car. 
 
 ![image-20250510084902641](./media/image-20250510084902641.png)
     **Android System**
     
 
-1. Enter google play store to search for“keyes 4wd”.
+(1). Enter google play store to search for“keyes 4wd”.
 
 ![image-20250510084916086](./media/image-20250510084916086.png)
 
-2. The app icon is shown below after installation.
+(2). The app icon is shown below after installation.
 
 ![image-20250510084933465](./media/image-20250510084933465.png)
 
-3. Click app to enter the following page.
+(3). Click app to enter the following page.
 
 ![image-20250510084946146](./media/image-20250510084946146.png)
 
-4. After connecting Bluetooth, plug in power and LED indicator of Bluetooth module will flicker. Tap“**Connect**”to search the Bluetooth.
+(4). After connecting Bluetooth, plug in power and LED indicator of Bluetooth module will flicker. Tap“**Connect**”to search the Bluetooth.
 
 ![image-20250510085007028](./media/image-20250510085007028.png)
 
-5. When **BT24** is found, click "Connect" to connect Bluetooth. When "**Connect**" turns into "**is Connected**", it indicates that the Bluetooth connection is successful. As shown in the picture below, the Bluetooth LED becomes will stay on.
+(5). When **BT24** is found, click "Connect" to connect Bluetooth. When "**Connect**" turns into "**is Connected**", it indicates that the Bluetooth connection is successful. As shown in the picture below, the Bluetooth LED becomes will stay on.
 
 ![image-20250510085026219](./media/image-20250510085026219.png)
 
-6. After connecting Bluetooth module, open serial monitor to set baud rate to 9600. Pressing the button of the Bluetooth APP, and the corresponding characters will be displayed, as shown below:
+(6). After connecting Bluetooth module, open serial monitor to set baud rate to 9600. Pressing the button of the Bluetooth APP, and the corresponding characters will be displayed, as shown below:
 
 ![image-20250510085039562](./media/image-20250510085039562.png)
 
@@ -2349,6 +2348,8 @@ In this project, we will look to detect the distance between the 4WD smart car a
 </tr>
 </tbody>
 </table>
+
+
 **3.Wiring Diagram**
 
 ![568a66655a14dd34afd8cb1e6ae5951c](./media/568a66655a14dd34afd8cb1e6ae5951c.png)
@@ -3251,7 +3252,7 @@ In this project, we will use a Bluetooth to adjust the speed of the smart car. W
 
 **3.Wiring Diagram**
 
-![](/media/61be6959693b2111639252ea45ec60fc.png)
+![](./media/61be6959693b2111639252ea45ec60fc.png)
 
 1). GND, VCC, SDA and SCL of the 8\*8 LED board are connected to G（GND), V（VCC), A4 and A5 of the expansion board.
 
