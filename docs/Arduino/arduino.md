@@ -1325,6 +1325,18 @@ After successfully uploading the code to the V4.0 board, connect the wirings acc
 | ![img](./media/wps15.jpg) | Disconnect Bluetooth              |
 
 
+![img](./media/wps16.jpg)
+![img](./media/wps17.jpg)
+![img](./media/wps18.jpg)
+![img](./media/wps19.jpg)
+![img](./media/wps20.jpg)
+![img](./media/wps21.jpg)
+![img](./media/wps22.jpg)
+![img](./media/wps23.jpg)
+![img](./media/wps24.jpg)
+![img](./media/wps25.jpg)
+![img](./media/wps26.jpg)
+
 
 |                           | Control character                                            | Control character                                       |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
