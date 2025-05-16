@@ -1533,7 +1533,7 @@ You can drag blocks to edit. Blocks listed below are for your reference.
 
 **Complete Test Code**
 
-![KidsBlock Project-1747127137354](./media/KidsBlock Project-1747127137354.png)
+![KidsBlock Project-1747127137354](./media/KidsBlockProject1747127137354.png)
 
 
 
@@ -2087,7 +2087,7 @@ In previous projects, the car only performs a single function. However, in this 
 
 **2.Flow Chart**
 
-![](../media/73f4da1e321bc29282d3b2f5cb3168dd-1747288473176-407.png)
+![](./media/73f4da1e321bc29282d3b2f5cb3168dd-1747288473176-407.png)
 
 **3.Wiring Diagram**
 
