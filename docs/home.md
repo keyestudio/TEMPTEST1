@@ -154,7 +154,7 @@ The IR receiver module is also integrated on the board. Furthermore, there are m
 |               Current               | The maximum output is 3A, the actual output is about 1A <br />(it’s 2A when the motor is loaded) |
 |            Maximum power            |             27W（The actual value is about 9W）              |
 |         Working temperature         |                        -10~50 Degree                         |
-|              Dimension              |                          69*56*18mm                          |
+|              Dimension              |                          69x56x18mm                          |
 |               Weight                |                            25.5g                             |
 | Environmental protection attributes |                             ROHS                             |
 

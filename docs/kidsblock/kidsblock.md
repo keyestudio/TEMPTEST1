@@ -22,9 +22,9 @@ Click to download the code file required for the course：[Click to download](./
 
 We demonstrate how to use KidsBlock on Windows system
 
-3.1 Interface.
+3.1 Interface
 
-![](./media/1d07c862c2e059febe07f1522290513d-1747288473168-4.png)
+![QQ20250516-104217](./media/QQ20250516-104217.png)
 
 3.2 Click![](./media/3dd044ace633a5f7218b0d19a55ff9cf-1747288473168-2.png)to switch to different languages.
 
@@ -86,38 +86,40 @@ We demonstrate how to use KidsBlock on Windows system
 ![](./media/c434a3523857af84ec8f2e0fe5091741.png)
     
 
-3.16 Click ![](./media/bfbf7c471ede03845519b11961a13837-1747288473168-19.png) to enter the main page, select the control board needed. In this project, we select the Uno Plus mainboard and click **Connect,** then it is connected. Click **Go to Editor** to return the code editor.
-Icon ![](./media/bfbf7c471ede03845519b11961a13837.png) will change into![Img](./media/img-20231101103847-1747288473168-20.png) ，and![](./media/db0135c23e5313dac75a33d7d2faa529.png)will change into ![](./media/75b2ba08926ca69000ad5cc655812d28.png). This means the Uno Plus mainboard and ports（COM)are connected.
+3.16 Click ![](./media/bfbf7c471ede03845519b11961a13837-1747288473168-19.png) to enter the main page, select the control board needed. In this project, we select the "**UNO development board**" mainboard and click **Connect,** then it is connected. Click **Go to Editor** to return the code editor.
+Icon ![](./media/bfbf7c471ede03845519b11961a13837.png) will change into![Img](./media/img-20231101103847-1747288473168-20.png) ，and![](./media/db0135c23e5313dac75a33d7d2faa529.png)will change into ![image-20250516094316842](./media/image-20250516094316842.png). This means the Uno Plus mainboard and ports（COM)are connected.
 
-![](./media/dffb264fb8b7313928d1ae0f8d23b4d9.png)
+![image-20250516093857221](./media/image-20250516093857221.png)
 
-![](./media/088183796c04198687cabb77520ee57d.png)
+![image-20250516094005544](./media/image-20250516094005544.png)
 
-![](./media/a5474f9c9e002578bd898d709352a720.png)
+![image-20250516094026631](./media/image-20250516094026631.png)
 
-![](./media/9264f12b2d0177aa1271099622821ff0.png)
+![image-20250516094244414](./media/image-20250516094244414.png)
 
-3.17 If the Uno Plus mainboard is connected , but ![](./media/db0135c23e5313dac75a33d7d2faa529.png) icondoesn’t change into ![](./media/75b2ba08926ca69000ad5cc655812d28.png). You need to click ![](./media/db0135c23e5313dac75a33d7d2faa529.png)to connect the COM port. Click ![](./media/db0135c23e5313dac75a33d7d2faa529.png) and then click **Connect**. Then you will find a page pop up, showing **Connected**.
+3.17 If the Uno Plus mainboard is connected , but ![](./media/db0135c23e5313dac75a33d7d2faa529.png) icondoesn’t change into ![image-20250516094348761](./media/image-20250516094348761.png). You need to click ![](./media/db0135c23e5313dac75a33d7d2faa529.png)to connect the COM port. Click ![](./media/db0135c23e5313dac75a33d7d2faa529.png) and then click **Connect**. Then you will find a page pop up, showing **Connected**.
 
-![](./media/7cdc62d2fbd6a678a990e8b7dbfd94f8.png)
+![image-20250516094454628](./media/image-20250516094454628.png)
 
-![](./media/5ac42faf4baded53673710bb173a3508.png)
+![image-20250516094005544](./media/image-20250516094005544.png)
 
-![](./media/f328cd859a2557feca3c5eddc863f857.png)
+![image-20250516094026631](./media/image-20250516094026631.png)
 
-![](./media/9264f12b2d0177aa1271099622821ff0.png)
 
-To disconnect the port, just click ![](./media/75b2ba08926ca69000ad5cc655812d28.png) and**Disconnect**.
 
-![](./media/7488e7809f4b4bb2b42cbfded023bb57.png)
+![image-20250516094244414](./media/image-20250516094244414.png)
+
+To disconnect the port, just click ![image-20250516094402344](./media/image-20250516094402344.png) and**Disconnect**.
+
+![image-20250516094608713](./media/image-20250516094608713.png)
 
 3.18 The Uno Plus mainboard and the COM port are connected, then click![](./media/770292e2b4d7555030eaf7951cf58aec.png) will change into ![](./media/6647392e2b1488904406ad656f6e08b4.png).
 
-![](./media/102914131d83f23ce541685a358426eb.png)
+![image-20250516094638798](./media/image-20250516094638798.png)
 
-![](./media/07f45c21d21ba19f979357b7fbd03ac9.png)
+![image-20250516094700571](./media/image-20250516094700571.png)
 
-![](./media/3662d3d4ebb2e2d4bd40e9585031c63f.png)
+![QQ20250516-095952](./media/QQ20250516-095952.png)
 
 <span style="color: rgb(255, 76, 65);">Note:</span> if you want to update libraries of KidsBlock, click![](./media/49ea7c72ac42a9f39deed5aeef6a3ecc.png) then Clear cache and restart.
 
@@ -145,22 +147,20 @@ The way of deleting other sensors or modules is as same as the passive buzzer.
 
 3.20 How to open SB3 type files：
 
-1). Double-click SB3 type files to open them. For instance, open ![](./media/d1c08b964ffcd9d0e4af4e5770a538dd.png), then we need to double-click
-![](./media/d1c08b964ffcd9d0e4af4e5770a538dd.png).
+1). Double-click SB3 type files to open them. For instance, open ![image-20250516105019155](./media/image-20250516105019155.png), then we need to double-click
+![](./media/image-20250516105019155.png).
 
-![](./media/b78fb04b6336eedce1202bf265442361.png)
+![image-20250516102748387](./media/image-20250516102748387.png)
 
-2). Open Kidsblock，click **file and Load from your computer**，then select the SB3 type file on the computer.（for example: ![](./media/d1c08b964ffcd9d0e4af4e5770a538dd.png)).
+2). Open Kidsblock，click **file and Load from your computer**，then select the SB3 type file on the computer.（for example: ![](./media/image-20250516105019155.png)).
 
 ![](./media/8a39d0edec305298402df4216e984b61.png)
 
-![Img](./media/img-20231101104948.png)
+![image-20250516105121551](./media/image-20250516105121551.png)
 
-![](./media/b78fb04b6336eedce1202bf265442361.png)
+![image-20250516102748387](./media/image-20250516102748387.png)
 
-
-<span style="color: rgb(255, 76, 65);">Note：Please refer to the following link for MacOS：</span>
-[https://kidsblocksite.readthedocs.io/en/latest/](https://kidsblocksite.readthedocs.io/en/latest/)
+<span style="color: rgb(255, 76, 65);">Note：Please refer to the following link for MacOS：</span>[https://kidsblocksite.readthedocs.io/en/latest/](https://kidsblocksite.readthedocs.io/en/latest/)
 
 ## 4. Assemble
 

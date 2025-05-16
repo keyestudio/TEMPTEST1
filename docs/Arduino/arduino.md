@@ -10,6 +10,12 @@
 
 [https://getting-started-with-arduino.readthedocs.io](https://getting-started-with-arduino.readthedocs.io/en/latest/Arduino%20IDE%20Tutorial.html)
 
+**Note: This kit uses KS0497, so when installing the driver, we need to choose the KS0497 development board for installation.**
+
+![image-20250516093320866](./media/image-20250516093320866.png)
+
+
+
 
 
 ## 2. Download code and library files
