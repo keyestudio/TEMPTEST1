@@ -4,10 +4,11 @@
    :caption: keyestudio TEMPTEST1
 
    README.md
-   docs/index.md
-   docs/KidsBlockDesktop/KidsBlockDesktopTutorial.md
-   docs/MicroBlocks/MicroBlocksTutorial.md
-   docs/MicroPython/MicroPythonTutorial.md
+   docs/产品介绍
+   docs/arduino/arduino教程
+   docs/mixly/Mixly教程
+   docs/kidsblock/kidsblock教程
+
 
 
 
