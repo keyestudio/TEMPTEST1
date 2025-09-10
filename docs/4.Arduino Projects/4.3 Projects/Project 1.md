@@ -71,7 +71,7 @@ int ledPin = 12;
 
 - Define the variable `ledPin`, which means that we connect the LED to pin GPIO12.
 
-
+<br>
 
 **2.   Initialization (setup runs only once)**
 
@@ -81,7 +81,7 @@ pinMode(ledPin, OUTPUT);
 
 - Set `ledPin`(pin GPIO12) to output mode to control the LED.
 
-
+<br>
 
 **3.  Main Loop (loop)**
 
